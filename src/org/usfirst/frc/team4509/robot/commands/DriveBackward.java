@@ -4,9 +4,7 @@ import org.usfirst.frc.team4509.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * GitHub Test
- */
+
 public class DriveBackward extends CustomCommandClass
 {
 	boolean isInterupted = false;
