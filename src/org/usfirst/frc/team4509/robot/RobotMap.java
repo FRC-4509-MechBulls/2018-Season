@@ -3,6 +3,7 @@ package org.usfirst.frc.team4509.robot;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.SPI.Port;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -10,34 +11,39 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap 
-{
+public class RobotMap {
 	
-	public static CANTalon TalonDriveFrontRight = new CANTalon(0); // The front right driving Talon
-	public static CANTalon TalonDriveBackRight = new CANTalon(3); // The back right driving Talon
-	public static CANTalon TalonDriveFrontLeft = new CANTalon(8); // The front left driving Talon
-	public static CANTalon TalonDriveBackLeft = new CANTalon(5); // The back left driving Talon 
-	public static ADXRS450_Gyro Gyro = new ADXRS450_Gyro();
 	
-	public static void SetUpTalonControlMode()
-	{
-		TalonDriveFrontRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
-		TalonDriveBackRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
-		TalonDriveFrontLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
-		TalonDriveBackLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
-	}
+	public static final int DRIVE_TALON_FRONT_LEFT_PORT = 8;
+	public static final int DRIVE_TALON_FRONT_RIGHT_PORT = 0;
+	public static final int DRIVE_TALON_BACK_LEFT_PORT = 5;
+	public static final int DRIVE_TALON_BACK_RIGHT_PORT = 3;
+	public static final Port GYRO_PORT = Port.kMXP;
 	
-	public static void InitializeGyroValues()
-	{
+	public static CANTalon driveTalonFrontLeft;
+	public static CANTalon driveTalonFrontRight;
+	public static CANTalon driveTalonBackLeft;
+	public static CANTalon driveTalonBackRight;
+	public static ADXRS450_Gyro gyro;
+	
+	public static void initTalons() {
+		RobotMap.driveTalonFrontLeft   = new CANTalon(RobotMap.DRIVE_TALON_FRONT_LEFT_PORT);
+		RobotMap.driveTalonFrontRight  = new CANTalon(RobotMap.DRIVE_TALON_FRONT_RIGHT_PORT);
+		RobotMap.driveTalonBackLeft    = new CANTalon(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
+		RobotMap.driveTalonBackRight   = new CANTalon(RobotMap.DRIVE_TALON_BACK_RIGHT_PORT);
 		
+		RobotMap.setTalonControlMode();
 	}
-	// For example to map the left and right motors, you could define the
-	// following variables to use with your drivetrain subsystem.
-	// public static int leftMotor = 1;
-	// public static int rightMotor = 2;
 	
-	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
-	// public static int rangefinderPort = 1;
-	// public static int rangefinderModule = 1;
+	public static void setTalonControlMode() {
+		RobotMap.driveTalonFrontRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
+		RobotMap.driveTalonBackRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
+		RobotMap.driveTalonFrontLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
+		RobotMap.driveTalonBackLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
+	}
+	
+	public static void initSensors() {
+		RobotMap.gyro = new ADXRS450_Gyro(Port.kMXP);
+	}
+
 }

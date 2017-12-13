@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4509.robot.commands.*;
-import org.usfirst.frc.team4509.robot.subsystems.*;
+import org.usfirst.frc.team4509.robot.subsystems.DrivingSubsystem;
 
 
 //TODO test driving and turning commands
@@ -21,16 +21,11 @@ import org.usfirst.frc.team4509.robot.subsystems.*;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot 
-{
-
+public class Robot extends IterativeRobot {
 	
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
+	
 	public static OI oi;
-	
-	
-	public static final DriveTrain driveTrainSubsystem = new DriveTrain();
-	
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -40,11 +35,12 @@ public class Robot extends IterativeRobot
 	 * used for any initialization code.
 	 */
 	@Override
-	public void robotInit() 
-	{
-		RobotMap.SetUpTalonControlMode();
-		oi = new OI();
-		chooser.addDefault("Default Auto", new TurnRight(90));
+	public void robotInit() {
+		RobotMap.initTalons();
+		RobotMap.initSensors();
+		
+		this.oi = new OI();
+		// chooser.addDefault("Default Auto", new TurnRight(90));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
@@ -124,4 +120,5 @@ public class Robot extends IterativeRobot
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+	
 }
