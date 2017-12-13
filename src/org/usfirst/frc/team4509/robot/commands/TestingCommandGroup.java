@@ -15,7 +15,7 @@ public class TestingCommandGroup extends CommandGroup {
     	addSequential(new Delay(1d));
     	addSequential(new DriveBackward(5));
     	addSequential(new Delay(1d));
-    	addSequential(new TurnRight(90d));
+    	addSequential(new TurnCommand(90d));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

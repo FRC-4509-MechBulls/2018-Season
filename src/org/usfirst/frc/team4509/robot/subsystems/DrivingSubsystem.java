@@ -29,14 +29,14 @@ public class DrivingSubsystem extends Subsystem {
     }
     
     public void getGyroAngle() {
-    	this.angle = RobotMap.gyro.getAngle();
+    	this.angle = RobotMap.navX.getAngle();
     }
     
     public void drive(boolean goForward, float speed) {
     	if(goForward) {
     		leftSpeed = speed;
     		rightSpeed = -speed;
-    		while(RobotMap.gyro.getAngle() - angle < -.25d) // If the angle is too much to the left (.5 degree margin of error allowed)
+    		while(RobotMap.navX.getAngle() - angle < -.25d) // If the angle is too much to the left (.5 degree margin of error allowed)
 			{
 				if(isChanged) // Check isChanged. This makes sure that the drive values don't change too drastically.
 				{
@@ -51,7 +51,7 @@ public class DrivingSubsystem extends Subsystem {
 				RobotMap.driveTalonBackRight.set(rightSpeed);
 				RobotMap.driveTalonFrontRight.set(rightSpeed);
 			}
-			while(RobotMap.gyro.getAngle() - angle > .25d) // If the angle is too far to the right (.5 degree margin of error allowed)
+			while(RobotMap.navX.getAngle() - angle > .25d) // If the angle is too far to the right (.5 degree margin of error allowed)
 			{
 				//Slow down right side and speed up left
 				if(isChanged) // Check isChanged. This makes sure that the drive values don't change too drastically.
@@ -79,7 +79,7 @@ public class DrivingSubsystem extends Subsystem {
     	} else {
     		leftSpeed = -speed;
     		rightSpeed = speed;
-    		while(RobotMap.gyro.getAngle() - angle < -.5d) // If the angle is too much to the left (.5 degree margin of error allowed)
+    		while(RobotMap.navX.getAngle() - angle < -.5d) // If the angle is too much to the left (.5 degree margin of error allowed)
 			{
 				if(isChanged) // Check isChanged. This makes sure that the drive values don't change too drastically.
 				{
@@ -92,7 +92,7 @@ public class DrivingSubsystem extends Subsystem {
 				RobotMap.driveTalonBackRight.set(rightSpeed);
 				RobotMap.driveTalonFrontRight.set(rightSpeed);
 			}
-			while(RobotMap.gyro.getAngle() - angle > .5d) // If the angle is too much to the right (.5 degree margin of error allowed)
+			while(RobotMap.navX.getAngle() - angle > .5d) // If the angle is too much to the right (.5 degree margin of error allowed)
 			{
 				if(isChanged) // Check isChanged. This makes sure that the drive values don't change too drastically.
 				{
@@ -116,33 +116,16 @@ public class DrivingSubsystem extends Subsystem {
     	}
     }
     
-    public void turn(boolean TurnRight, double Degrees, double Speed) {
-    	isFinishedTurning = false;
-    	if(!TurnRight) {
-    		Degrees = Degrees * -1;
-    	}
-    	double startingAngle = RobotMap.gyro.getAngle(); // The angle that the robot starts at
-		double targetAngle = RobotMap.gyro.getAngle() + Degrees; // The angle the robot wants to end at
-		while(startingAngle + Degrees -.25d > RobotMap.gyro.getAngle() || startingAngle + Degrees + .25d < RobotMap.gyro.getAngle()) // if the angle isn't the correct angle
-		{
-			if(RobotMap.gyro.getAngle() - targetAngle > .25f) // If the current angle is too far right
-			{
-				RobotMap.driveTalonBackLeft.set(-Speed);
-				RobotMap.driveTalonFrontLeft.set(-Speed);
-				RobotMap.driveTalonBackRight.set(-Speed);
-				RobotMap.driveTalonFrontRight.set(-Speed);
-			}
-			else if(RobotMap.gyro.getAngle() - targetAngle < -.25f) // If the current angle is too far left
-			{
-				RobotMap.driveTalonBackLeft.set(Speed);
-				RobotMap.driveTalonFrontLeft.set(Speed);
-				RobotMap.driveTalonBackRight.set(Speed);
-				RobotMap.driveTalonFrontRight.set(Speed);
-			}
-		}
-		
-		isFinishedTurning = true;
-		this.stop();
+    /**
+     * 
+     * @param direction the direction to turn. -1 is left, 1 is right
+     * @param speed
+     */
+    public void turn(int direction, double speed) {
+		RobotMap.driveTalonBackLeft.set(direction * speed);
+		RobotMap.driveTalonFrontLeft.set(direction * speed);
+		RobotMap.driveTalonBackRight.set(-direction * speed);
+		RobotMap.driveTalonFrontRight.set(-direction * speed);
     }
     
     public void stop() {

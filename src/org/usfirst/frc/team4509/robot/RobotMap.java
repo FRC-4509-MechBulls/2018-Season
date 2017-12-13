@@ -2,7 +2,7 @@ package org.usfirst.frc.team4509.robot;
 
 import com.ctre.CANTalon;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI.Port;
 
 /**
@@ -18,13 +18,13 @@ public class RobotMap {
 	public static final int DRIVE_TALON_FRONT_RIGHT_PORT = 0;
 	public static final int DRIVE_TALON_BACK_LEFT_PORT = 5;
 	public static final int DRIVE_TALON_BACK_RIGHT_PORT = 3;
-	public static final Port GYRO_PORT = Port.kMXP;
+	public static final Port NAVX_PORT = Port.kMXP;
 	
 	public static CANTalon driveTalonFrontLeft;
 	public static CANTalon driveTalonFrontRight;
 	public static CANTalon driveTalonBackLeft;
 	public static CANTalon driveTalonBackRight;
-	public static ADXRS450_Gyro gyro;
+	public static AHRS navX;
 	
 	public static void initTalons() {
 		RobotMap.driveTalonFrontLeft   = new CANTalon(RobotMap.DRIVE_TALON_FRONT_LEFT_PORT);
@@ -43,7 +43,7 @@ public class RobotMap {
 	}
 	
 	public static void initSensors() {
-		RobotMap.gyro = new ADXRS450_Gyro(Port.kMXP);
+		RobotMap.navX = new AHRS(Port.kMXP);
 	}
 
 }
