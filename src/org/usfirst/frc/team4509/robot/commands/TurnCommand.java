@@ -5,6 +5,11 @@ import org.usfirst.frc.team4509.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * A command to turn the robot an amount given in degrees 
+ * @author Kyle Brott
+ *
+ */
 public class TurnCommand extends Command {
 
 	double oldDegrees, turnDegrees;

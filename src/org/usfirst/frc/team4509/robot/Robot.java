@@ -36,9 +36,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		RobotMap.initTalons();
+		RobotMap.initDriveTalons();
+		RobotMap.setDriveTalonControlModeToVoltage();
+		RobotMap.initDrive();
 		RobotMap.initSensors();
 		
+		RobotMap.initControls();
 		this.oi = new OI();
 		// chooser.addDefault("Default Auto", new TurnRight(90));
 		// chooser.addObject("My Auto", new MyAutoCommand());

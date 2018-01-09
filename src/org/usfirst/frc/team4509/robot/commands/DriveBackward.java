@@ -11,7 +11,7 @@ public class DriveBackward extends CustomCommandClass
 	
     public DriveBackward(float secondsUntilStop) 
     {
-        requires(Robot.driveTrainSubsystem);
+        requires(Robot.drivingSubsystem);
         setTimeout(secondsUntilStop);
     }
 
@@ -22,14 +22,14 @@ public class DriveBackward extends CustomCommandClass
     protected void runOnceWhenExecuted()
     {
     	super.runOnceWhenExecuted();
-    	Robot.driveTrainSubsystem.getGyroAngle();
+    	Robot.drivingSubsystem.getGyroAngle();
     }
     
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
     	super.execute();
-    	Robot.driveTrainSubsystem.drive(false, 4f);
+    	Robot.drivingSubsystem.drive(false, 4f);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -46,7 +46,7 @@ public class DriveBackward extends CustomCommandClass
     // Called once after isFinished returns true
     protected void end() 
     {
-    	Robot.driveTrainSubsystem.Stop();
+    	Robot.drivingSubsystem.stop();
     }
 
     // Called when another command which requires one or more of the same
