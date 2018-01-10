@@ -1,6 +1,0 @@
-0000000000000000000000000000000000000000 61e9326f8a2c0224c99f9b9d56bd16bdb2786953 andre <andre@10.173.6.132> 1511962504 -0500	commit (initial): first commit
-61e9326f8a2c0224c99f9b9d56bd16bdb2786953 7e098d93ebb425cbcaa037c7d68b54c6218a93d6 andre <andre@10.173.6.132> 1511964104 -0500	commit: edit
-7e098d93ebb425cbcaa037c7d68b54c6218a93d6 d4b21c9da451b2fa80d26eceefe89edb3e65570e agoeden12 <andrewgoeden@gmail.com> 1511965169 -0500	commit: boolean instead of iterator
-d4b21c9da451b2fa80d26eceefe89edb3e65570e d4b21c9da451b2fa80d26eceefe89edb3e65570e agoeden12 <andrewgoeden@gmail.com> 1511966468 -0500	checkout: moving from master to myBranch
-d4b21c9da451b2fa80d26eceefe89edb3e65570e d4b21c9da451b2fa80d26eceefe89edb3e65570e agoeden12 <andrewgoeden@gmail.com> 1511967204 -0500	checkout: moving from myBranch to master
-d4b21c9da451b2fa80d26eceefe89edb3e65570e dd5c1d12166c6cf244770b2cbccf12c933105b6e agoeden12 <andrewgoeden@gmail.com> 1511987458 -0500	commit: commit test
