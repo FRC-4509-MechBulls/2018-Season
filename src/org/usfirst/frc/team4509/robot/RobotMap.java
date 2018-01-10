@@ -7,6 +7,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -15,7 +16,6 @@ import edu.wpi.first.wpilibj.SPI.Port;
  * floating around.
  */
 public class RobotMap {
-	
 	
 	public static final int DRIVE_TALON_FRONT_LEFT_PORT  = 8;
 	public static final int DRIVE_TALON_FRONT_RIGHT_PORT = 0;
@@ -37,6 +37,7 @@ public class RobotMap {
 	public static void initControls() {
 		RobotMap.leftJoystick  = new Joystick(RobotMap.LEFT_JOYSTICK_PORT);
 		RobotMap.rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK_PORT);
+		SmartDashboard.putBoolean("init/Controls Initialized", true);
 	}
 	
 	public static void initDriveTalons() {
@@ -44,6 +45,7 @@ public class RobotMap {
 		RobotMap.driveTalonFrontRight  = new CANTalon(RobotMap.DRIVE_TALON_FRONT_RIGHT_PORT);
 		RobotMap.driveTalonBackLeft    = new CANTalon(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
 		RobotMap.driveTalonBackRight   = new CANTalon(RobotMap.DRIVE_TALON_BACK_RIGHT_PORT);
+		SmartDashboard.putBoolean("init/Drive Talons Initialized", true);
 	}
 	
 	public static void setDriveTalonControlModeToVoltage() {
@@ -51,6 +53,7 @@ public class RobotMap {
 		RobotMap.driveTalonBackRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
 		RobotMap.driveTalonFrontLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
 		RobotMap.driveTalonBackLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
+		SmartDashboard.putString("init/Drive Talon Control Mode:", "Voltage");
 	}
 	
 	public static void setDriveTalonControlModeToPercentVbus() {
@@ -58,6 +61,7 @@ public class RobotMap {
 		RobotMap.driveTalonBackRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		RobotMap.driveTalonFrontLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		RobotMap.driveTalonBackLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		SmartDashboard.putString("init/Drive Talon Control Mode:", "PercentVbus");
 	}
 	
 	public static void initDrive() {
@@ -66,10 +70,12 @@ public class RobotMap {
 		RobotMap.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
 		RobotMap.drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
 		RobotMap.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		SmartDashboard.putBoolean("init/Drive Initialized", true);
 	}
 	
 	public static void initSensors() {
 		RobotMap.navX = new AHRS(Port.kMXP);
+		SmartDashboard.putBoolean("init/Sensors Initialized", true);
 	}
 
 }
