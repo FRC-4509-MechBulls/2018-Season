@@ -3,11 +3,10 @@ package org.usfirst.frc.team4509.robot.subsystems;
 
 import org.usfirst.frc.team4509.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.ctre.CANTalon;
-
-import edu.wpi.first.wpilibj.command.Subsystem;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
  *
