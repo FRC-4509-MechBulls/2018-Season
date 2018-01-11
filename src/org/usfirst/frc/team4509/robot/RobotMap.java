@@ -1,11 +1,11 @@
 package org.usfirst.frc.team4509.robot;
 
-import com.ctre.CANTalon;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -25,11 +25,13 @@ public class RobotMap {
 	public static final int LEFT_JOYSTICK_PORT  = 1;
 	public static final int RIGHT_JOYSTICK_PORT = 0;
 	
-	public static CANTalon driveTalonFrontLeft;
-	public static CANTalon driveTalonFrontRight;
-	public static CANTalon driveTalonBackLeft;
-	public static CANTalon driveTalonBackRight;
-	public static RobotDrive drive;
+	public static WPI_TalonSRX driveTalonFrontLeft;
+	public static WPI_TalonSRX driveTalonFrontRight;
+	public static WPI_TalonSRX driveTalonBackLeft;
+	public static WPI_TalonSRX driveTalonBackRight;
+	public static WPI_TalonSRX driveTalonMiddleLeft;
+	public static WPI_TalonSRX driveTalonMiddleRight;
+	public static DifferentialDrive drive;
 	public static AHRS navX;
 	public static Joystick leftJoystick;
 	public static Joystick rightJoystick;
@@ -41,35 +43,28 @@ public class RobotMap {
 	}
 	
 	public static void initDriveTalons() {
-		RobotMap.driveTalonFrontLeft   = new CANTalon(RobotMap.DRIVE_TALON_FRONT_LEFT_PORT);
-		RobotMap.driveTalonFrontRight  = new CANTalon(RobotMap.DRIVE_TALON_FRONT_RIGHT_PORT);
-		RobotMap.driveTalonBackLeft    = new CANTalon(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
-		RobotMap.driveTalonBackRight   = new CANTalon(RobotMap.DRIVE_TALON_BACK_RIGHT_PORT);
+		RobotMap.driveTalonFrontLeft   = new WPI_TalonSRX(RobotMap.DRIVE_TALON_FRONT_LEFT_PORT);
+		RobotMap.driveTalonFrontRight  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_FRONT_RIGHT_PORT);
+		RobotMap.driveTalonBackLeft    = new WPI_TalonSRX(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
+		RobotMap.driveTalonBackRight   = new WPI_TalonSRX(RobotMap.DRIVE_TALON_BACK_RIGHT_PORT);
+		RobotMap.driveTalonMiddleLeft  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
+		RobotMap.driveTalonMiddleRight = new WPI_TalonSRX(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
+		
 		SmartDashboard.putBoolean("init/Drive Talons Initialized", true);
 	}
 	
-	public static void setDriveTalonControlModeToVoltage() {
-		RobotMap.driveTalonFrontRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
-		RobotMap.driveTalonBackRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
-		RobotMap.driveTalonFrontLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
-		RobotMap.driveTalonBackLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
-		SmartDashboard.putString("init/Drive Talon Control Mode:", "Voltage");
-	}
-	
-	public static void setDriveTalonControlModeToPercentVbus() {
-		RobotMap.driveTalonFrontRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		RobotMap.driveTalonBackRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		RobotMap.driveTalonFrontLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		RobotMap.driveTalonBackLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		SmartDashboard.putString("init/Drive Talon Control Mode:", "PercentVbus");
-	}
 	
 	public static void initDrive() {
-		new RobotDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonBackLeft, RobotMap.driveTalonFrontRight, RobotMap.driveTalonBackRight);
-		RobotMap.drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-		RobotMap.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-		RobotMap.drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		RobotMap.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+		RobotMap.drive = new DifferentialDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonFrontRight);
+		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
+		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);
+		
+		
+		
+//		RobotMap.drive.setInvertedMotor(DifferentialDrive.MotorType.kFrontLeft, true);
+//		RobotMap.drive.setInvertedMotor(DifferentialDrive.MotorType.kFrontRight, true);
+//		RobotMap.drive.setInvertedMotor(DifferentialDrive.MotorType.kRearLeft, true);
+//		RobotMap.drive.setInvertedMotor(DifferentialDrive.MotorType.kRearRight, true);
 		SmartDashboard.putBoolean("init/Drive Initialized", true);
 	}
 	

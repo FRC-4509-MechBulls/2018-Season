@@ -37,7 +37,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.initDriveTalons();
-		RobotMap.setDriveTalonControlModeToVoltage();
+//		RobotMap.setDriveTalonControlModeToVoltage();
 		RobotMap.initDrive();
 		RobotMap.initSensors();
 		
@@ -115,14 +115,16 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		
+		
 	}
 
-	/**
-	 * This function is called periodically during test mode
-	 */
+	
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+		// ~run()~ method has been deprecated
+//		LiveWindow.run();
 	}
 	
 }

@@ -9,5 +9,6 @@
 	<classpathentry exported="true" kind="var" path="USERLIBS_DIR/CTRLib.jar"/>
 	<classpathentry exported="true" kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
 	<classpathentry exported="true" kind="var" path="USERLIBS_DIR/ctrlib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/andre/wpilib/user/java/lib/CTRE_Phoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

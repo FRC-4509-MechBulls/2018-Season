@@ -31,6 +31,11 @@ public class DrivingSubsystem extends Subsystem {
     	this.angle = RobotMap.navX.getAngle();
     }
     
+    public void teleOpDriving(double leftYAxis, double rightYAxis, double rightXAxis) {
+		RobotMap.drive.tankDrive(leftYAxis * -1, rightYAxis);
+		RobotMap.driveTalonMiddleLeft.set(RobotMap.rightJoystick.getX());
+    }
+    
     public void drive(boolean goForward, float speed) {
     	if(goForward) {
     		leftSpeed = speed;
