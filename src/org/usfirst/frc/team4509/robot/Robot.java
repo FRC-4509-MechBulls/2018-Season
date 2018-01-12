@@ -108,7 +108,6 @@ public class Robot extends IterativeRobot {
 		this.drivingSubsystem.teleOpDriving(RobotMap.leftJoystick.getY(), RobotMap.rightJoystick.getY(), RobotMap.rightJoystick.getX());
 	}
 
-	
 	@Override
 	public void testPeriodic() {
 		
