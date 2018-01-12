@@ -9,6 +9,8 @@
 	<classpathentry exported="true" kind="var" path="USERLIBS_DIR/CTRLib.jar"/>
 	<classpathentry exported="true" kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
 	<classpathentry exported="true" kind="var" path="USERLIBS_DIR/ctrlib.jar"/>
-	<classpathentry kind="lib" path="USERLIBS_DIR/CTRE_Phoenix.jar"/>
+	<classpathentry exported="true" kind="var" path="wpiutil" sourcepath="wpiutil.sources"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix-sources.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

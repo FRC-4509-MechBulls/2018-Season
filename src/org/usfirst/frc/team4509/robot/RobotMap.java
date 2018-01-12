@@ -39,6 +39,7 @@ public class RobotMap {
 	public static void initControls() {
 		RobotMap.leftJoystick  = new Joystick(RobotMap.LEFT_JOYSTICK_PORT);
 		RobotMap.rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK_PORT);
+    
 		SmartDashboard.putBoolean("init/Controls Initialized", true);
 	}
 	
@@ -52,24 +53,18 @@ public class RobotMap {
 		
 		SmartDashboard.putBoolean("init/Drive Talons Initialized", true);
 	}
-	
-	
+  
 	public static void initDrive() {
 		RobotMap.drive = new DifferentialDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonFrontRight);
 		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
 		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);
-		
-		
-		
-//		RobotMap.drive.setInvertedMotor(DifferentialDrive.MotorType.kFrontLeft, true);
-//		RobotMap.drive.setInvertedMotor(DifferentialDrive.MotorType.kFrontRight, true);
-//		RobotMap.drive.setInvertedMotor(DifferentialDrive.MotorType.kRearLeft, true);
-//		RobotMap.drive.setInvertedMotor(DifferentialDrive.MotorType.kRearRight, true);
+    
 		SmartDashboard.putBoolean("init/Drive Initialized", true);
 	}
 	
 	public static void initSensors() {
 		RobotMap.navX = new AHRS(Port.kMXP);
+    
 		SmartDashboard.putBoolean("init/Sensors Initialized", true);
 	}
 
