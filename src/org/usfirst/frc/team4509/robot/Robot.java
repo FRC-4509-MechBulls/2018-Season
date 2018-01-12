@@ -1,11 +1,9 @@
-
 package org.usfirst.frc.team4509.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -41,7 +39,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.initSensors();
 		
 		RobotMap.initControls();
-		this.oi = new OI();
+		Robot.oi = new OI();
 		// chooser.addDefault("Default Auto", new TurnRight(90));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -107,14 +105,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
-		
-		
+		this.drivingSubsystem.teleOpDriving(RobotMap.leftJoystick.getY(), RobotMap.rightJoystick.getY(), RobotMap.rightJoystick.getX());
 	}
 
 	
 	@Override
 	public void testPeriodic() {
+		
 	}
 	
 }

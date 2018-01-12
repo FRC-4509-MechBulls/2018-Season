@@ -21,6 +21,8 @@ public class RobotMap {
 	public static final int DRIVE_TALON_FRONT_RIGHT_PORT = 0;
 	public static final int DRIVE_TALON_BACK_LEFT_PORT   = 5;
 	public static final int DRIVE_TALON_BACK_RIGHT_PORT  = 3;
+	public static final int DRIVE_TALON_MIDDLE_LEFT_PORT = 1;
+	public static final int DRIVE_TALON_MIDDLE_RIGHT_PORT = 7;
 	public static final Port NAVX_PORT = Port.kMXP;
 	public static final int LEFT_JOYSTICK_PORT  = 1;
 	public static final int RIGHT_JOYSTICK_PORT = 0;
@@ -48,8 +50,8 @@ public class RobotMap {
 		RobotMap.driveTalonFrontRight  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_FRONT_RIGHT_PORT);
 		RobotMap.driveTalonBackLeft    = new WPI_TalonSRX(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
 		RobotMap.driveTalonBackRight   = new WPI_TalonSRX(RobotMap.DRIVE_TALON_BACK_RIGHT_PORT);
-		RobotMap.driveTalonMiddleLeft  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
-		RobotMap.driveTalonMiddleRight = new WPI_TalonSRX(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
+		RobotMap.driveTalonMiddleLeft  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_LEFT_PORT);
+		RobotMap.driveTalonMiddleRight = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_RIGHT_PORT);
 		
 		SmartDashboard.putBoolean("init/Drive Talons Initialized", true);
 	}
@@ -58,6 +60,7 @@ public class RobotMap {
 		RobotMap.drive = new DifferentialDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonFrontRight);
 		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
 		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);
+		RobotMap.driveTalonMiddleRight.follow(driveTalonMiddleLeft);
     
 		SmartDashboard.putBoolean("init/Drive Initialized", true);
 	}

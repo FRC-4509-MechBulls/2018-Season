@@ -6,8 +6,6 @@ import org.usfirst.frc.team4509.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 /**
  *
  */
@@ -31,7 +29,7 @@ public class DrivingSubsystem extends Subsystem {
     }
     
     public void teleOpDriving(double leftYAxis, double rightYAxis, double rightXAxis) {
-		RobotMap.drive.tankDrive(leftYAxis * -1, rightYAxis);
+		RobotMap.drive.tankDrive(leftYAxis, rightYAxis);
 		RobotMap.driveTalonMiddleLeft.set(RobotMap.rightJoystick.getX());
     }
     
