@@ -105,8 +105,8 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		Scheduler.getInstance().add(new DriveUntilInterruptedCommand());
-		if(this.oi.controller.getPOV(1) > -1)
-			Scheduler.getInstance().add(new TurnCommand(this.oi.controller.getPOV(1)));
+		if(Robot.oi.controller.getPOV(1) > -1)
+			Scheduler.getInstance().add(new TurnCommand(Robot.oi.controller.getPOV(1)));
 	}
 
 	@Override
