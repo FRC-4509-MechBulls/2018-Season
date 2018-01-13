@@ -4,7 +4,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,8 +23,6 @@ public class RobotMap {
 	public static final int DRIVE_TALON_MIDDLE_LEFT_PORT = 1;
 	public static final int DRIVE_TALON_MIDDLE_RIGHT_PORT = 7;
 	public static final Port NAVX_PORT = Port.kMXP;
-	public static final int LEFT_JOYSTICK_PORT  = 1;
-	public static final int RIGHT_JOYSTICK_PORT = 0;
 	
 	public static WPI_TalonSRX driveTalonFrontLeft;
 	public static WPI_TalonSRX driveTalonFrontRight;
@@ -35,15 +32,6 @@ public class RobotMap {
 	public static WPI_TalonSRX driveTalonMiddleRight;
 	public static DifferentialDrive drive;
 	public static AHRS navX;
-	public static Joystick leftJoystick;
-	public static Joystick rightJoystick;
-	
-	public static void initControls() {
-		RobotMap.leftJoystick  = new Joystick(RobotMap.LEFT_JOYSTICK_PORT);
-		RobotMap.rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK_PORT);
-    
-		SmartDashboard.putBoolean("init/Controls Initialized", true);
-	}
 	
 	public static void initDriveTalons() {
 		RobotMap.driveTalonFrontLeft   = new WPI_TalonSRX(RobotMap.DRIVE_TALON_FRONT_LEFT_PORT);
