@@ -105,7 +105,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		this.drivingSubsystem.teleOpDriving(RobotMap.leftJoystick.getY(), RobotMap.rightJoystick.getY(), RobotMap.rightJoystick.getX());
+		Scheduler.getInstance().add(new DriveUntilInterruptedCommand());
 	}
 
 	@Override

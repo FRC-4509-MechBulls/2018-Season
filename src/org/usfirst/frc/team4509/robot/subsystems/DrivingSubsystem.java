@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DrivingSubsystem extends Subsystem {
 	
 	double angle = 0;	
-	float leftSpeed = 3;
-	float rightSpeed = -3;
+	double leftSpeed = 3;
+	double rightSpeed = -3;
 	boolean isChanged = false;
 	public boolean isFinishedTurning = false;
 	
@@ -30,14 +30,14 @@ public class DrivingSubsystem extends Subsystem {
     
     public void teleOpDriving(double leftYAxis, double rightYAxis, double rightXAxis) {
 		RobotMap.drive.tankDrive(leftYAxis, rightYAxis);
-		RobotMap.driveTalonMiddleLeft.set(RobotMap.rightJoystick.getX());
+		RobotMap.driveTalonMiddleLeft.set(rightXAxis);
     }
     
-    public void drive(boolean goForward, float speed) {
+    public void drive(boolean goForward, double speed) {
     	if(goForward) {
     		leftSpeed = speed;
     		rightSpeed = -speed;
-    		while(RobotMap.navX.getAngle() - angle < -.25d) // If the angle is too much to the left (.5 degree margin of error allowed)
+    		while(RobotMap.navX.getAngle() - angle < -.25) // If the angle is too much to the left (.5 degree margin of error allowed)
 			{
 				if(isChanged) // Check isChanged. This makes sure that the drive values don't change too drastically.
 				{
@@ -52,7 +52,7 @@ public class DrivingSubsystem extends Subsystem {
 				RobotMap.driveTalonBackRight.set(rightSpeed);
 				RobotMap.driveTalonFrontRight.set(rightSpeed);
 			}
-			while(RobotMap.navX.getAngle() - angle > .25d) // If the angle is too far to the right (.5 degree margin of error allowed)
+			while(RobotMap.navX.getAngle() - angle > .25) // If the angle is too far to the right (.5 degree margin of error allowed)
 			{
 				//Slow down right side and speed up left
 				if(isChanged) // Check isChanged. This makes sure that the drive values don't change too drastically.
@@ -80,7 +80,7 @@ public class DrivingSubsystem extends Subsystem {
     	} else {
     		leftSpeed = -speed;
     		rightSpeed = speed;
-    		while(RobotMap.navX.getAngle() - angle < -.5d) // If the angle is too much to the left (.5 degree margin of error allowed)
+    		while(RobotMap.navX.getAngle() - angle < -.5) // If the angle is too much to the left (.5 degree margin of error allowed)
 			{
 				if(isChanged) // Check isChanged. This makes sure that the drive values don't change too drastically.
 				{
@@ -93,7 +93,7 @@ public class DrivingSubsystem extends Subsystem {
 				RobotMap.driveTalonBackRight.set(rightSpeed);
 				RobotMap.driveTalonFrontRight.set(rightSpeed);
 			}
-			while(RobotMap.navX.getAngle() - angle > .5d) // If the angle is too much to the right (.5 degree margin of error allowed)
+			while(RobotMap.navX.getAngle() - angle > .5) // If the angle is too much to the right (.5 degree margin of error allowed)
 			{
 				if(isChanged) // Check isChanged. This makes sure that the drive values don't change too drastically.
 				{
