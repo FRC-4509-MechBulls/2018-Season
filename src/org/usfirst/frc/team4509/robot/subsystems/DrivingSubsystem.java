@@ -31,6 +31,10 @@ public class DrivingSubsystem extends Subsystem {
 		RobotMap.driveTalonMiddleLeft.set(rightXAxis);
     }
     
+    public void teleOpArcade(double xSpeed, double zRotation) {
+    	RobotMap.drive.arcadeDrive(xSpeed, zRotation);
+    }
+    
     public void drive(double speed) {
 		leftSpeed = speed;
 		rightSpeed = -speed;
