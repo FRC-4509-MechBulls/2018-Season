@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -31,6 +33,7 @@ public class RobotMap {
 	public static WPI_TalonSRX driveTalonMiddleLeft;
 	public static WPI_TalonSRX driveTalonMiddleRight;
 	public static DifferentialDrive drive;
+	public static Encoder encoder;
 	public static AHRS navX;
 	
 	public static void initDriveTalons() {
@@ -49,6 +52,8 @@ public class RobotMap {
 		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
 		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);
 		RobotMap.driveTalonMiddleRight.follow(driveTalonMiddleLeft);
+		
+		RobotMap.encoder = new Encoder(new DigitalInput(0), new DigitalInput(1));
     
 		SmartDashboard.putBoolean("init/Drive Initialized", true);
 	}

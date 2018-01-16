@@ -23,7 +23,7 @@ public class DriveUntilInterruptedCommand extends Command {
     	//Robot.drivingSubsystem.teleOpDriving(Robot.oi.controller.getY(GenericHID.Hand.kLeft),
     	//		                             Robot.oi.controller.getY(GenericHID.Hand.kRight),
     	//		                             Robot.oi.controller.getX(GenericHID.Hand.kRight));
-    	Robot.drivingSubsystem.teleOpArcade(Robot.oi.controller.getY(GenericHID.Hand.kLeft),
+    	Robot.drivingSubsystem.teleOpArcade((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight),
     	                                    Robot.oi.controller.getX(GenericHID.Hand.kRight));
     }
 
