@@ -1,9 +1,9 @@
 package org.usfirst.frc.team4509.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.GenericHID;
 
 import org.usfirst.frc.team4509.robot.Robot;
+import org.usfirst.frc.team4509.robot.RobotMap;
 
 /**
  *
@@ -24,7 +24,7 @@ public class DriveUntilInterruptedCommand extends Command {
     }
     
     protected void execute() {
-    	Robot.drivingSubsystem.teleOpArcade(this.speed, this.turn);
+    	RobotMap.drive.arcadeDrive(this.speed, this.turn);
     }
 
     protected boolean isFinished() {

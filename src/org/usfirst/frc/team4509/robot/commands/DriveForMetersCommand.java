@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveCommandForTicks extends Command {
+public class DriveForMetersCommand extends Command {
 
 	boolean isInterrupted = false;
-	int distance; // in ticks
+	double distance; // in meters
 	
-    public DriveCommandForTicks(int distance) {
+    public DriveForMetersCommand(double distance) {
         requires(Robot.drivingSubsystem);
         this.distance = distance;
     }
@@ -32,7 +32,7 @@ public class DriveCommandForTicks extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isInterrupted || Math.abs(RobotMap.encoder.getDistance() - this.distance) <= 1;
+        return this.isInterrupted || Math.abs(RobotMap.encoder.getDistance() - this.distance) < 0.5;
     }
 
     // Called once after isFinished returns true

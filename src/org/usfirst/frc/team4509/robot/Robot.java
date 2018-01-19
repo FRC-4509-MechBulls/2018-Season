@@ -75,6 +75,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
 		autonomousCommand = chooser.getSelected();
+		Scheduler.getInstance().add(new DriveForTicksCommand(50));
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
@@ -105,6 +106,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		if(this.oi.controller.getPOV() > -1)
+			Scheduler.getInstance().add(new TurnCommand(this.oi.controller.getPOV()));
 		Scheduler.getInstance().add(new DriveUntilInterruptedCommand((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight), Robot.oi.controller.getX(GenericHID.Hand.kRight)));
 		SmartDashboard.putNumber("encoder", RobotMap.encoder.get());
 		//if(Robot.oi.controller.getPOV(0) > -1)

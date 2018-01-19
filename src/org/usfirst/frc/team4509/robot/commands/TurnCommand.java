@@ -12,29 +12,29 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class TurnCommand extends Command {
 
-	double oldDegrees, turnDegrees;
+	double turnDegrees;
 	boolean isFinished = false;
 
     public TurnCommand(double turnDegrees) {
         requires(Robot.drivingSubsystem);
-        this.oldDegrees = RobotMap.navX.getAngle();
-        this.turnDegrees = turnDegrees;
+        this.turnDegrees = turnDegrees > 180 ? turnDegrees - 360 : turnDegrees;
     }
 
     protected void initialize() {
+    	RobotMap.navX.reset();
     }
     
     protected void execute() {
     	if(!this.isFinished) {
-    		if(this.turnDegrees + this.oldDegrees - RobotMap.navX.getAngle() > 0)
-    			Robot.drivingSubsystem.turn(1, 1);
+    		if(this.turnDegrees - RobotMap.navX.getAngle() > 0)
+    			Robot.drivingSubsystem.turn(1);
     		else
-    			Robot.drivingSubsystem.turn(-1, 1);
+    			Robot.drivingSubsystem.turn(-1);
     	}
     }
 
     protected boolean isFinished() {
-        return Math.abs(this.turnDegrees + this.oldDegrees - RobotMap.navX.getAngle()) < 0.5;
+        return Math.abs(this.turnDegrees - RobotMap.navX.getAngle()) < 0.5;
     }
 
     protected void end() {
@@ -42,6 +42,10 @@ public class TurnCommand extends Command {
     }
 
     protected void interrupted() {
+    }
+    
+    protected boolean isInterruptable() {
+    	return false;
     }
     
 }
