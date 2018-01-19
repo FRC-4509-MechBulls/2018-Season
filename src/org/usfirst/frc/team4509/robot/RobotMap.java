@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RobotMap {
 	
+	public static final int TICKS_PER_METER = 0;
+	
 	public static final int DRIVE_TALON_FRONT_LEFT_PORT  = 8;
 	public static final int DRIVE_TALON_FRONT_RIGHT_PORT = 0;
 	public static final int DRIVE_TALON_BACK_LEFT_PORT   = 5;
