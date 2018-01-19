@@ -19,7 +19,6 @@ public class DrivingSubsystem extends Subsystem {
 	public boolean isFinishedTurning = false;
 	
     public void initDefaultCommand() {
-        //setDefaultCommand(new DriveUntilInterruptedCommand(0.5, 0));
     }
     
     public void getGyroAngle() {
