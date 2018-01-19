@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4509.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -104,7 +105,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		Scheduler.getInstance().add(new DriveUntilInterruptedCommand());
+		Scheduler.getInstance().add(new DriveUntilInterruptedCommand((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight), Robot.oi.controller.getX(GenericHID.Hand.kRight)));
 		SmartDashboard.putNumber("encoder", RobotMap.encoder.get());
 		//if(Robot.oi.controller.getPOV(0) > -1)
 		//	Scheduler.getInstance().add(new TurnCommand(Robot.oi.controller.getPOV(0)));

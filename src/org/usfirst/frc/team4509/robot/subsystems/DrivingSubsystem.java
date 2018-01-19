@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4509.robot.subsystems;
 
 
-import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
 import org.usfirst.frc.team4509.robot.commands.DriveUntilInterruptedCommand;
 
@@ -20,7 +19,7 @@ public class DrivingSubsystem extends Subsystem {
 	public boolean isFinishedTurning = false;
 	
     public void initDefaultCommand() {
-        setDefaultCommand(new DriveUntilInterruptedCommand());
+        //setDefaultCommand(new DriveUntilInterruptedCommand(0.5, 0));
     }
     
     public void getGyroAngle() {

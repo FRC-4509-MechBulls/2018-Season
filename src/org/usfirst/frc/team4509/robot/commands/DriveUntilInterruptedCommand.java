@@ -12,7 +12,11 @@ public class DriveUntilInterruptedCommand extends Command {
 	
 	boolean isInterupted = false;
 	
-    public DriveUntilInterruptedCommand() {
+	private double speed, turn;
+	
+    public DriveUntilInterruptedCommand(double speed, double turn) {
+    	this.speed = speed;
+    	this.turn = turn;
         requires(Robot.drivingSubsystem);
     }
     
@@ -23,8 +27,7 @@ public class DriveUntilInterruptedCommand extends Command {
     	//Robot.drivingSubsystem.teleOpDriving(Robot.oi.controller.getY(GenericHID.Hand.kLeft),
     	//		                             Robot.oi.controller.getY(GenericHID.Hand.kRight),
     	//		                             Robot.oi.controller.getX(GenericHID.Hand.kRight));
-    	Robot.drivingSubsystem.teleOpArcade((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight),
-    	                                    Robot.oi.controller.getX(GenericHID.Hand.kRight));
+    	Robot.drivingSubsystem.teleOpArcade(this.speed, this.turn);
     }
 
     protected boolean isFinished() {
