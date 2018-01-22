@@ -102,7 +102,6 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
-		Robot.oi.povTrigger.whileActive(new TurnCommand(Robot.oi.controller.getPOV()));
 	}
 
 	/**
@@ -110,10 +109,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		double n = 0;
-		if(Robot.oi.controller.getBumper(GenericHID.Hand.kLeft)) n--;
-		if(Robot.oi.controller.getBumper(GenericHID.Hand.kRight)) n++;
-		Scheduler.getInstance().add(new DriveUntilInterruptedCommand((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight), Robot.oi.controller.getX(GenericHID.Hand.kRight), n));
+		Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("encoder", RobotMap.encoder.get());
 	}

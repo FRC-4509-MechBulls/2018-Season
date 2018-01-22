@@ -1,7 +1,9 @@
 package org.usfirst.frc.team4509.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
+
+import org.usfirst.frc.team4509.robot.XboxController;
+import org.usfirst.frc.team4509.robot.JoystickPair;
+
 import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
@@ -14,25 +16,18 @@ public class OI {
 	public static final int RIGHT_JOYSTICK_PORT = 0;
 	public static final int XBOX_CONTROLLER_PORT = 0;
 	
-	public XboxController controller;
-	public POVTrigger povTrigger;
+	public BaseController controller;
 	public DriveTrigger driveTrigger;
 	
 	public OI() {
 		this.controller = new XboxController(OI.XBOX_CONTROLLER_PORT);
-		this.povTrigger = new POVTrigger();
+		//this.controller = new JoystickPair(OI.LEFT_JOYSTICK_PORT, OI.RIGHT_JOYSTICK_PORT);
 		this.driveTrigger = new DriveTrigger();
-	}
-	
-	class POVTrigger extends Button {
-		public boolean get() {
-			return Robot.oi.controller.getPOV() > -1;
-		}
 	}
 	
 	class DriveTrigger extends Button {
 		public boolean get() {
-			return Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft) > 0 || Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight) > 0 || Robot.oi.controller.getX(GenericHID.Hand.kRight) > 0;
+			return Robot.oi.controller.getDrive() > 0 || Robot.oi.controller.getTurn() != 0;
 		}
 	}
 
