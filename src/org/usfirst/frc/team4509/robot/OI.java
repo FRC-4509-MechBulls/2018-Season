@@ -1,9 +1,6 @@
 package org.usfirst.frc.team4509.robot;
 
 
-import org.usfirst.frc.team4509.robot.XboxController;
-import org.usfirst.frc.team4509.robot.JoystickPair;
-
 import edu.wpi.first.wpilibj.buttons.Button;
 
 /**

@@ -11,7 +11,7 @@ public class XboxController implements BaseController {
 	}
 	
 	public double getDrive() {
-		return (-1 * this.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + this.controller.getTriggerAxis(GenericHID.Hand.kRight);
+		return this.controller.getTriggerAxis(GenericHID.Hand.kRight) - this.controller.getTriggerAxis(GenericHID.Hand.kLeft);
 	}
 	
 	public double getSlide() {
