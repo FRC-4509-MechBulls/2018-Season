@@ -110,7 +110,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().add(new DriveUntilInterruptedCommand((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight), Robot.oi.controller.getX(GenericHID.Hand.kRight)));
+		double n = 0;
+		if(Robot.oi.controller.getBumper(GenericHID.Hand.kLeft)) n--;
+		if(Robot.oi.controller.getBumper(GenericHID.Hand.kRight)) n++;
+		Scheduler.getInstance().add(new DriveUntilInterruptedCommand((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight), Robot.oi.controller.getX(GenericHID.Hand.kRight), n));
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("encoder", RobotMap.encoder.get());
 	}

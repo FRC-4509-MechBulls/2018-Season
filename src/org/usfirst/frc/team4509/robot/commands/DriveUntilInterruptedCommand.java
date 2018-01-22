@@ -10,11 +10,12 @@ import org.usfirst.frc.team4509.robot.RobotMap;
  */
 public class DriveUntilInterruptedCommand extends Command {
 	
-	private double speed, turn;
+	private double speed, turn, slide;
 	
-    public DriveUntilInterruptedCommand(double speed, double turn) {
+    public DriveUntilInterruptedCommand(double speed, double turn, double slide) {
     	this.speed = speed;
     	this.turn = turn;
+    	this.slide = slide;
         requires(Robot.drivingSubsystem);
     }
     
@@ -22,7 +23,7 @@ public class DriveUntilInterruptedCommand extends Command {
     }
     
     protected void execute() {
-    	RobotMap.drive.arcadeDrive(this.speed, this.turn);
+    	Robot.drivingSubsystem.drive(this.speed, this.turn, this.slide);
     }
 
     protected boolean isFinished() {

@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DrivingSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new DriveUntilInterruptedCommand((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight), Robot.oi.controller.getX(GenericHID.Hand.kRight)));
+    	//setDefaultCommand(new DriveUntilInterruptedCommand((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight), Robot.oi.controller.getX(GenericHID.Hand.kRight)));
     }
     
     public double getGyroAngle() {
@@ -29,6 +29,11 @@ public class DrivingSubsystem extends Subsystem {
     
     public void drive(double speed) {
     	RobotMap.drive.arcadeDrive(speed, 0);
+    }
+    
+    public void drive(double z, double rot, double x) {
+    	RobotMap.drive.arcadeDrive(z, rot);
+    	RobotMap.driveTalonMiddleLeft.set(x);
     }
     
     /**
