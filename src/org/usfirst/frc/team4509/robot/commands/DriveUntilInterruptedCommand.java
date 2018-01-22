@@ -10,8 +10,6 @@ import org.usfirst.frc.team4509.robot.RobotMap;
  */
 public class DriveUntilInterruptedCommand extends Command {
 	
-	boolean isInterupted = false;
-	
 	private double speed, turn;
 	
     public DriveUntilInterruptedCommand(double speed, double turn) {
@@ -28,7 +26,7 @@ public class DriveUntilInterruptedCommand extends Command {
     }
 
     protected boolean isFinished() {
-    	return this.isInterupted;
+    	return false;
     }
 
     protected void end() {
@@ -36,6 +34,6 @@ public class DriveUntilInterruptedCommand extends Command {
     }
 
     protected void interrupted() {
-    	this.isInterupted = true;
+    	//this.end();
     }
 }

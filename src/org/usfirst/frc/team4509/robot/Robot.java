@@ -3,6 +3,8 @@ package org.usfirst.frc.team4509.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -10,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4509.robot.commands.*;
 import org.usfirst.frc.team4509.robot.subsystems.*;
+import org.usfirst.frc.team4509.robot.OI;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -75,7 +78,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
 		autonomousCommand = chooser.getSelected();
-		Scheduler.getInstance().add(new DriveForTicksCommand(50));
+		//Scheduler.getInstance().add(new DriveForTicksCommand(50));
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
@@ -98,6 +101,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
+		Robot.oi.povTrigger.whileActive(new TurnCommand(Robot.oi.controller.getPOV()));
 	}
 
 	/**
@@ -105,13 +110,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
-		if(this.oi.controller.getPOV() > -1)
-			Scheduler.getInstance().add(new TurnCommand(this.oi.controller.getPOV()));
 		Scheduler.getInstance().add(new DriveUntilInterruptedCommand((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight), Robot.oi.controller.getX(GenericHID.Hand.kRight)));
+		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("encoder", RobotMap.encoder.get());
-		//if(Robot.oi.controller.getPOV(0) > -1)
-		//	Scheduler.getInstance().add(new TurnCommand(Robot.oi.controller.getPOV(0)));
 	}
 
 	@Override

@@ -1,8 +1,11 @@
 package org.usfirst.frc.team4509.robot.subsystems;
 
 
+import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
+import org.usfirst.frc.team4509.robot.commands.DriveUntilInterruptedCommand;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -11,17 +14,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DrivingSubsystem extends Subsystem {
 	
-	double angle = 0;	
-	double leftSpeed = 3;
-	double rightSpeed = -3;
-	boolean isChanged = false;
-	public boolean isFinishedTurning = false;
-	
     public void initDefaultCommand() {
+    	setDefaultCommand(new DriveUntilInterruptedCommand((-1 * Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kLeft)) + Robot.oi.controller.getTriggerAxis(GenericHID.Hand.kRight), Robot.oi.controller.getX(GenericHID.Hand.kRight)));
     }
     
-    public void getGyroAngle() {
-    	this.angle = RobotMap.navX.getAngle();
+    public double getGyroAngle() {
+    	return RobotMap.navX.getAngle();
     }
     
     public void teleOpDriving(double leftYAxis, double rightYAxis, double rightXAxis) {
