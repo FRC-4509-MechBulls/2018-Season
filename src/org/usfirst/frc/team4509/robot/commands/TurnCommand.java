@@ -41,8 +41,7 @@ public class TurnCommand extends Command {
     	Robot.drivingSubsystem.stop();
     }
 
-    protected void interrupted() {
-    }
+    protected void interrupted() {  }
     
     protected boolean isInterruptable() {
     	return false;

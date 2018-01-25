@@ -1,10 +1,7 @@
 package org.usfirst.frc.team4509.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -12,7 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4509.robot.commands.*;
 import org.usfirst.frc.team4509.robot.subsystems.*;
-import org.usfirst.frc.team4509.robot.OI;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,9 +18,9 @@ import org.usfirst.frc.team4509.robot.OI;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
+
 	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
-	
+
 	public static OI oi;
 
 	public static char[] gameData;
@@ -38,7 +34,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		RobotMap.initDriveTalons();
 		RobotMap.initDrive();
 		RobotMap.initSensors();
 		
@@ -54,9 +49,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	@Override
-	public void disabledInit() {
-
-	}
+	public void disabledInit() {  }
 
 	@Override
 	public void disabledPeriodic() {
@@ -78,10 +71,10 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
 		autonomousCommand = chooser.getSelected();
-		//Scheduler.getInstance().add(new DriveForTicksCommand(50));
+		Scheduler.getInstance().add(new DriveForTicksCommand(50));
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
+		if(autonomousCommand != null)
 			autonomousCommand.start();
 	}
 
@@ -101,7 +94,6 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		
 	}
 
 	/**
@@ -115,8 +107,6 @@ public class Robot extends IterativeRobot {
 	}
 
 	@Override
-	public void testPeriodic() {
-		
-	}
+	public void testPeriodic() {  }
 	
 }

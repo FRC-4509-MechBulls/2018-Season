@@ -23,9 +23,7 @@ public class OI {
 	}
 	
 	class DriveTrigger extends Button {
-		public boolean get() {
-			return Robot.oi.controller.getDrive() > 0 || Robot.oi.controller.getTurn() != 0;
-		}
+		public boolean get() { return Robot.oi.controller.getDrive() > 0 || Robot.oi.controller.getTurn() != 0; }
 	}
 
 }

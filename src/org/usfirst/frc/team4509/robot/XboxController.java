@@ -10,10 +10,12 @@ public class XboxController implements BaseController {
 		this.controller = new edu.wpi.first.wpilibj.XboxController(port);
 	}
 	
+	@Override
 	public double getDrive() {
 		return this.controller.getTriggerAxis(GenericHID.Hand.kRight) - this.controller.getTriggerAxis(GenericHID.Hand.kLeft);
 	}
 	
+	@Override
 	public double getSlide() {
 		double n = 0;
 		if(this.controller.getBumper(GenericHID.Hand.kLeft)) n--;
@@ -21,6 +23,7 @@ public class XboxController implements BaseController {
 		return (double)n;
 	}
 	
+	@Override
 	public double getTurn() {
 		return this.controller.getX(GenericHID.Hand.kRight);
 	}

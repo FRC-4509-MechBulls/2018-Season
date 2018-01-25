@@ -17,14 +17,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * floating around.
  */
 public class RobotMap {
-	
+
 	public static final int TICKS_PER_METER = 0;
-	
-	public static final int DRIVE_TALON_FRONT_LEFT_PORT  = 8;
-	public static final int DRIVE_TALON_FRONT_RIGHT_PORT = 0;
-	public static final int DRIVE_TALON_BACK_LEFT_PORT   = 5;
-	public static final int DRIVE_TALON_BACK_RIGHT_PORT  = 3;
-	public static final int DRIVE_TALON_MIDDLE_LEFT_PORT = 1;
+
+	public static final int DRIVE_TALON_FRONT_LEFT_PORT   = 8;
+	public static final int DRIVE_TALON_FRONT_RIGHT_PORT  = 0;
+	public static final int DRIVE_TALON_BACK_LEFT_PORT    = 5;
+	public static final int DRIVE_TALON_BACK_RIGHT_PORT   = 3;
+	public static final int DRIVE_TALON_MIDDLE_LEFT_PORT  = 1;
 	public static final int DRIVE_TALON_MIDDLE_RIGHT_PORT = 7;
 	public static final Port NAVX_PORT = Port.kMXP;
 	
@@ -37,8 +37,8 @@ public class RobotMap {
 	public static DifferentialDrive drive;
 	public static Encoder encoder;
 	public static AHRS navX;
-	
-	public static void initDriveTalons() {
+  
+	public static void initDrive() {
 		RobotMap.driveTalonFrontLeft   = new WPI_TalonSRX(RobotMap.DRIVE_TALON_FRONT_LEFT_PORT);
 		RobotMap.driveTalonFrontRight  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_FRONT_RIGHT_PORT);
 		RobotMap.driveTalonBackLeft    = new WPI_TalonSRX(RobotMap.DRIVE_TALON_BACK_LEFT_PORT);
@@ -46,14 +46,11 @@ public class RobotMap {
 		RobotMap.driveTalonMiddleLeft  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_LEFT_PORT);
 		RobotMap.driveTalonMiddleRight = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_RIGHT_PORT);
 		
-		SmartDashboard.putBoolean("init/Drive Talons Initialized", true);
-	}
-  
-	public static void initDrive() {
-		RobotMap.drive = new DifferentialDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonFrontRight);
 		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
 		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);
 		RobotMap.driveTalonMiddleRight.follow(driveTalonMiddleLeft);
+		
+		RobotMap.drive = new DifferentialDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonFrontRight);
 		
 		RobotMap.encoder = new Encoder(new DigitalInput(0), new DigitalInput(1));
     

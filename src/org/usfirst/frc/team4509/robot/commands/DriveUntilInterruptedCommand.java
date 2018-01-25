@@ -3,7 +3,6 @@ package org.usfirst.frc.team4509.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4509.robot.Robot;
-import org.usfirst.frc.team4509.robot.RobotMap;
 
 /**
  *
@@ -19,8 +18,7 @@ public class DriveUntilInterruptedCommand extends Command {
         requires(Robot.drivingSubsystem);
     }
     
-    protected void initialize() {
-    }
+    protected void initialize() {  }
     
     protected void execute() {
     	Robot.drivingSubsystem.drive(this.speed, this.turn, this.slide);
@@ -34,7 +32,6 @@ public class DriveUntilInterruptedCommand extends Command {
     	Robot.drivingSubsystem.stop();
     }
 
-    protected void interrupted() {
-    	//this.end();
-    }
+    protected void interrupted() {  }
+    
 }
