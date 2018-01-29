@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4509.robot.Robot;
 
 /**
- *
+ * @author FRC Team 4509
  */
 public class DriveUntilInterruptedCommand extends Command {
 	

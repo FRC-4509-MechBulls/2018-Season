@@ -2,6 +2,11 @@ package org.usfirst.frc.team4509.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 
+/**
+ * Implements controls using two joysticks
+ * 
+ * @author FRC Team 4509
+ */
 public class JoystickPair implements BaseController {
 
 	Joystick jLeft, jRight;

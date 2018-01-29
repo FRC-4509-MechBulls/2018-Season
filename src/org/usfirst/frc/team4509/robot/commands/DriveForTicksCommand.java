@@ -6,7 +6,7 @@ import org.usfirst.frc.team4509.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * @author FRC Team 4509
  */
 public class DriveForTicksCommand extends Command {
 

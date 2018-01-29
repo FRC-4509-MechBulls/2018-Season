@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * A command to turn the robot an amount given in degrees 
+ * 
  * @author FRC Team 4509
- *
  */
 public class TurnCommand extends Command {
 

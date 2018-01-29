@@ -2,6 +2,11 @@ package org.usfirst.frc.team4509.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 
+/**
+ * Implements controls using a xbox controller
+ * 
+ * @author FRC Team 4509
+ */
 public class XboxController implements BaseController {
 
 	edu.wpi.first.wpilibj.XboxController controller;

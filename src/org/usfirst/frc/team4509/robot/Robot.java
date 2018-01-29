@@ -16,6 +16,8 @@ import org.usfirst.frc.team4509.robot.subsystems.*;
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
+ * 
+ * @author FRC Team 4509
  */
 public class Robot extends IterativeRobot {
 
