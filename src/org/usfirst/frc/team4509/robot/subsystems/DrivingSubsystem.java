@@ -48,4 +48,12 @@ public class DrivingSubsystem extends Subsystem {
     	RobotMap.driveTalonMiddleRight.set(0);
     	SmartDashboard.putString("DB/String 0", "Stopping");
     }
+    
+    public int getStraightEncoderTicks() {
+    	return (int)((RobotMap.driveLeftEncoder.get() + RobotMap.driveRightEncoder.get()) / 2);
+    }
+    
+    public int getStraightEncoderDistance() {
+    	return (int)((RobotMap.driveLeftEncoder.getDistance() + RobotMap.driveRightEncoder.getDistance()) / 2);
+    }
 }

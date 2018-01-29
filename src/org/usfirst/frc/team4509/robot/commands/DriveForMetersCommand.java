@@ -20,19 +20,20 @@ public class DriveForMetersCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.encoder.reset();
+    	RobotMap.driveLeftEncoder.reset();
+    	RobotMap.driveRightEncoder.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(RobotMap.encoder.getDistance()) < Math.abs(this.distance)) {
+    	if(Math.abs(Robot.drivingSubsystem.getStraightEncoderDistance()) < Math.abs(this.distance)) {
     		Robot.drivingSubsystem.drive(1 * (this.distance / Math.abs(this.distance)));
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isInterrupted || Math.abs(RobotMap.encoder.getDistance() - this.distance) < 0.5;
+        return this.isInterrupted || Math.abs(Robot.drivingSubsystem.getStraightEncoderDistance() - this.distance) < 0.5;
     }
 
     // Called once after isFinished returns true
