@@ -28,6 +28,12 @@ public class RobotMap {
 	public static final int DRIVE_TALON_BACK_RIGHT_PORT   = 3;
 	public static final int DRIVE_TALON_MIDDLE_LEFT_PORT  = 1;
 	public static final int DRIVE_TALON_MIDDLE_RIGHT_PORT = 7;
+	public static final int DRIVE_LEFT_ENCODER_PORT_1   = 0;
+	public static final int DRIVE_LEFT_ENCODER_PORT_2   = 1;
+	public static final int DRIVE_RIGHT_ENCODER_PORT_1  = 2;
+	public static final int DRIVE_RIGHT_ENCODER_PORT_2  = 3;
+	public static final int DRIVE_MIDDLE_ENCODER_PORT_1 = 4;
+	public static final int DRIVE_MIDDLE_ENCODER_PORT_2 = 5;
 	public static final Port NAVX_PORT = Port.kMXP;
 	
 	public static WPI_TalonSRX driveTalonFrontLeft;
@@ -37,7 +43,9 @@ public class RobotMap {
 	public static WPI_TalonSRX driveTalonMiddleLeft;
 	public static WPI_TalonSRX driveTalonMiddleRight;
 	public static DifferentialDrive drive;
-	public static Encoder encoder;
+	public static Encoder driveLeftEncoder;
+	public static Encoder driveRightEncoder;
+	public static Encoder driveMiddleEncoder;
 	public static AHRS navX;
   
 	public static void initDrive() {
@@ -54,7 +62,9 @@ public class RobotMap {
 		
 		RobotMap.drive = new DifferentialDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonFrontRight);
 		
-		RobotMap.encoder = new Encoder(new DigitalInput(0), new DigitalInput(1));
+		RobotMap.driveLeftEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_2));
+		RobotMap.driveRightEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_RIGHT_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_RIGHT_ENCODER_PORT_2));
+		RobotMap.driveMiddleEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_MIDDLE_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_MIDDLE_ENCODER_PORT_2));
     
 		SmartDashboard.putBoolean("init/Drive Initialized", true);
 	}
