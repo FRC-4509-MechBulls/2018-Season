@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * @author FRC Team 4509
  */
 public class DrivingSubsystem extends Subsystem {
 	
@@ -26,9 +26,9 @@ public class DrivingSubsystem extends Subsystem {
     	RobotMap.drive.arcadeDrive(speed, 0);
     }
     
-    public void drive(double z, double rot, double x) {
-    	RobotMap.drive.arcadeDrive(z, rot);
-    	RobotMap.driveTalonMiddleLeft.set(x);
+    public void drive(double zSpeed, double rotation, double xSpeed) {
+    	RobotMap.drive.arcadeDrive(zSpeed, rotation);
+    	RobotMap.driveTalonMiddleLeft.set(xSpeed);
     }
     
     /**
@@ -44,6 +44,8 @@ public class DrivingSubsystem extends Subsystem {
     	RobotMap.driveTalonBackRight.set(0);
     	RobotMap.driveTalonFrontLeft.set(0);
     	RobotMap.driveTalonBackLeft.set(0);
+    	RobotMap.driveTalonMiddleLeft.set(0);
+    	RobotMap.driveTalonMiddleRight.set(0);
     	SmartDashboard.putString("DB/String 0", "Stopping");
     }
 }
