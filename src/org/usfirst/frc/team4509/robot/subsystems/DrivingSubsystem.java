@@ -17,9 +17,8 @@ public class DrivingSubsystem extends Subsystem {
     	return RobotMap.navX.getAngle();
     }
     
-    public void teleOpDriving(double leftYAxis, double rightYAxis, double rightXAxis) {
+    public void tankDriving(double leftYAxis, double rightYAxis) {
 		RobotMap.drive.tankDrive(leftYAxis, rightYAxis);
-		RobotMap.driveTalonMiddleLeft.set(rightXAxis);
     }
     
     public void drive(double speed) {
