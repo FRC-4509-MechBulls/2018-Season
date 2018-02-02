@@ -17,6 +17,10 @@ public class DrivingSubsystem extends Subsystem {
     	return RobotMap.navX.getAngle();
     }
     
+    /**
+     * @param leftYAxis used to drive the left side of the robot
+     * @param rightYAxis used to drive the right side of the robot
+     */
     public void tankDriving(double leftYAxis, double rightYAxis) {
 		RobotMap.drive.tankDrive(leftYAxis, rightYAxis);
     }
@@ -37,7 +41,7 @@ public class DrivingSubsystem extends Subsystem {
     public void turn(int direction) {
 		RobotMap.drive.arcadeDrive(0, direction);
     }
-    
+        
     public void stop() {
     	RobotMap.driveTalonFrontRight.set(0);
     	RobotMap.driveTalonBackRight.set(0);
