@@ -7,8 +7,8 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -35,7 +35,8 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_ENCODER_PORT_2  = 3;
 	public static final int DRIVE_MIDDLE_ENCODER_PORT_1 = 4;
 	public static final int DRIVE_MIDDLE_ENCODER_PORT_2 = 5;
-	public static final Port NAVX_PORT = Port.kMXP;
+	public static final SPI.Port NAVX_PORT = SPI.Port.kMXP;
+	public static final SerialPort.Port ARDUINO_PORT = SerialPort.Port.kUSB1;
 	
 	public static WPI_TalonSRX driveTalonFrontLeft;
 	public static WPI_TalonSRX driveTalonFrontRight;
@@ -48,7 +49,7 @@ public class RobotMap {
 	public static Encoder driveRightEncoder;
 	public static Encoder driveMiddleEncoder;
 	public static AHRS navX;
-	public static I2C arduinoI2C;
+	public static SerialPort arduino;
   
 	public static void initDrive() {
 		RobotMap.driveTalonFrontLeft   = new WPI_TalonSRX(RobotMap.DRIVE_TALON_FRONT_LEFT_PORT);
@@ -72,9 +73,16 @@ public class RobotMap {
 	}
 	
 	public static void initSensors() {
-		RobotMap.navX = new AHRS(Port.kMXP);
+		RobotMap.navX = new AHRS(RobotMap.NAVX_PORT);
     
 		SmartDashboard.putBoolean("init/Sensors Initialized", true);
+	}
+	
+	public static void initArduino() {
+		RobotMap.arduino = new SerialPort(9600, RobotMap.ARDUINO_PORT);
+		RobotMap.arduino.write(new byte[]{ 0b0000, 0b0001 }, 2);
+		
+		SmartDashboard.putBoolean("init/Arduino Initialized", true);
 	}
 
 }

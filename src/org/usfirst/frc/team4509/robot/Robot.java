@@ -38,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		RobotMap.initDrive();
 		RobotMap.initSensors();
+		RobotMap.initArduino();
 		
 		Robot.oi = new OI();
 		// chooser.addDefault("Default Auto", new TurnRight(90));
