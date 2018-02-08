@@ -107,10 +107,8 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
 		Scheduler.getInstance().run();
 		if(RobotMap.arduino.getBytesReceived() > 0) {
-			int n = 0;
-			byte[] ba = RobotMap.arduino.read(3);
-			for(byte b : ba) n += (int)b;
-			SmartDashboard.putNumber("Arduino", n);
+			char c = (char)RobotMap.arduino.read(1)[0];
+			SmartDashboard.putNumber("Arduino", c);
 		}
 	}
 
