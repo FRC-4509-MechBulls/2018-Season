@@ -80,7 +80,7 @@ public class RobotMap {
 	
 	public static void initArduino() {
 		RobotMap.arduino = new SerialPort(9600, RobotMap.ARDUINO_PORT);
-		RobotMap.arduino.write(new byte[]{ 0b0000, 0b0001 }, 2);
+		RobotMap.arduino.write(new byte[]{ 0b0100, 0b0010, 0b0000 }, 3);
 		
 		SmartDashboard.putBoolean("init/Arduino Initialized", true);
 	}
