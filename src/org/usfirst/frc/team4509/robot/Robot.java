@@ -22,6 +22,7 @@ import org.usfirst.frc.team4509.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
+	public static final ArduinoSubsystem testArduinoSubsystem = new ArduinoSubsystem(RobotMap.arduino);
 
 	public static OI oi;
 
@@ -38,7 +39,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		RobotMap.initDrive();
 		RobotMap.initSensors();
-		RobotMap.initArduino();
+		//RobotMap.initArduino();
 		
 		Robot.oi = new OI();
 		// chooser.addDefault("Default Auto", new TurnRight(90));
@@ -52,7 +53,9 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	@Override
-	public void disabledInit() {  }
+	public void disabledInit() {
+		this.drivingSubsystem.stop();
+	}
 
 	@Override
 	public void disabledPeriodic() {
@@ -93,7 +96,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
+		// continue until interrupted by another command, removeblue
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
@@ -104,12 +107,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
+		//Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
+		if(this.oi.controller.getDrive() > -1)
+			Scheduler.getInstance().add(new DriveForTicksCommand(10));
 		Scheduler.getInstance().run();
-		if(RobotMap.arduino.getBytesReceived() > 0) {
-			char c = (char)RobotMap.arduino.read(1)[0];
-			SmartDashboard.putNumber("Arduino", c);
-		}
+		//SmartDashboard.putNumber("Arduino", (char)this.testArduinoSubsystem.readByte());
 	}
 
 	@Override

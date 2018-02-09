@@ -4,7 +4,6 @@ package org.usfirst.frc.team4509.robot.subsystems;
 import org.usfirst.frc.team4509.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author FRC Team 4509
@@ -44,12 +43,8 @@ public class DrivingSubsystem extends Subsystem {
         
     public void stop() {
     	RobotMap.driveTalonFrontRight.set(0);
-    	RobotMap.driveTalonBackRight.set(0);
     	RobotMap.driveTalonFrontLeft.set(0);
-    	RobotMap.driveTalonBackLeft.set(0);
     	RobotMap.driveTalonMiddleLeft.set(0);
-    	RobotMap.driveTalonMiddleRight.set(0);
-    	SmartDashboard.putString("DB/String 0", "Stopping");
     }
     
     public int getStraightEncoderTicks() {
