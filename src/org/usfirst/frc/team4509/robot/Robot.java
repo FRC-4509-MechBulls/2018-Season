@@ -22,7 +22,7 @@ import org.usfirst.frc.team4509.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
-	public static final ArduinoSubsystem testArduinoSubsystem = new ArduinoSubsystem(RobotMap.arduino);
+	//public static final ArduinoSubsystem testArduinoSubsystem = new ArduinoSubsystem(RobotMap.arduino);
 
 	public static OI oi;
 
@@ -77,7 +77,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
 		autonomousCommand = chooser.getSelected();
-		Scheduler.getInstance().add(new DriveForTicksCommand(50));
 
 		// schedule the autonomous command (example)
 		if(autonomousCommand != null)
@@ -107,9 +106,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		//Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
-		if(this.oi.controller.getDrive() > -1)
-			Scheduler.getInstance().add(new DriveForTicksCommand(10));
+		Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive() / 2, Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide() / 2));
+		/*if(this.oi.controller.getDrive() > -1)
+			Scheduler.getInstance().add(new DriveForMetersCommand(0.1));
+		else
+			this.drivingSubsystem.stop();*/
 		Scheduler.getInstance().run();
 		//SmartDashboard.putNumber("Arduino", (char)this.testArduinoSubsystem.readByte());
 	}

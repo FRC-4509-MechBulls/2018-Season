@@ -15,7 +15,7 @@ public class DriveForMetersCommand extends Command {
 	
     public DriveForMetersCommand(double distance) {
         requires(Robot.drivingSubsystem);
-        this.distance = distance;
+        this.distance = distance * RobotMap.TICKS_PER_METER;
     }
 
     // Called just before this Command runs the first time
@@ -26,14 +26,14 @@ public class DriveForMetersCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(Robot.drivingSubsystem.getStraightEncoderDistance()) < Math.abs(this.distance)) {
-    		Robot.drivingSubsystem.drive(1 * (this.distance / Math.abs(this.distance)));
+    	if(Math.abs(Robot.drivingSubsystem.getStraightEncoderTicks()) < Math.abs(this.distance)) {
+    		Robot.drivingSubsystem.drive(0.25 * (this.distance / Math.abs(this.distance)));
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isInterrupted || Math.abs(Robot.drivingSubsystem.getStraightEncoderDistance() - this.distance) < 0.5;
+        return this.isInterrupted || Math.abs(Robot.drivingSubsystem.getStraightEncoderTicks() - this.distance) < 0.5;
     }
 
     // Called once after isFinished returns true
@@ -45,6 +45,7 @@ public class DriveForMetersCommand extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	this.isInterrupted = true;
+    	this.end();
     }
 
 }

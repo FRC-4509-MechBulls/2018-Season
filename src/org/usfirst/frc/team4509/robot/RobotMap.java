@@ -21,7 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RobotMap {
 
-	public static final int TICKS_PER_METER = 0;
+	public static final int TICKS_PER_METER = 2362;
+	public static final int TICKS_PER_INCH = 60;
 
 	public static final int DRIVE_TALON_FRONT_LEFT_PORT   = 1;
 	public static final int DRIVE_TALON_FRONT_RIGHT_PORT  = 3;
@@ -67,7 +68,7 @@ public class RobotMap {
 		
 		RobotMap.driveLeftEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_2));
 		RobotMap.driveRightEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_RIGHT_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_RIGHT_ENCODER_PORT_2));
-		RobotMap.driveMiddleEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_MIDDLE_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_MIDDLE_ENCODER_PORT_2));
+		//RobotMap.driveMiddleEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_MIDDLE_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_MIDDLE_ENCODER_PORT_2));
     
 		SmartDashboard.putBoolean("init/Drive Initialized", true);
 	}

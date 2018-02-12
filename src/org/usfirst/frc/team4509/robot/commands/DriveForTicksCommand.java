@@ -27,7 +27,7 @@ public class DriveForTicksCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Math.abs(Robot.drivingSubsystem.getStraightEncoderTicks()) < Math.abs(this.distance)) {
-    		Robot.drivingSubsystem.drive(0.1 * (this.distance / Math.abs(this.distance)));
+    		Robot.drivingSubsystem.drive(0.25 * (this.distance / Math.abs(this.distance)));
     	}
     }
 
