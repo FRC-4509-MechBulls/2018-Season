@@ -106,11 +106,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
-		/*if(this.oi.controller.getDrive() > -1)
-			Scheduler.getInstance().add(new DriveForMetersCommand(0.1));
-		else
-			this.drivingSubsystem.stop();*/
+		if(this.drivingSubsystem.getCurrentCommandName() == "")
+			Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
 		Scheduler.getInstance().run();
 		//SmartDashboard.putNumber("Arduino", (char)this.testArduinoSubsystem.readByte());
 	}
