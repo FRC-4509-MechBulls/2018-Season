@@ -32,8 +32,6 @@ public class DriveUntilInterruptedCommand extends Command {
     	Robot.drivingSubsystem.stop();
     }
 
-    protected void interrupted() {
-    	this.end();
-    }
+    protected void interrupted() {   }
     
 }

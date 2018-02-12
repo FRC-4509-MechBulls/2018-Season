@@ -26,8 +26,8 @@ public class RobotMap {
 
 	public static final int DRIVE_TALON_FRONT_LEFT_PORT   = 1;
 	public static final int DRIVE_TALON_FRONT_RIGHT_PORT  = 3;
-	public static final int DRIVE_TALON_MIDDLE_LEFT_PORT  = 6;
-	public static final int DRIVE_TALON_MIDDLE_RIGHT_PORT = 5;
+	public static final int DRIVE_TALON_MIDDLE_LEFT_PORT  = 5;
+	public static final int DRIVE_TALON_MIDDLE_RIGHT_PORT = 6;
 	public static final int DRIVE_TALON_BACK_LEFT_PORT    = 2;
 	public static final int DRIVE_TALON_BACK_RIGHT_PORT   = 4;
 	public static final int DRIVE_LEFT_ENCODER_PORT_1   = 2;
@@ -60,8 +60,8 @@ public class RobotMap {
 		RobotMap.driveTalonMiddleLeft  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_LEFT_PORT);
 		RobotMap.driveTalonMiddleRight = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_RIGHT_PORT);
 		
-		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
-		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);
+/*		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
+		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);*/
 		RobotMap.driveTalonMiddleRight.follow(driveTalonMiddleLeft);
 		
 		RobotMap.drive = new DifferentialDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonFrontRight);
