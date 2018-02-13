@@ -60,8 +60,8 @@ public class RobotMap {
 		RobotMap.driveTalonMiddleLeft  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_LEFT_PORT);
 		RobotMap.driveTalonMiddleRight = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_RIGHT_PORT);
 		
-/*		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
-		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);*/
+		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
+		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);
 		RobotMap.driveTalonMiddleRight.follow(driveTalonMiddleLeft);
 		
 		RobotMap.drive = new DifferentialDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonFrontRight);
@@ -80,8 +80,8 @@ public class RobotMap {
 	}
 	
 	public static void initArduino() {
-		RobotMap.arduino = new SerialPort(9600, RobotMap.ARDUINO_PORT);
-		RobotMap.arduino.write(new byte[]{ '4', '2', '0' }, 3);
+		RobotMap.arduino = new SerialPort(19200, RobotMap.ARDUINO_PORT);
+		RobotMap.arduino.enableTermination('\n');
 		
 		SmartDashboard.putBoolean("init/Arduino Initialized", true);
 	}

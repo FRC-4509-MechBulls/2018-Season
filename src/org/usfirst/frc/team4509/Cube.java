@@ -20,5 +20,9 @@ public class Cube {
 	public double getDistance() {
 		return 0.0;
 	}
+	
+	public String toString() {
+		return "Cube : ( " + this.getX() + ", " + this.getY() + ", " + this.getWidth() + ", " + this.getHeight() + " )";
+	}
 
 }

@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4509.Cube;
 import org.usfirst.frc.team4509.robot.commands.*;
 import org.usfirst.frc.team4509.robot.subsystems.*;
 
@@ -22,7 +23,7 @@ import org.usfirst.frc.team4509.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
-	//public static final ArduinoSubsystem testArduinoSubsystem = new ArduinoSubsystem(RobotMap.arduino);
+	public static final CameraSubsystem cameraSubsystem = new CameraSubsystem();
 
 	public static OI oi;
 
@@ -40,6 +41,10 @@ public class Robot extends IterativeRobot {
 		RobotMap.initDrive();
 		RobotMap.initSensors();
 		//RobotMap.initArduino();
+		
+		/*this.cameraSubsystem.setPort(RobotMap.arduino);
+		this.cameraSubsystem.getBlocks();
+		this.cameraSubsystem.getBlocks();*/
 		
 		Robot.oi = new OI();
 		// chooser.addDefault("Default Auto", new TurnRight(90));
@@ -60,6 +65,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		/*this.cameraSubsystem.getBlocks();
+		if(this.cameraSubsystem.cubes != null)
+			for(Cube c : this.cameraSubsystem.cubes)
+				System.out.println(c);*/
 	}
 
 	/**
@@ -109,7 +118,6 @@ public class Robot extends IterativeRobot {
 		if(this.drivingSubsystem.getCurrentCommandName() == "")
 			Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
 		Scheduler.getInstance().run();
-		//SmartDashboard.putNumber("Arduino", (char)this.testArduinoSubsystem.readByte());
 	}
 
 	@Override
