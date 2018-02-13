@@ -12,12 +12,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class TurnCommand extends Command {
 
-	double turnDegrees;
+	double turnDegrees, targetDegrees;
 	boolean isFinished = false;
 
     public TurnCommand(double turnDegrees) {
         requires(Robot.drivingSubsystem);
         this.turnDegrees = turnDegrees > 180 ? turnDegrees - 360 : turnDegrees;
+        this.targetDegrees = this.turnDegrees + RobotMap.navX.getAngle();
     }
 
     protected void initialize() {
@@ -34,7 +35,7 @@ public class TurnCommand extends Command {
     }
 
     protected boolean isFinished() {
-        return Math.abs(this.turnDegrees - RobotMap.navX.getAngle()) < 0.5;
+        return Math.abs(this.targetDegrees - RobotMap.navX.getAngle()) < 0.5;
     }
 
     protected void end() {
