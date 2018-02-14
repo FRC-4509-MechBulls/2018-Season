@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4509.Cube;
 import org.usfirst.frc.team4509.robot.commands.*;
+import org.usfirst.frc.team4509.robot.controls.XboxController;
 import org.usfirst.frc.team4509.robot.subsystems.*;
 
 /**
@@ -40,6 +41,8 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		RobotMap.initDrive();
 		RobotMap.initSensors();
+		RobotMap.initWinch();
+		RobotMap.initGrabber();
 		//RobotMap.initArduino();
 		
 		/*this.cameraSubsystem.setPort(RobotMap.arduino);
@@ -108,6 +111,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
 	}
 
 	/**
@@ -115,8 +119,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		if(this.drivingSubsystem.getCurrentCommandName() == "")
-			Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
+		System.out.println("Angle: " + RobotMap.gyro.getAngle());
+		Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
 		Scheduler.getInstance().run();
 	}
 

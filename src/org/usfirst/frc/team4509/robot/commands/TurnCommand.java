@@ -18,16 +18,14 @@ public class TurnCommand extends Command {
     public TurnCommand(double turnDegrees) {
         requires(Robot.drivingSubsystem);
         this.turnDegrees = turnDegrees > 180 ? turnDegrees - 360 : turnDegrees;
-        this.targetDegrees = this.turnDegrees + RobotMap.navX.getAngle();
+        this.targetDegrees = this.turnDegrees + RobotMap.gyro.getAngle();
     }
 
-    protected void initialize() {
-    	RobotMap.navX.reset();
-    }
+    protected void initialize() {  }
     
     protected void execute() {
     	if(!this.isFinished) {
-    		if(this.turnDegrees - RobotMap.navX.getAngle() > 0)
+    		if(this.turnDegrees - RobotMap.gyro.getAngle() > 0)
     			Robot.drivingSubsystem.turn(1);
     		else
     			Robot.drivingSubsystem.turn(-1);
@@ -35,7 +33,7 @@ public class TurnCommand extends Command {
     }
 
     protected boolean isFinished() {
-        return Math.abs(this.targetDegrees - RobotMap.navX.getAngle()) < 0.5;
+        return Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) < 0.5;
     }
 
     protected void end() {

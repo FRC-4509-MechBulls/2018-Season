@@ -12,10 +12,6 @@ public class DrivingSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {  }
     
-    public double getGyroAngle() {
-    	return RobotMap.navX.getAngle();
-    }
-    
     /**
      * @param leftYAxis used to drive the left side of the robot
      * @param rightYAxis used to drive the right side of the robot
