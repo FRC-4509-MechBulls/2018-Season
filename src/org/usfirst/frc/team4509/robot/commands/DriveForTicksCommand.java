@@ -26,14 +26,14 @@ public class DriveForTicksCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(Robot.drivingSubsystem.getStraightEncoderTicks()) < Math.abs(this.distance)) {
+    	if(Math.abs(Robot.drivingSubsystem.getEncoderTicks()) < Math.abs(this.distance)) {
     		Robot.drivingSubsystem.drive(0.25 * (this.distance / Math.abs(this.distance)));
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isInterrupted || Math.abs(Robot.drivingSubsystem.getStraightEncoderTicks() - this.distance) <= 1;
+        return this.isInterrupted || Math.abs(Robot.drivingSubsystem.getEncoderTicks() - this.distance) <= 1;
     }
 
     // Called once after isFinished returns true

@@ -10,5 +10,6 @@ public interface BaseController {
 	double getDrive();
 	double getSlide();
 	double getTurn();
+	int    getFixedTurn();
 	
 }

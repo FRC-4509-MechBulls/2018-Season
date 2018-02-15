@@ -24,12 +24,10 @@ public class TurnCommand extends Command {
     protected void initialize() {  }
     
     protected void execute() {
-    	if(!this.isFinished) {
-    		if(this.turnDegrees - RobotMap.gyro.getAngle() > 0)
-    			Robot.drivingSubsystem.turn(1);
-    		else
-    			Robot.drivingSubsystem.turn(-1);
-    	}
+  		if(this.turnDegrees - RobotMap.gyro.getAngle() > 0)
+  			Robot.drivingSubsystem.turn(1);
+  		else
+  			Robot.drivingSubsystem.turn(-1);
     }
 
     protected boolean isFinished() {

@@ -30,5 +30,15 @@ public class JoystickPair implements BaseController {
 	public double getTurn() {
 		return this.jLeft.getX();
 	}
+	
+	/**
+	 * Unable to implement
+	 * 
+	 * @return -1
+	 */
+	@Override
+	public int getFixedTurn() {
+		return -1; // Can't be implemented
+	}
 
 }

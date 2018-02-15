@@ -47,11 +47,11 @@ public class DrivingSubsystem extends Subsystem {
     	RobotMap.driveTalonMiddle.set(0);
     }
     
-    public int getStraightEncoderTicks() {
+    public int getEncoderTicks() {
     	return (int)((RobotMap.driveLeftEncoder.get() + RobotMap.driveRightEncoder.get()) / 2);
     }
     
-    public int getStraightEncoderDistance() {
+    public int getEncoderDistance() {
     	return (int)((RobotMap.driveLeftEncoder.getDistance() + RobotMap.driveRightEncoder.getDistance()) / 2);
     }
 }

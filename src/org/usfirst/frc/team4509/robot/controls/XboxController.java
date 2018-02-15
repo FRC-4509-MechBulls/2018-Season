@@ -3,7 +3,7 @@ package org.usfirst.frc.team4509.robot.controls;
 import edu.wpi.first.wpilibj.GenericHID;
 
 /**
- * Implements controls using a xbox controller
+ * Implements controls using a Xbox controller
  * 
  * @author FRC Team 4509
  */
@@ -31,6 +31,11 @@ public class XboxController implements BaseController {
 	@Override
 	public double getTurn() {
 		return this.controller.getX(GenericHID.Hand.kRight);
+	}
+	
+	@Override
+	public int getFixedTurn() {
+		return this.controller.getPOV();
 	}
 	
 }
