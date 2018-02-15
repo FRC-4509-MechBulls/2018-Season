@@ -1,7 +1,9 @@
 package org.usfirst.frc.team4509.robot.subsystems;
 
 
+import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
+import org.usfirst.frc.team4509.robot.commands.DirectDriveCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -10,7 +12,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DrivingSubsystem extends Subsystem {
 	
-    public void initDefaultCommand() {  }
+    public void initDefaultCommand() {
+    	this.setDefaultCommand(new DirectDriveCommand(Robot.oi.controller));
+    }
     
     /**
      * @param leftYAxis used to drive the left side of the robot

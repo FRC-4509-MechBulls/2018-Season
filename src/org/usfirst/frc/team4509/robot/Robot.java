@@ -24,7 +24,9 @@ import org.usfirst.frc.team4509.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
-	public static final CameraSubsystem cameraSubsystem = new CameraSubsystem();
+	public static final CameraSubsystem  cameraSubsystem  = new CameraSubsystem();
+	public static final GrabberSubsystem grabberSubsystem = new GrabberSubsystem();
+	public static final WinchSubsystem   winchSubsystem   = new WinchSubsystem();
 
 	public static OI oi;
 
@@ -54,6 +56,11 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
+	
+	@Override
+	public void robotPeriodic() {
+		System.out.println("Angle: " + RobotMap.gyro.getAngle());
+	}
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -62,6 +69,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		Scheduler.getInstance().disable();
 		this.drivingSubsystem.stop();
 	}
 
@@ -107,7 +115,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, removeblue
+		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
@@ -119,8 +127,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		System.out.println("Angle: " + RobotMap.gyro.getAngle());
-		Scheduler.getInstance().add(new DriveUntilInterruptedCommand(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide()));
 		Scheduler.getInstance().run();
 	}
 
