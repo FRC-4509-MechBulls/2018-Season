@@ -26,7 +26,7 @@ public class DrivingSubsystem extends Subsystem {
     
     public void drive(double zSpeed, double rotation, double xSpeed) {
     	RobotMap.drive.arcadeDrive(zSpeed, rotation);
-    	RobotMap.driveTalonMiddleLeft.set(xSpeed);
+    	RobotMap.driveTalonMiddle.set(xSpeed);
     }
     
     /**
@@ -40,7 +40,7 @@ public class DrivingSubsystem extends Subsystem {
     public void stop() {
     	RobotMap.driveTalonFrontRight.set(0);
     	RobotMap.driveTalonFrontLeft.set(0);
-    	RobotMap.driveTalonMiddleLeft.set(0);
+    	RobotMap.driveTalonMiddle.set(0);
     }
     
     public int getStraightEncoderTicks() {
