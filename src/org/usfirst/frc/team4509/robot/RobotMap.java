@@ -4,11 +4,13 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -65,6 +67,10 @@ public class RobotMap {
 		RobotMap.driveTalonMiddleLeft  = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_LEFT_PORT);
 		RobotMap.driveTalonMiddleRight = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_RIGHT_PORT);
 		
+		LiveWindow.add(RobotMap.driveTalonFrontLeft);
+		LiveWindow.add(RobotMap.driveTalonFrontRight);
+		LiveWindow.add(RobotMap.driveTalonMiddleLeft);
+		
 		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
 		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);
 		RobotMap.driveTalonMiddleRight.follow(driveTalonMiddleLeft);
@@ -74,29 +80,30 @@ public class RobotMap {
 		RobotMap.driveLeftEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_2));
 		RobotMap.driveRightEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_RIGHT_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_RIGHT_ENCODER_PORT_2));
 		//RobotMap.driveMiddleEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_MIDDLE_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_MIDDLE_ENCODER_PORT_2));
-    
-		SmartDashboard.putBoolean("init/Drive Initialized", true);
+		
+		LiveWindow.add(RobotMap.driveLeftEncoder);
+		LiveWindow.add(RobotMap.driveRightEncoder);
+		//LiveWindow.add(RobotMap.driveMiddleEncoder);
 	}
 	
 	public static void initWinch() {
 		RobotMap.winchTalon = new WPI_TalonSRX(RobotMap.WINCH_TALON_PORT);
+		LiveWindow.add(RobotMap.winchTalon);
 	}
 	
 	public static void initGrabber() {
 		RobotMap.grabberTalon = new WPI_TalonSRX(RobotMap.GRABBER_TALON_PORT);
+		LiveWindow.add(RobotMap.grabberTalon);
 	}
 	
 	public static void initSensors() {
 		RobotMap.gyro = new ADXRS450_Gyro(RobotMap.GYRO_PORT);
-    
-		SmartDashboard.putBoolean("init/Sensors Initialized", true);
+		LiveWindow.add(RobotMap.gyro);
 	}
 	
 	public static void initArduino() {
 		RobotMap.arduino = new SerialPort(19200, RobotMap.ARDUINO_PORT);
 		RobotMap.arduino.enableTermination('\n');
-		
-		SmartDashboard.putBoolean("init/Arduino Initialized", true);
 	}
 
 }
