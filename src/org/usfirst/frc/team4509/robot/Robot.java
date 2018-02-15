@@ -120,6 +120,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
+		this.oi.fixedTurnTrigger.whenPressed(new AbsoluteTurnCommand(this.oi.controller.getFixedTurn()));
 	}
 
 	/**

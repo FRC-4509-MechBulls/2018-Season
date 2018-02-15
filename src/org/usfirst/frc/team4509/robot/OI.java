@@ -20,15 +20,21 @@ public class OI {
 	
 	public BaseController controller;
 	public DriveTrigger driveTrigger;
+	public FixedTurnTrigger fixedTurnTrigger;
 	
 	public OI() {
 		this.controller = new XboxController(OI.XBOX_CONTROLLER_PORT);
 		//this.controller = new JoystickPair(OI.LEFT_JOYSTICK_PORT, OI.RIGHT_JOYSTICK_PORT);
 		this.driveTrigger = new DriveTrigger();
+		this.fixedTurnTrigger = new FixedTurnTrigger();
 	}
 	
 	class DriveTrigger extends Button {
 		public boolean get() { return Robot.oi.controller.getDrive() > 0 || Robot.oi.controller.getSlide() != 0 ||  Robot.oi.controller.getTurn() != 0; }
+	}
+	
+	class FixedTurnTrigger extends Button {
+		public boolean get() { return Robot.oi.controller.getFixedTurn() != -1; }
 	}
 
 }
