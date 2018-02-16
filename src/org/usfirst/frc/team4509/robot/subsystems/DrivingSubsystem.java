@@ -12,10 +12,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DrivingSubsystem extends Subsystem {
 	
-    public void initDefaultCommand() {
-    	this.setDefaultCommand(new DirectDriveCommand(Robot.oi.controller));
-    }
-    
+	static double baseSpeed = 0.25;
+
+	public void initDefaultCommand() {
+		this.setDefaultCommand(new DirectDriveCommand(Robot.oi.controller));
+	}
+
     /**
      * @param leftYAxis used to drive the left side of the robot
      * @param rightYAxis used to drive the right side of the robot
@@ -25,12 +27,12 @@ public class DrivingSubsystem extends Subsystem {
     }
     
     public void drive(double speed) {
-    	RobotMap.drive.arcadeDrive(speed, 0);
+    	RobotMap.drive.arcadeDrive(baseSpeed * speed, 0);
     }
     
     public void drive(double zSpeed, double rotation, double xSpeed) {
-    	RobotMap.drive.arcadeDrive(zSpeed, rotation);
-    	RobotMap.driveTalonMiddle.set(xSpeed);
+    	RobotMap.drive.arcadeDrive(baseSpeed * zSpeed, rotation);
+    	RobotMap.driveTalonMiddle.set(baseSpeed * xSpeed);
     }
     
     /**
