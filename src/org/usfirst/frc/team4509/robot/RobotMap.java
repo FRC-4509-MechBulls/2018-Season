@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RobotMap {
 
+	public static final double GYRO_PRECISION = 0.5;
 	public static final int TICKS_PER_METER = 2362;
 	public static final int TICKS_PER_INCH = 60;
 

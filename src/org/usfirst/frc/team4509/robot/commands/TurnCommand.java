@@ -31,7 +31,7 @@ public class TurnCommand extends Command {
     }
 
     protected boolean isFinished() {
-        return Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) < 0.5;
+        return Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) < RobotMap.GYRO_PRECISION;
     }
 
     protected void end() {

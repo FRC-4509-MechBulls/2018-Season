@@ -5,7 +5,12 @@ import org.usfirst.frc.team4509.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-
+/**
+ * Turn to an absolute angle
+ * 
+ * @param targetDegrees angle to turn to
+ * @author FRC Team 4509
+ */
 public class AbsoluteTurnCommand extends Command {
 	
 	double targetDegrees;
@@ -20,7 +25,7 @@ public class AbsoluteTurnCommand extends Command {
 	@Override
 	protected void execute() {
 		int diff = (int)(this.targetDegrees - (RobotMap.gyro.getAngle() % 360));
-		if(Math.abs(diff) > 180) diff *= -1;
+		if(Math.abs(diff) > 180) diff *= -1; // if we would have to turn more than 180 degrees, go the other direction
 		if(diff > 0)
 			Robot.drivingSubsystem.turn(1);
 		else
@@ -29,7 +34,7 @@ public class AbsoluteTurnCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) < 0.5;
+		return Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) < RobotMap.GYRO_PRECISION;
 	}
 	
 	@Override
