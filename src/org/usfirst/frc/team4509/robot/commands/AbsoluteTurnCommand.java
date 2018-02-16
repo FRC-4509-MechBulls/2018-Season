@@ -11,6 +11,7 @@ public class AbsoluteTurnCommand extends Command {
 	double targetDegrees;
 	
 	public AbsoluteTurnCommand(int targetDegrees) {
+		if(Math.abs(targetDegrees) >= 360) throw new IllegalArgumentException("targetDegrees cannot be greater than 359 or less than -359. targetDegrees was " + targetDegrees + ".");
 		requires(Robot.drivingSubsystem);
 		this.setInterruptible(false);
 		this.targetDegrees = targetDegrees;
@@ -18,7 +19,9 @@ public class AbsoluteTurnCommand extends Command {
 	
 	@Override
 	protected void execute() {
-		if(this.targetDegrees - RobotMap.gyro.getAngle() > 0)
+		int diff = (int)(this.targetDegrees - (RobotMap.gyro.getAngle() % 360));
+		if(Math.abs(diff) > 180) diff *= -1;
+		if(diff > 0)
 			Robot.drivingSubsystem.turn(1);
 		else
 			Robot.drivingSubsystem.turn(-1);
