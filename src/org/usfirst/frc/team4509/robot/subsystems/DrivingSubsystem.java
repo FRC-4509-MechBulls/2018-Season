@@ -1,59 +1,56 @@
 package org.usfirst.frc.team4509.robot.subsystems;
 
 
-import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
-import org.usfirst.frc.team4509.robot.commands.DirectDriveCommand;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+
 
 /**
  * @author FRC Team 4509
  */
 public class DrivingSubsystem extends Subsystem {
 	
-	static double baseSpeed = 0.25;
+	static double baseSpeed = 0.5;
 
-	public void initDefaultCommand() {
-		this.setDefaultCommand(new DirectDriveCommand(Robot.oi.controller));
+	public void initDefaultCommand() {}
+
+	/**
+	 * @param leftYAxis used to drive the left side of the robot
+	 * @param rightYAxis used to drive the right side of the robot
+	 */
+	public void tankDriving(double leftYAxis, double rightYAxis) {
+		RobotMap.drive.tankDrive(baseSpeed * leftYAxis, baseSpeed * rightYAxis);
 	}
-
-    /**
-     * @param leftYAxis used to drive the left side of the robot
-     * @param rightYAxis used to drive the right side of the robot
-     */
-    public void tankDriving(double leftYAxis, double rightYAxis) {
-		RobotMap.drive.tankDrive(leftYAxis, rightYAxis);
-    }
-    
-    public void drive(double speed) {
-    	RobotMap.drive.arcadeDrive(baseSpeed * speed, 0);
-    }
-    
-    public void drive(double zSpeed, double rotation, double xSpeed) {
-    	RobotMap.drive.arcadeDrive(baseSpeed * zSpeed, rotation);
-    	RobotMap.driveTalonMiddle.set(baseSpeed * xSpeed);
-    }
-    
-    /**
-     * 
-     * @param direction the direction to turn. -1 is left, 1 is right
-     */
-    public void turn(int direction) {
-		RobotMap.drive.arcadeDrive(0, direction);
-    }
-        
-    public void stop() {
-    	RobotMap.driveTalonFrontRight.set(0);
-    	RobotMap.driveTalonFrontLeft.set(0);
-    	RobotMap.driveTalonMiddle.set(0);
-    }
-    
-    public int getEncoderTicks() {
-    	return (int)((RobotMap.driveLeftEncoder.get() + RobotMap.driveRightEncoder.get()) / 2);
-    }
-    
-    public int getEncoderDistance() {
-    	return (int)((RobotMap.driveLeftEncoder.getDistance() + RobotMap.driveRightEncoder.getDistance()) / 2);
-    }
+	
+	public void drive(double ySpeed, double rotation, double xSpeed) {
+		RobotMap.drive.arcadeDrive(baseSpeed * ySpeed, baseSpeed * rotation);
+		RobotMap.driveTalonMiddle.set(baseSpeed * xSpeed);
+	}
+		
+	public void drive(double speed) {
+		this.drive(speed, 0, 0);
+	}
+	
+	/**
+	 * @param direction the direction to turn. -1 is left, 1 is right
+	 */
+	public void turn(int direction) {
+		this.drive(0, direction, 0);
+	}
+	
+	public void stop() {
+		RobotMap.driveTalonFrontRight.set(0);
+		RobotMap.driveTalonFrontLeft.set(0);
+		RobotMap.driveTalonMiddle.set(0);
+	}
+	
+	public int getEncoderTicks() {
+		return (int)((RobotMap.driveRightEncoder.get() + RobotMap.driveLeftEncoder.get()) / 2);
+	}
+	
+	public int getEncoderDistance() {
+		return (int)((RobotMap.driveRightEncoder.getDistance() + RobotMap.driveLeftEncoder.getDistance()) / 2);
+	}
+	
 }

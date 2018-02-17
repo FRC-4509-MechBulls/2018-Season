@@ -39,7 +39,7 @@ public class RobotMap {
 	public static final int DRIVE_LEFT_ENCODER_PORT_2   = 3;
 	public static final int DRIVE_RIGHT_ENCODER_PORT_1  = 0;
 	public static final int DRIVE_RIGHT_ENCODER_PORT_2  = 1;
-	public static final SPI.Port GYRO_PORT = SPI.Port.kOnboardCS1;
+	public static final SPI.Port GYRO_PORT = SPI.Port.kOnboardCS0;
 	public static final SerialPort.Port ARDUINO_PORT = SerialPort.Port.kUSB1;
 	
 	public static WPI_TalonSRX driveTalonFrontLeft;
@@ -64,38 +64,42 @@ public class RobotMap {
 		RobotMap.driveTalonMiddle      = new WPI_TalonSRX(RobotMap.DRIVE_TALON_MIDDLE_PORT);
 		
 		// add the talons to the LiveWindow
-		LiveWindow.add(RobotMap.driveTalonFrontLeft);
-		LiveWindow.add(RobotMap.driveTalonFrontRight);
-		LiveWindow.add(RobotMap.driveTalonMiddle);
+		/*SmartDashboard.putData("Front Left Drive Talon",   RobotMap.driveTalonFrontLeft);
+		SmartDashboard.putData("Front Right Drive Talon",  RobotMap.driveTalonFrontRight);
+		SmartDashboard.putData("Back Left Drive Talon",    RobotMap.driveTalonBackLeft);
+		SmartDashboard.putData("Back Right Drive Talon",   RobotMap.driveTalonBackRight);
+		SmartDashboard.putData("Middle Drive Talon",       RobotMap.driveTalonMiddle);*/
 		
 		// set the back talons to match the front
 		RobotMap.driveTalonBackLeft.follow(driveTalonFrontLeft);
 		RobotMap.driveTalonBackRight.follow(driveTalonFrontRight);
 		
 		RobotMap.drive = new DifferentialDrive(RobotMap.driveTalonFrontLeft, RobotMap.driveTalonFrontRight);
+		SmartDashboard.putData("Drive", RobotMap.drive);
 		
 		// create the encoders
-		RobotMap.driveLeftEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_2));
+		RobotMap.driveLeftEncoder  = new Encoder(new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_LEFT_ENCODER_PORT_2));
+		RobotMap.driveLeftEncoder.setReverseDirection(true);
 		RobotMap.driveRightEncoder = new Encoder(new DigitalInput(RobotMap.DRIVE_RIGHT_ENCODER_PORT_1), new DigitalInput(RobotMap.DRIVE_RIGHT_ENCODER_PORT_2));
 		
 		// add the encoders to the LiveWindow
-		LiveWindow.add(RobotMap.driveLeftEncoder);
-		LiveWindow.add(RobotMap.driveRightEncoder);
+		SmartDashboard.putData("Left Drive Encoder",  RobotMap.driveLeftEncoder);
+		SmartDashboard.putData("Right Drive Encoder", RobotMap.driveRightEncoder);
 	}
 	
 	public static void initWinch() {
 		RobotMap.winchTalon = new WPI_TalonSRX(RobotMap.WINCH_TALON_PORT);
-		LiveWindow.add(RobotMap.winchTalon);
+		SmartDashboard.putData("Winch Talon", RobotMap.winchTalon);
 	}
 	
 	public static void initGrabber() {
 		RobotMap.grabberTalon = new WPI_TalonSRX(RobotMap.GRABBER_TALON_PORT);
-		LiveWindow.add(RobotMap.grabberTalon);
+		SmartDashboard.putData("Grabber Talon", RobotMap.grabberTalon);
 	}
 	
 	public static void initSensors() {
 		RobotMap.gyro = new ADXRS450_Gyro(RobotMap.GYRO_PORT);
-		LiveWindow.add(RobotMap.gyro);
+		SmartDashboard.putData("Gyro", RobotMap.gyro);
 	}
 	
 	public static void initArduino() {

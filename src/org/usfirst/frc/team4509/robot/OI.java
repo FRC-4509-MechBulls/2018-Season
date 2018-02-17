@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4509.robot;
 
 
+import org.usfirst.frc.team4509.robot.commands.*;
 import org.usfirst.frc.team4509.robot.controls.BaseController;
 import org.usfirst.frc.team4509.robot.controls.XboxController;
 
@@ -25,12 +26,19 @@ public class OI {
 	public OI() {
 		this.controller = new XboxController(OI.XBOX_CONTROLLER_PORT);
 		//this.controller = new JoystickPair(OI.LEFT_JOYSTICK_PORT, OI.RIGHT_JOYSTICK_PORT);
+		
 		this.driveTrigger     = new DriveTrigger();
 		this.fixedTurnTrigger = new FixedTurnTrigger();
 	}
 	
+	public void setTriggers() {
+		//this.driveTrigger.whileActive(new DirectDriveCommand(this.controller));
+		this.driveTrigger.whenActive(new DriveForTicksCommand(RobotMap.TICKS_PER_INCH * 12));
+		this.fixedTurnTrigger.whenActive(new AbsoluteTurnCommand(this.controller.getFixedTurn()));
+	}
+	
 	class DriveTrigger extends Trigger {
-		public boolean get() { return Robot.oi.controller.getDrive() > 0 || Robot.oi.controller.getSlide() != 0 ||  Robot.oi.controller.getTurn() != 0; }
+		public boolean get() { return Robot.oi.controller.getDrive() != 0 || Robot.oi.controller.getSlide() != 0 || Robot.oi.controller.getTurn() != 0; }
 	}
 	
 	class FixedTurnTrigger extends Trigger {

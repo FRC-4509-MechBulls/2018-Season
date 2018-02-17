@@ -30,7 +30,8 @@ public class XboxController implements BaseController {
 	
 	@Override
 	public double getTurn() {
-		return this.controller.getX(GenericHID.Hand.kRight);
+		double n = this.controller.getX(GenericHID.Hand.kRight);
+		return Math.abs(n) < 0.1 ? 0 : n; // dead-zone
 	}
 	
 	@Override

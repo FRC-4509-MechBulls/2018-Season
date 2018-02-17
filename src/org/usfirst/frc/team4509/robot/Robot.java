@@ -7,9 +7,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4509.Cube;
-import org.usfirst.frc.team4509.robot.commands.*;
-import org.usfirst.frc.team4509.robot.controls.XboxController;
 import org.usfirst.frc.team4509.robot.subsystems.*;
 
 /**
@@ -52,14 +49,19 @@ public class Robot extends IterativeRobot {
 		this.cameraSubsystem.getBlocks();*/
 		
 		Robot.oi = new OI();
+		Robot.oi.setTriggers();
 		// chooser.addDefault("Default Auto", new TurnRight(90));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		SmartDashboard.putData(Robot.drivingSubsystem);
+		SmartDashboard.putData(Robot.winchSubsystem);
+		SmartDashboard.putData(Robot.grabberSubsystem);
 	}
 	
 	@Override
 	public void robotPeriodic() {
-		System.out.println("Angle: " + RobotMap.gyro.getAngle());
+		//System.out.println("Angle: " + RobotMap.gyro.getAngle());
 	}
 
 	/**
@@ -69,8 +71,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		Scheduler.getInstance().disable();
-		this.drivingSubsystem.stop();
+		Robot.drivingSubsystem.stop();
 	}
 
 	@Override
@@ -119,10 +120,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		
-		Robot.oi.fixedTurnTrigger.whenActive(new AbsoluteTurnCommand(Robot.oi.controller.getFixedTurn()));
 	}
-
+	
 	/**
 	 * This function is called periodically during operator control
 	 */

@@ -11,5 +11,5 @@ public interface BaseController {
 	double getSlide();
 	double getTurn();
 	int    getFixedTurn();
-	
+
 }

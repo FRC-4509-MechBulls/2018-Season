@@ -21,7 +21,7 @@ public class DirectDriveCommand extends Command {
 
 	protected void initialize() {  }
 
-	protected void execute() {
+	public void execute() {
 		Robot.drivingSubsystem.drive(this.controller.getDrive(), this.controller.getTurn(), this.controller.getSlide());
 	}
 
