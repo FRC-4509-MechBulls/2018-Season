@@ -18,12 +18,12 @@ public class JoystickPair implements BaseController {
 	
 	@Override
 	public double getDrive() {
-		return this.jRight.getY();
+		return Math.abs(this.jRight.getY()) < 0.1 ? 0 : this.jRight.getY();
 	}
 
 	@Override
 	public double getSlide() {
-		return this.jRight.getX();
+		return Math.abs(this.jRight.getX()) < 0.1 ? 0 : this.jRight.getX();
 	}
 
 	/**

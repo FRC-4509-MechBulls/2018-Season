@@ -12,17 +12,16 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DirectDriveCommand extends Command {
 	
-	private BaseController controller;
-	
-	public DirectDriveCommand(BaseController controller) {
-		this.controller = controller;
+	public DirectDriveCommand() {
 		requires(Robot.drivingSubsystem);
 	}
 
-	protected void initialize() {  }
+	protected void initialize() {
+		if(Robot.oi.controller == null) throw new NullPointerException("Controller was null.");
+	}
 
 	public void execute() {
-		Robot.drivingSubsystem.drive(this.controller.getDrive(), this.controller.getTurn(), this.controller.getSlide());
+		Robot.drivingSubsystem.drive(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide());
 	}
 
 	protected boolean isFinished() {

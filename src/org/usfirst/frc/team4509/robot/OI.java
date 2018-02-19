@@ -6,6 +6,7 @@ import org.usfirst.frc.team4509.robot.controls.BaseController;
 import org.usfirst.frc.team4509.robot.controls.XboxController;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -32,9 +33,11 @@ public class OI {
 	}
 	
 	public void setTriggers() {
-		//this.driveTrigger.whileActive(new DirectDriveCommand(this.controller));
-		this.driveTrigger.whenActive(new DriveForTicksCommand(RobotMap.TICKS_PER_INCH * 12));
+		this.driveTrigger.whileActive(new DirectDriveCommand());
+		SmartDashboard.putData("Drive Trigger", this.driveTrigger);
+		
 		this.fixedTurnTrigger.whenActive(new AbsoluteTurnCommand(this.controller.getFixedTurn()));
+		SmartDashboard.putData("Fixed Turn Trigger", this.fixedTurnTrigger);
 	}
 	
 	class DriveTrigger extends Trigger {

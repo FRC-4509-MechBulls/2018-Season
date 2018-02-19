@@ -54,6 +54,8 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
+		SmartDashboard.putData(Scheduler.getInstance());
+		
 		SmartDashboard.putData(Robot.drivingSubsystem);
 		SmartDashboard.putData(Robot.winchSubsystem);
 		SmartDashboard.putData(Robot.grabberSubsystem);
