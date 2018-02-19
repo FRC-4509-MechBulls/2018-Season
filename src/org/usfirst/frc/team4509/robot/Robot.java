@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4509.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -50,6 +51,9 @@ public class Robot extends IterativeRobot {
 		
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
+		
+		CameraServer.getInstance().startAutomaticCapture();
+		
 		// chooser.addDefault("Default Auto", new TurnRight(90));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
