@@ -36,7 +36,7 @@ public class OI {
 		this.driveTrigger.whileActive(new DirectDriveCommand());
 		SmartDashboard.putData("Drive Trigger", this.driveTrigger);
 		
-		this.fixedTurnTrigger.whenActive(new AbsoluteTurnCommand(this.controller.getFixedTurn()));
+		//this.fixedTurnTrigger.whenActive(new AbsoluteTurnCommand(this.controller.getFixedTurn()));
 		SmartDashboard.putData("Fixed Turn Trigger", this.fixedTurnTrigger);
 	}
 	

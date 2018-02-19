@@ -4,6 +4,7 @@ package org.usfirst.frc.team4509.robot.commands;
 import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 
@@ -35,7 +36,7 @@ public class TurnCommand extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) < RobotMap.GYRO_PRECISION;
+		return Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) < Preferences.getInstance().getDouble("GYRO_PRECISION", RobotMap.GYRO_PRECISION);
 	}
 
 	protected void end() {

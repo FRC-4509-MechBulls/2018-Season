@@ -1,18 +1,17 @@
 package org.usfirst.frc.team4509.robot;
 
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -23,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author FRC Team 4509
  */
 public class RobotMap {
-
+	
 	public static final double GYRO_PRECISION = 0.5;
 	public static final int TICKS_PER_METER = 2362;
 	public static final int TICKS_PER_INCH = 60;

@@ -1,6 +1,9 @@
 package org.usfirst.frc.team4509.robot.controls;
 
+
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Preferences;
+
 
 /**
  * Implements controls using a Xbox controller
@@ -31,7 +34,7 @@ public class XboxController implements BaseController {
 	@Override
 	public double getTurn() {
 		double n = this.controller.getX(GenericHID.Hand.kRight);
-		return Math.abs(n) < 0.1 ? 0 : n; // dead-zone
+		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
 	}
 	
 	@Override
