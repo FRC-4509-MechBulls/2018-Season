@@ -16,7 +16,7 @@ public class AbsoluteTurnCommand extends Command {
 	double targetDegrees;
 	
 	public AbsoluteTurnCommand(int targetDegrees) {
-		if(targetDegrees < 0 || targetDegrees >= 360) throw new IllegalArgumentException("targetDegrees must be in the range of [0, 360]. targetDegrees was " + targetDegrees + ".");
+		if(targetDegrees < 0 || targetDegrees >= 360) throw new IllegalArgumentException("targetDegrees must be in the range of [0, 359]. targetDegrees was " + targetDegrees + ".");
 		requires(Robot.drivingSubsystem);
 		this.setInterruptible(false);
 		this.targetDegrees = targetDegrees;
