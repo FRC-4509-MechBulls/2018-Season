@@ -6,7 +6,7 @@ import org.usfirst.frc.team4509.robot.controls.BaseController;
 import org.usfirst.frc.team4509.robot.controls.XboxController;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
