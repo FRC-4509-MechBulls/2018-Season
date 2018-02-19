@@ -21,6 +21,7 @@ public class Cube {
 		return 0.0;
 	}
 	
+	@Override
 	public String toString() {
 		return "Cube : ( " + this.getX() + ", " + this.getY() + ", " + this.getWidth() + ", " + this.getHeight() + " )";
 	}

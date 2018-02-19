@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -100,8 +99,8 @@ public class RobotMap {
 	}
 	
 	public static void initArduino() {
-		RobotMap.arduino = new SerialPort(19200, RobotMap.ARDUINO_PORT);
-		RobotMap.arduino.enableTermination('\n');
+		RobotMap.arduino = new SerialPort(9600, RobotMap.ARDUINO_PORT);
+		RobotMap.arduino.setReadBufferSize(255);
 	}
 
 }

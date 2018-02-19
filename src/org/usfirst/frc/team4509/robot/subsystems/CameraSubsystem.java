@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4509.robot.subsystems;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import org.usfirst.frc.team4509.Cube;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 /**
  * @author FRC Team 4509
@@ -16,45 +17,110 @@ public class CameraSubsystem extends Subsystem {
 	
 	SerialPort port;
 	public Cube[] cubes;
+	private List<String> buffer;
 	
-	public CameraSubsystem() {  }
+	public CameraSubsystem() {
+		this.buffer = new ArrayList<>();
+	}
 	
 	public void setPort(SerialPort port) {
 		this.port = port;
 	}
 
-    public void initDefaultCommand() {
-        //setDefaultCommand(new MySpecialCommand());
-    }
-    
-    public void getBlocks() {
-    	if(this.port.getBytesReceived() > 0) {
-    		String data = this.port.readString();
-    		String[] major = data.split(":");
-    		int n = Integer.parseInt(major[0]);
-    		this.cubes = new Cube[n];
-    		if(n > 0) {
-    			String[] blocks = major[1].split(";");
-    			for(int i = 0; i < n; i++) {
-    				String[] block = blocks[i].split(",");
-    				this.cubes[i] = new Cube(Integer.parseInt(block[1]), Integer.parseInt(block[2]), Integer.parseInt(block[3]), Integer.parseInt(block[4]));
-    			}
-    		}
-    	}
-    }
-    
-    public void displayInput() {
-    	if(this.port.getBytesReceived() > 0) {
-	    	byte[] ba = this.port.read(this.port.getBytesReceived());
-	    	String s = "";
-	    	for(byte b : ba)
-	    		s += Byte.toString(b);
-	    	System.out.println(s);
-    	}
-    }
-    
-    public void flushInput() {
-    	this.port.read(this.port.getBytesReceived());
-    }
-    
+	@Override
+	protected void initDefaultCommand() {  }
+	
+	@Override
+	public void periodic() {
+		// add new data if there is any
+		if(this.port.getBytesReceived() > 0) {
+			try {
+				String data = this.port.readString();
+				for(char c : data.toCharArray()) {
+					buffer.add("" + c);
+				}
+			} catch(RuntimeException e) {
+				System.out.println("Camera failure: " + e.getMessage() +  ".");
+				this.port.reset();
+				System.out.println("Camera reset.");
+			}
+		}
+		
+		// check for full line
+		if(buffer.contains("!")) {
+			String line = "";
+			int n = buffer.indexOf("!");
+			for(int i = 0; i <= n; i++) {
+				line += buffer.get(0);
+				buffer.remove(0);
+			}
+			// if the data is good, add it
+			if(CameraSubsystem.checkData(line))
+				this.setCubes(CameraSubsystem.formData(line));
+		}
+	}
+	
+	public void setCubes(Cube[] cubes) {
+		this.cubes = cubes;
+	}
+
+	/**
+	 * Checks if the given data is valid.
+	 * 
+	 * @param line a line of data
+	 * @return whether the given data is correctly formed or not
+	 */
+	public static boolean checkData(String line) {
+		// Yes, this function is disgusting, I know. But it works, so who cares? - K
+		try {
+			if(line.indexOf("!") == -1 || !line.endsWith("!")) return false; // is there a '!' and does the string end w/ it?
+			String[] split1 = line.substring(0, line.indexOf("!")).split(":");
+			Integer.parseInt(split1[0]); // This is just here to throw exceptions; it shouldn't do anything.
+			String[] blocks = split1[1].split(";");
+			for(String s : blocks) { // check each block
+				String[] data = s.split(",");
+				for(String s1 : data) // check each value of the block
+					Integer.parseInt(s1); // This is just here to throw exceptions; it shouldn't do anything.
+			return true;
+			}
+		} catch(IndexOutOfBoundsException e) {  } // catches bad arrays
+			catch(NumberFormatException e) {  } // catches stuff that got mixed up
+		return false;
+	}
+	
+	/**
+	 * Turns the data into an array of cubes. This function assumes that the data is correctly formed.
+	 * 
+	 * @param line the line of data to interpret
+	 * @return an array of cubes
+	 */
+	public static Cube[] formData(String line) {
+		String[] meta = line.substring(0, line.indexOf("!")).split(":");
+		int n = Integer.parseInt(meta[0]);
+		Cube[] cubes = new Cube[n];
+		String[] blocks = meta[1].split(";");
+		for(int i = 0; i < n; i++) {
+			int[] data = stringArrayToIntArray(blocks[i].split(","));
+			cubes[i] = new Cube(data[0], data[1], data[2], data[3]);
+		}
+		return cubes;
+	}
+
+	public void flushInput() {
+		this.port.read(this.port.getBytesReceived());
+	}
+	
+	public void reset() {
+		this.flushInput();
+		this.buffer.clear();
+		this.setCubes(new Cube[]{});
+	}
+	
+	public static int[] stringArrayToIntArray(String[] sA) {
+		int[] iA = new int[sA.length];
+		for(int i = 0; i < sA.length; i++)
+			iA[i] = Integer.parseInt(sA[i]);
+		return iA;
+	}
+
 }

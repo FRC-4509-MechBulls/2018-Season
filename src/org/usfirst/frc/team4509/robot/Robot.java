@@ -21,8 +21,8 @@ import org.usfirst.frc.team4509.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
 	public static final CameraSubsystem  cameraSubsystem  = new CameraSubsystem();
+	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
 	public static final GrabberSubsystem grabberSubsystem = new GrabberSubsystem();
 	public static final WinchSubsystem   winchSubsystem   = new WinchSubsystem();
 
@@ -43,11 +43,9 @@ public class Robot extends IterativeRobot {
 		RobotMap.initSensors();
 		RobotMap.initWinch();
 		RobotMap.initGrabber();
-		//RobotMap.initArduino();
+		RobotMap.initArduino();
 		
-		/*this.cameraSubsystem.setPort(RobotMap.arduino);
-		this.cameraSubsystem.getBlocks();
-		this.cameraSubsystem.getBlocks();*/
+		Robot.cameraSubsystem.setPort(RobotMap.arduino);
 		
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
@@ -60,6 +58,7 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 		
+		SmartDashboard.putData(Robot.cameraSubsystem);
 		SmartDashboard.putData(Robot.drivingSubsystem);
 		SmartDashboard.putData(Robot.winchSubsystem);
 		SmartDashboard.putData(Robot.grabberSubsystem);
@@ -88,18 +87,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		/*this.cameraSubsystem.getBlocks();
-		if(this.cameraSubsystem.cubes != null)
-			for(Cube c : this.cameraSubsystem.cubes)
-				System.out.println(c);*/
 	}
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
+	 * chooser code works with the Java SmartDashboard.
 	 *
 	 * You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons
