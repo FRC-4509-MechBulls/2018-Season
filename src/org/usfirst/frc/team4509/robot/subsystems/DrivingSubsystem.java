@@ -3,6 +3,7 @@ package org.usfirst.frc.team4509.robot.subsystems;
 
 import org.usfirst.frc.team4509.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -10,8 +11,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author FRC Team 4509
  */
 public class DrivingSubsystem extends Subsystem {
-	
-	static double baseSpeed = 0.5;
 
 	public void initDefaultCommand() {}
 
@@ -20,10 +19,12 @@ public class DrivingSubsystem extends Subsystem {
 	 * @param rightYAxis used to drive the right side of the robot
 	 */
 	public void tankDriving(double leftYAxis, double rightYAxis) {
+		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.5);
 		RobotMap.drive.tankDrive(baseSpeed * leftYAxis, baseSpeed * rightYAxis);
 	}
 	
 	public void drive(double ySpeed, double rotation, double xSpeed) {
+		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.5);
 		RobotMap.drive.arcadeDrive(baseSpeed * ySpeed, baseSpeed * rotation);
 		RobotMap.driveTalonMiddle.set(baseSpeed * xSpeed);
 	}

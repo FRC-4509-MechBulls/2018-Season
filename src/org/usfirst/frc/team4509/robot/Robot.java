@@ -67,7 +67,12 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void robotPeriodic() {
-		//System.out.println("Angle: " + RobotMap.gyro.getAngle());
+		SmartDashboard.putNumber("Left Drive",   RobotMap.driveTalonFrontLeft.get()  *  2);
+		SmartDashboard.putNumber("Right Drive",  RobotMap.driveTalonFrontRight.get() * -2);
+		SmartDashboard.putNumber("Middle Drive", RobotMap.driveTalonMiddle.get()     *  2);
+		
+		SmartDashboard.putNumber("Winch",   RobotMap.winchTalon.get()   * 2);
+		SmartDashboard.putNumber("Grabber", RobotMap.grabberTalon.get() * 2);
 	}
 
 	/**

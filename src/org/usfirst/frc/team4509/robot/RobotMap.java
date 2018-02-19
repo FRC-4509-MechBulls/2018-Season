@@ -88,12 +88,10 @@ public class RobotMap {
 	
 	public static void initWinch() {
 		RobotMap.winchTalon = new WPI_TalonSRX(RobotMap.WINCH_TALON_PORT);
-		SmartDashboard.putData("Winch Talon", RobotMap.winchTalon);
 	}
 	
 	public static void initGrabber() {
 		RobotMap.grabberTalon = new WPI_TalonSRX(RobotMap.GRABBER_TALON_PORT);
-		SmartDashboard.putData("Grabber Talon", RobotMap.grabberTalon);
 	}
 	
 	public static void initSensors() {
