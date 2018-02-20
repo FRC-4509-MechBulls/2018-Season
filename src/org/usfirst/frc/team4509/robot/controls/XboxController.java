@@ -47,4 +47,16 @@ public class XboxController implements BaseController {
 		return this.controller.getYButtonPressed();
 	}
 	
+	@Override
+	public double getWinch() {
+		double n = this.controller.getY(GenericHID.Hand.kLeft);
+		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
+	}
+	
+	@Override
+	public double getGrabber() {
+		double n = this.controller.getX(GenericHID.Hand.kLeft);
+		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
+	}
+	
 }

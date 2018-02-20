@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4509.robot.controls;
 
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Preferences;
 
@@ -47,6 +48,16 @@ public class JoystickPair implements BaseController {
 	@Override
 	public boolean getAlign() {
 		return false; // TODO: implement
+	}
+	
+	@Override
+	public double getWinch() {
+		return 0.0; // TODO: implement
+	}
+	
+	@Override
+	public double getGrabber() {
+		return 0.0; // TODO: implement
 	}
 
 }

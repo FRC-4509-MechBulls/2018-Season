@@ -33,7 +33,6 @@ public class AlignCommand extends Command {
 			if(newCube != null) this.cube = newCube;
 			if(this.cube == null) return;
 			double diff = this.getDiff();
-			System.out.println(diff + " for " + this.cube);
 			if(this.cube.getX() + (this.cube.getWidth() / 2) < RobotMap.PIXY_MAX_X / 2) {
 				Robot.drivingSubsystem.drive(0, 0, diff < 4 ? -0.5 : -1);
 				Timer.delay(0.1);

@@ -12,5 +12,7 @@ public interface BaseController {
 	double  getTurn();
 	int     getFixedTurn();
 	boolean getAlign();
+	double  getWinch();
+	double  getGrabber();
 
 }

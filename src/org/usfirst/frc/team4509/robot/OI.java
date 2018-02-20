@@ -24,6 +24,8 @@ public class OI {
 	DriveTrigger driveTrigger;
 	FixedTurnTrigger fixedTurnTrigger;
 	AlignTrigger alignTrigger;
+	WinchTrigger winchTrigger;
+	GrabberTrigger grabberTrigger;
 	
 	public OI() {
 		this.controller = new XboxController(OI.XBOX_CONTROLLER_PORT);
@@ -32,6 +34,8 @@ public class OI {
 		this.driveTrigger     = new DriveTrigger();
 		this.fixedTurnTrigger = new FixedTurnTrigger();
 		this.alignTrigger     = new AlignTrigger();
+		this.winchTrigger     = new WinchTrigger();
+		this.grabberTrigger   = new GrabberTrigger();
 	}
 	
 	public void setTriggers() {
@@ -50,6 +54,14 @@ public class OI {
 	
 	class AlignTrigger extends Trigger {
 		public boolean get() { return Robot.oi.controller.getAlign(); }
+	}
+	
+	class WinchTrigger extends Trigger {
+		public boolean get() { return Robot.oi.controller.getWinch() != 0; }
+	}
+	
+	class GrabberTrigger extends Trigger {
+		public boolean get() { return Robot.oi.controller.getGrabber() != 0; }
 	}
 
 }
