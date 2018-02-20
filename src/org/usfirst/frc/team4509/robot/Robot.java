@@ -85,6 +85,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		Robot.drivingSubsystem.stop();
+		Robot.winchSubsystem.stop();
+		Robot.grabberSubsystem.stop();
 	}
 
 	@Override
