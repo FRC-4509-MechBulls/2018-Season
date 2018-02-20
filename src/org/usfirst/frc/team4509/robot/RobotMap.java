@@ -25,6 +25,9 @@ public class RobotMap {
 	public static final double GYRO_PRECISION = 0.5;
 	public static final int TICKS_PER_METER = 2362;
 	public static final int TICKS_PER_INCH = 60;
+	public static final int PIXY_MAX_X = 319;
+	public static final int PIXY_MAX_Y = 199;
+	
 
 	public static final int DRIVE_TALON_FRONT_LEFT_PORT   = 1;
 	public static final int DRIVE_TALON_FRONT_RIGHT_PORT  = 3;
@@ -40,6 +43,7 @@ public class RobotMap {
 	public static final SPI.Port GYRO_PORT = SPI.Port.kOnboardCS0;
 	public static final SerialPort.Port ARDUINO_PORT = SerialPort.Port.kUSB1;
 	
+	
 	public static WPI_TalonSRX driveTalonFrontLeft;
 	public static WPI_TalonSRX driveTalonFrontRight;
 	public static WPI_TalonSRX driveTalonBackLeft;
@@ -52,6 +56,7 @@ public class RobotMap {
 	public static Encoder driveRightEncoder;
 	public static ADXRS450_Gyro gyro;
 	public static SerialPort arduino;
+	
   
 	public static void initDrive() {
 		// initialize the talons

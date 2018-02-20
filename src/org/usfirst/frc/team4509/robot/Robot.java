@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4509.Cube;
 import org.usfirst.frc.team4509.robot.subsystems.*;
 
 /**
@@ -27,6 +28,8 @@ public class Robot extends IterativeRobot {
 	public static final WinchSubsystem   winchSubsystem   = new WinchSubsystem();
 
 	public static OI oi;
+	
+	public static Cube[] cubes;
 
 	public static char[] gameData;
 	

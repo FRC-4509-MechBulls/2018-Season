@@ -43,5 +43,10 @@ public class JoystickPair implements BaseController {
 	public int getFixedTurn() {
 		return (int)this.jLeft.getDirectionDegrees();
 	}
+	
+	@Override
+	public boolean getAlign() {
+		return false; // TODO: implement
+	}
 
 }

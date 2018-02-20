@@ -7,9 +7,10 @@ package org.usfirst.frc.team4509.robot.controls;
  */
 public interface BaseController {
 
-	double getDrive();
-	double getSlide();
-	double getTurn();
-	int    getFixedTurn();
+	double  getDrive();
+	double  getSlide();
+	double  getTurn();
+	int     getFixedTurn();
+	boolean getAlign();
 
 }

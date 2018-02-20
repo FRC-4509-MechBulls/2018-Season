@@ -21,8 +21,9 @@ public class OI {
 	public static final int XBOX_CONTROLLER_PORT = 0;
 	
 	public BaseController controller;
-	public DriveTrigger driveTrigger;
-	public FixedTurnTrigger fixedTurnTrigger;
+	DriveTrigger driveTrigger;
+	FixedTurnTrigger fixedTurnTrigger;
+	AlignTrigger alignTrigger;
 	
 	public OI() {
 		this.controller = new XboxController(OI.XBOX_CONTROLLER_PORT);
@@ -30,11 +31,13 @@ public class OI {
 		
 		this.driveTrigger     = new DriveTrigger();
 		this.fixedTurnTrigger = new FixedTurnTrigger();
+		this.alignTrigger     = new AlignTrigger();
 	}
 	
 	public void setTriggers() {
 		this.driveTrigger.whileActive(new DirectDriveCommand());
 		this.fixedTurnTrigger.whenActive(new DirectAbsoluteTurnCommand());
+		this.alignTrigger.whenActive(new AlignCommand());
 	}
 	
 	class DriveTrigger extends Trigger {
@@ -43,6 +46,10 @@ public class OI {
 	
 	class FixedTurnTrigger extends Trigger {
 		public boolean get() { return Robot.oi.controller.getFixedTurn() != -1; }
+	}
+	
+	class AlignTrigger extends Trigger {
+		public boolean get() { return Robot.oi.controller.getAlign(); }
 	}
 
 }

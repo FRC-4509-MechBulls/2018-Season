@@ -42,4 +42,9 @@ public class XboxController implements BaseController {
 		return this.controller.getPOV();
 	}
 	
+	@Override
+	public boolean getAlign() {
+		return this.controller.getYButtonPressed();
+	}
+	
 }

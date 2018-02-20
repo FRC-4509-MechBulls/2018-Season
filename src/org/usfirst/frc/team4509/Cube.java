@@ -25,5 +25,13 @@ public class Cube {
 	public String toString() {
 		return "Cube : ( " + this.getX() + ", " + this.getY() + ", " + this.getWidth() + ", " + this.getHeight() + " )";
 	}
+	
+	public boolean containsY(int y) {
+		return y > this.y && y < this.y + this.height;
+	}
+	
+	public boolean containsX(int x) {
+		return x > this.x && x < this.x + this.width;
+	}
 
 }

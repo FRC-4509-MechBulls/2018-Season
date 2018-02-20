@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.usfirst.frc.team4509.Cube;
+import org.usfirst.frc.team4509.robot.Robot;
+import org.usfirst.frc.team4509.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,7 +18,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class CameraSubsystem extends Subsystem {
 	
 	SerialPort port;
-	public Cube[] cubes;
 	private List<String> buffer;
 	
 	public CameraSubsystem() {
@@ -61,7 +62,7 @@ public class CameraSubsystem extends Subsystem {
 	}
 	
 	public void setCubes(Cube[] cubes) {
-		this.cubes = cubes;
+		Robot.cubes = cubes;
 	}
 
 	/**
@@ -121,6 +122,18 @@ public class CameraSubsystem extends Subsystem {
 		for(int i = 0; i < sA.length; i++)
 			iA[i] = Integer.parseInt(sA[i]);
 		return iA;
+	}
+	
+	public static Cube findBestX() {
+		int offset = 0;
+		int centerX = RobotMap.PIXY_MAX_X / 2, centerY = RobotMap.PIXY_MAX_Y / 2;
+		while(offset < (RobotMap.PIXY_MAX_X / 2)) {
+			for(Cube c : Robot.cubes)
+				if(c.containsY(centerY) && (c.containsX(centerX - offset) || c.containsX(centerX + offset)))
+					return c;
+			offset += 1;
+		}
+		return null;
 	}
 
 }
