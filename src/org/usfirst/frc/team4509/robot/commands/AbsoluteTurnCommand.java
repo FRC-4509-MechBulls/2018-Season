@@ -9,13 +9,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Turn to an absolute angle
  * 
- * @param targetDegrees angle to turn to. must be in the range of [0, 359]
  * @author FRC Team 4509
  */
 public class AbsoluteTurnCommand extends Command {
 	
 	double targetDegrees;
 	
+	/**
+	 * @param targetDegrees angle to turn to. must be in the range of [0, 359]
+	 */
 	public AbsoluteTurnCommand(int targetDegrees) {
 		if(targetDegrees < 0 || targetDegrees >= 360) throw new IllegalArgumentException("targetDegrees must be in the range of [0, 359]. targetDegrees was " + targetDegrees + ".");
 		requires(Robot.drivingSubsystem);

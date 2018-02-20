@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Turn to an absolute angle
  * 
- * @param targetDegrees angle to turn to. must be in the range of [0, 359]
  * @author FRC Team 4509
  */
 public class DirectAbsoluteTurnCommand extends Command {
