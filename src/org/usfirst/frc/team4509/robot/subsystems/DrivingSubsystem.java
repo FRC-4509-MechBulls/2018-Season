@@ -52,8 +52,4 @@ public class DrivingSubsystem extends Subsystem {
 		return (int)((RobotMap.driveRightEncoder.get() + RobotMap.driveLeftEncoder.get()) / 2);
 	}
 	
-	public int getEncoderDistance() {
-		return (int)((RobotMap.driveRightEncoder.getDistance() + RobotMap.driveLeftEncoder.getDistance()) / 2);
-	}
-	
 }

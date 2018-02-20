@@ -24,7 +24,7 @@ public class Cube {
 	public int getHeight() { return this.height; }
 	
 	public double getDistance() {
-		return 0.0;
+		return 0.0; // TODO: implement
 	}
 	
 	@Override
