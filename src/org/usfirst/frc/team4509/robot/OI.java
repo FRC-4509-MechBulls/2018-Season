@@ -42,6 +42,8 @@ public class OI {
 		this.driveTrigger.whileActive(new DirectDriveCommand());
 		this.fixedTurnTrigger.whenActive(new DirectAbsoluteTurnCommand());
 		this.alignTrigger.whenActive(new AlignCommand());
+		this.winchTrigger.whileActive(new DirectWinchCommand());
+		this.grabberTrigger.whileActive(new DirectGrabberCommand());
 	}
 	
 	class DriveTrigger extends Trigger {
