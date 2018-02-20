@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4509.robot;
 
+
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4509.Cube;
 import org.usfirst.frc.team4509.robot.subsystems.*;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -101,7 +103,7 @@ public class Robot extends IterativeRobot {
 	 *
 	 * You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
+	 * to the switch structure below with additional strings and commands.
 	 */
 	@Override
 	public void autonomousInit() {
