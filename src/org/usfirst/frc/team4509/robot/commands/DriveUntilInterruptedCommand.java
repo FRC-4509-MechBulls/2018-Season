@@ -1,10 +1,14 @@
 package org.usfirst.frc.team4509.robot.commands;
 
+
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4509.robot.Robot;
 
+
 /**
+ * Drive with a given speed until an interrupt is received
+ * 
  * @author FRC Team 4509
  */
 public class DriveUntilInterruptedCommand extends Command {

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Preferences;
 
 
 /**
- * Implements controls using a Xbox controller
+ * Implements {@link BaseController} with a Xbox controller
  * 
  * @author FRC Team 4509
  */

@@ -1,10 +1,16 @@
 package org.usfirst.frc.team4509.robot.commands;
 
+
 import org.usfirst.frc.team4509.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 
+/**
+ * Keep all subsystems which contain talon controls stopped
+ * 
+ * @author FRC Team 4509
+ */
 public class StopAllCommand extends Command {
 	
 	public StopAllCommand() {

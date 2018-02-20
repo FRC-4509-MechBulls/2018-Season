@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
- * A command to turn the robot an amount given in degrees 
+ * Turn the robot a given amount in degrees 
  * 
  * @author FRC Team 4509
  */

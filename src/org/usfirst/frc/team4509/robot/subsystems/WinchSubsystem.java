@@ -1,10 +1,17 @@
 package org.usfirst.frc.team4509.robot.subsystems;
 
+
 import org.usfirst.frc.team4509.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
+/**
+ * Controls the winch talon
+ * 
+ * @author FRC Team 4509
+ */
 public class WinchSubsystem extends Subsystem {
 
 	@Override

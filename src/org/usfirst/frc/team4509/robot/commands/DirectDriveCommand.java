@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
- * Command to drive using input directly from the controller
+ * Drive using input directly from the controller
  * 
  * @author FRC Team 4509
  */

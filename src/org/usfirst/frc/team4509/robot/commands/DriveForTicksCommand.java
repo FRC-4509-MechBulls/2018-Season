@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
+ * Drive for a given number of ticks
+ * 
  * @author FRC Team 4509
  */
 public class DriveForTicksCommand extends Command {

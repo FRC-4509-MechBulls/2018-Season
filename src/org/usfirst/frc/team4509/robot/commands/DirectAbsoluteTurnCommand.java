@@ -1,13 +1,15 @@
 package org.usfirst.frc.team4509.robot.commands;
 
+
 import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
+
 /**
- * Turn to an absolute angle
+ * Turn to an absolute angle from controller input
  * 
  * @author FRC Team 4509
  */

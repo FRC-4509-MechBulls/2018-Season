@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4509.robot.commands;
 
 
-import org.usfirst.frc.team4509.Cube;
+import org.usfirst.frc.team4509.robot.Cube;
 import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
 import org.usfirst.frc.team4509.robot.subsystems.CameraSubsystem;
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
- * Aligns the robot with a cube
+ * Align the robot with a cube
  * 
  * @author FRC Team 4509
  */

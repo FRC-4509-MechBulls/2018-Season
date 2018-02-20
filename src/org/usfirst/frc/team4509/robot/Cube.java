@@ -1,5 +1,11 @@
-package org.usfirst.frc.team4509;
+package org.usfirst.frc.team4509.robot;
 
+
+/**
+ * Data class to interact with {@link org.usfirst.frc.team4509.robot.subsystems.CameraSubsystem}
+ * 
+ * @author FRC Team 4509
+ */
 public class Cube {
 	
 	private int x, y, width, height;

@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
+ * Controls the drive platform and slide drive talon
+ * 
  * @author FRC Team 4509
  */
 public class DrivingSubsystem extends Subsystem {

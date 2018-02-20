@@ -7,7 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
- *
+ * Operate the grabber using input directly from the controller
+ * 
+ * @author FRC Team 4509
  */
 public class DirectGrabberCommand extends Command {
 

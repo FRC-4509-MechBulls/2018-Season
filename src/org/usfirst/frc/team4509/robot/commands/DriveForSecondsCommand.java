@@ -4,11 +4,11 @@ package org.usfirst.frc.team4509.robot.commands;
 import org.usfirst.frc.team4509.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.TimedCommand;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
+ * Drive for a given amount of seconds
+ * 
  * @author FRC Team 4509
  */
 public class DriveForSecondsCommand extends Command {

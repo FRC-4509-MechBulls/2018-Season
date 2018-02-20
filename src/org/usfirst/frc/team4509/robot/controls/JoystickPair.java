@@ -1,13 +1,12 @@
 package org.usfirst.frc.team4509.robot.controls;
 
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Preferences;
 
 
 /**
- * Implements controls using two joysticks
+ * Implements {@link BaseController} with two joysticks
  * 
  * @author FRC Team 4509
  */

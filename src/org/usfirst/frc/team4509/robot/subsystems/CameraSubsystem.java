@@ -4,7 +4,7 @@ package org.usfirst.frc.team4509.robot.subsystems;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.usfirst.frc.team4509.Cube;
+import org.usfirst.frc.team4509.robot.Cube;
 import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
 
@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
+ * Manages the connection with the arduino for the Pixy
+ * 
  * @author FRC Team 4509
  */
 public class CameraSubsystem extends Subsystem {
