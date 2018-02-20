@@ -108,7 +108,7 @@ public class Robot extends IterativeRobot {
 		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
 		autonomousCommand = chooser.getSelected();
 
-		// schedule the autonomous command (example)
+		// schedule the autonomous command
 		if(autonomousCommand != null)
 			autonomousCommand.start();
 	}

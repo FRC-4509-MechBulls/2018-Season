@@ -59,5 +59,10 @@ public class JoystickPair implements BaseController {
 	public double getGrabber() {
 		return 0.0; // TODO: implement
 	}
+	
+	@Override
+	public boolean getDisabled() {
+		return false; // TODO: implement
+	}
 
 }

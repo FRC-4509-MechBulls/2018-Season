@@ -59,4 +59,9 @@ public class XboxController implements BaseController {
 		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
 	}
 	
+	@Override
+	public boolean getDisabled() {
+		return this.controller.getStartButton();
+	}
+	
 }

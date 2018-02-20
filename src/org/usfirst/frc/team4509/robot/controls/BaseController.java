@@ -14,5 +14,6 @@ public interface BaseController {
 	boolean getAlign();
 	double  getWinch();
 	double  getGrabber();
+	boolean getDisabled();
 
 }

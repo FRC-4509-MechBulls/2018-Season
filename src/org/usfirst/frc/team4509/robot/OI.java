@@ -26,6 +26,7 @@ public class OI {
 	AlignTrigger alignTrigger;
 	WinchTrigger winchTrigger;
 	GrabberTrigger grabberTrigger;
+	DisableTrigger disableTrigger;
 	
 	public OI() {
 		this.controller = new XboxController(OI.XBOX_CONTROLLER_PORT);
@@ -36,6 +37,7 @@ public class OI {
 		this.alignTrigger     = new AlignTrigger();
 		this.winchTrigger     = new WinchTrigger();
 		this.grabberTrigger   = new GrabberTrigger();
+		this.disableTrigger   = new DisableTrigger();
 	}
 	
 	public void setTriggers() {
@@ -44,6 +46,7 @@ public class OI {
 		this.alignTrigger.whenActive(new AlignCommand());
 		this.winchTrigger.whileActive(new DirectWinchCommand());
 		this.grabberTrigger.whileActive(new DirectGrabberCommand());
+		this.disableTrigger.whileActive(new StopAllCommand());
 	}
 	
 	class DriveTrigger extends Trigger {
@@ -64,6 +67,10 @@ public class OI {
 	
 	class GrabberTrigger extends Trigger {
 		public boolean get() { return Robot.oi.controller.getGrabber() != 0; }
+	}
+	
+	class DisableTrigger extends Trigger {
+		public boolean get() { return Robot.oi.controller.getDisabled(); }
 	}
 
 }
