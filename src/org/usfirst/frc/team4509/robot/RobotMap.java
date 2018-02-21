@@ -4,7 +4,9 @@ package org.usfirst.frc.team4509.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
@@ -52,6 +54,7 @@ public class RobotMap {
 	public static Encoder rightDriveEncoder;
 	public static ADXRS450_Gyro gyro;
 	public static SerialPort arduino;
+	public static UsbCamera camera;
 	
   
 	public static void initDrive() {
@@ -88,6 +91,11 @@ public class RobotMap {
 	public static void initArduino() {
 		RobotMap.arduino = new SerialPort(9600, RobotMap.ARDUINO_PORT);
 		RobotMap.arduino.setReadBufferSize(255);
+	}
+	
+	public static void initCamera() {
+		RobotMap.camera = CameraServer.getInstance().startAutomaticCapture();
+		RobotMap.camera.setResolution(640, 480);
 	}
 
 }

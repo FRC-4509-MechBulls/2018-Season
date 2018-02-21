@@ -48,13 +48,12 @@ public class Robot extends IterativeRobot {
 		RobotMap.initWinch();
 		RobotMap.initGrabber();
 		RobotMap.initArduino();
+		RobotMap.initCamera();
 		
 		Robot.cameraSubsystem.setPort(RobotMap.arduino);
 		
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
-		
-		CameraServer.getInstance().startAutomaticCapture();
 		
 		// chooser.addDefault("Default Auto", new TurnRight(90));
 		// chooser.addObject("My Auto", new MyAutoCommand());
