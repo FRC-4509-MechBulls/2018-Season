@@ -58,22 +58,21 @@ public class Robot extends IterativeRobot {
 		
 		// chooser.addDefault("Default Auto", new TurnRight(90));
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		// SmartDashboard.putData("Auto mode", chooser);
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 		
-		SmartDashboard.putData(Robot.cameraSubsystem);
-		SmartDashboard.putData(Robot.drivingSubsystem);
-		SmartDashboard.putData(Robot.winchSubsystem);
-		SmartDashboard.putData(Robot.grabberSubsystem);
+		SmartDashboard.putData("Camera Subsystem",  Robot.cameraSubsystem);
+		SmartDashboard.putData("Driving Subsystem", Robot.drivingSubsystem);
+		SmartDashboard.putData("Winch Subsystem",   Robot.winchSubsystem);
+		SmartDashboard.putData("Grabber Subsystem", Robot.grabberSubsystem);
 	}
 	
 	@Override
 	public void robotPeriodic() {
-		SmartDashboard.putNumber("Left Drive",   RobotMap.driveTalonFrontLeft.get()  *  2);
-		SmartDashboard.putNumber("Right Drive",  RobotMap.driveTalonFrontRight.get() * -2);
-		SmartDashboard.putNumber("Middle Drive", RobotMap.driveTalonMiddle.get()     *  2);
-		
+		SmartDashboard.putNumber("Left",    RobotMap.driveTalonFrontLeft.get()  *  2);
+		SmartDashboard.putNumber("Right",   RobotMap.driveTalonFrontRight.get() * -2);
+		SmartDashboard.putNumber("Middle",  RobotMap.driveTalonMiddle.get()     *  2);
 		SmartDashboard.putNumber("Winch",   RobotMap.winchTalon.get()   * 2);
 		SmartDashboard.putNumber("Grabber", RobotMap.grabberTalon.get() * 2);
 	}
