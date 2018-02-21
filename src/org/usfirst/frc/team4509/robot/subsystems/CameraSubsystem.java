@@ -74,20 +74,22 @@ public class CameraSubsystem extends Subsystem {
 	 * @return whether the given data is correctly formed or not
 	 */
 	public static boolean checkData(String line) {
-		// Yes, this function is disgusting, I know. But it works, so who cares? - K
+		// Yes, this function is disgusting, I know. But it works, so who cares? At least it's commented. - K
 		try {
 			if(line.indexOf("!") == -1 || !line.endsWith("!")) return false; // is there a '!' and does the string end w/ it?
 			String[] split1 = line.substring(0, line.indexOf("!")).split(":");
-			Integer.parseInt(split1[0]); // This is just here to throw exceptions; it shouldn't do anything.
 			String[] blocks = split1[1].split(";");
+			if(blocks.length != Integer.parseInt(split1[0])) throw new IllegalArgumentException(); // verify that the length number is equal to the number of blocks given
 			for(String s : blocks) { // check each block
 				String[] data = s.split(",");
+				if(data.length != 4) throw new IllegalArgumentException(); // make sure there are the correct amount of attributes
 				for(String s1 : data) // check each value of the block
 					Integer.parseInt(s1); // This is just here to throw exceptions; it shouldn't do anything.
 			return true;
 			}
 		} catch(IndexOutOfBoundsException e) {  } // catches bad arrays
-			catch(NumberFormatException e) {  } // catches stuff that got mixed up
+			catch(NumberFormatException e)     {  } // catches stuff that got mixed up
+			catch(IllegalArgumentException e)  {  } // catches user-thrown exceptions
 		return false;
 	}
 	
