@@ -15,25 +15,25 @@
 		</static-widget>
 
 		<widget field="Camera Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
-			<location x="16" y="96"/>
-			<width>320</width>
-			<height>32</height>
-		</widget>
-
-		<widget field="Driving Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 			<location x="16" y="144"/>
 			<width>320</width>
 			<height>32</height>
 		</widget>
 
-		<widget field="Grabber Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<widget field="Driving Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 			<location x="16" y="192"/>
 			<width>320</width>
 			<height>32</height>
 		</widget>
 
-		<widget field="Winch Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<widget field="Grabber Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
 			<location x="16" y="240"/>
+			<width>320</width>
+			<height>32</height>
+		</widget>
+
+		<widget field="Winch Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="16" y="288"/>
 			<width>320</width>
 			<height>32</height>
 		</widget>
@@ -85,9 +85,15 @@
 		</static-widget>
 
 		<widget field="Gyro" type="Gyro" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
-			<location x="32" y="304"/>
-			<width>288</width>
-			<height>192</height>
+			<location x="48" y="352"/>
+			<width>256</width>
+			<height>160</height>
+		</widget>
+
+		<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
+			<location x="16" y="96"/>
+			<width>320</width>
+			<height>32</height>
 		</widget>
 
 	</dashboard>

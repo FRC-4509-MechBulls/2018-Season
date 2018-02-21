@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4509.robot;
 
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -59,7 +58,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		// SmartDashboard.putData("Auto mode", chooser);
 		
-		SmartDashboard.putData(Scheduler.getInstance());
+		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 		
 		SmartDashboard.putData("Camera Subsystem",  Robot.cameraSubsystem);
 		SmartDashboard.putData("Driving Subsystem", Robot.drivingSubsystem);
@@ -122,10 +121,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
