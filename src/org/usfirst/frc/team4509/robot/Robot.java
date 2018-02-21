@@ -70,9 +70,9 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void robotPeriodic() {
-		SmartDashboard.putNumber("Left",    RobotMap.driveTalonFrontLeft.get()  *  2);
-		SmartDashboard.putNumber("Right",   RobotMap.driveTalonFrontRight.get() * -2);
-		SmartDashboard.putNumber("Middle",  RobotMap.driveTalonMiddle.get()     *  2);
+		SmartDashboard.putNumber("Left",    RobotMap.leftDriveTalon.get()  *  2);
+		SmartDashboard.putNumber("Middle",  RobotMap.slideDriveTalon.get() * -2);
+		SmartDashboard.putNumber("Right",   RobotMap.rightDriveTalon.get() *  2);
 		SmartDashboard.putNumber("Winch",   RobotMap.winchTalon.get()   * 2);
 		SmartDashboard.putNumber("Grabber", RobotMap.grabberTalon.get() * 2);
 	}

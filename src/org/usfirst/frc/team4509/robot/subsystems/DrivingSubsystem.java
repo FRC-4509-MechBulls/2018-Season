@@ -28,7 +28,7 @@ public class DrivingSubsystem extends Subsystem {
 	public void drive(double ySpeed, double rotation, double xSpeed) {
 		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.5);
 		RobotMap.drive.arcadeDrive(baseSpeed * ySpeed, baseSpeed * rotation);
-		RobotMap.driveTalonMiddle.set(baseSpeed * xSpeed);
+		RobotMap.slideDriveTalon.set(baseSpeed * xSpeed);
 	}
 		
 	public void drive(double speed) {
@@ -43,13 +43,13 @@ public class DrivingSubsystem extends Subsystem {
 	}
 	
 	public void stop() {
-		RobotMap.driveTalonFrontRight.set(0);
-		RobotMap.driveTalonFrontLeft.set(0);
-		RobotMap.driveTalonMiddle.set(0);
+		RobotMap.leftDriveTalon.set(0);
+		RobotMap.slideDriveTalon.set(0);
+		RobotMap.rightDriveTalon.set(0);
 	}
 	
 	public int getEncoderTicks() {
-		return (int)((RobotMap.driveRightEncoder.get() + RobotMap.driveLeftEncoder.get()) / 2);
+		return (int)((RobotMap.rightDriveEncoder.get() + RobotMap.leftDriveEncoder.get()) / 2);
 	}
 	
 }
