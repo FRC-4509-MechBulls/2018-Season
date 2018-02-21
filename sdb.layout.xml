@@ -1,0 +1,97 @@
+<xml version="1.0">
+
+	<dashboard>
+
+		<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+			<location x="16" y="528"/>
+			<width>320</width>
+			<height>208</height>
+		</static-widget>
+
+		<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+			<location x="16" y="16"/>
+			<width>48</width>
+			<height>48</height>
+		</static-widget>
+
+		<widget field="Camera Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="16" y="96"/>
+			<width>320</width>
+			<height>32</height>
+		</widget>
+
+		<widget field="Driving Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="16" y="144"/>
+			<width>320</width>
+			<height>32</height>
+		</widget>
+
+		<widget field="Grabber Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="16" y="192"/>
+			<width>320</width>
+			<height>32</height>
+		</widget>
+
+		<widget field="Winch Subsystem" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+			<location x="16" y="240"/>
+			<width>320</width>
+			<height>32</height>
+		</widget>
+
+		<widget field="Left" type="Number" class ="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+			<location x="720" y="560"/>
+			<width>128</width>
+			<height>32</height>
+			<property name="Minimum" value="-0.5"/>
+			<property name="Maximum" value="0.5"/>
+		</widget>
+
+		<widget field="Slide" type="Number" class ="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+			<location x="800" y="512"/>
+			<width>128</width>
+			<height>32</height>
+			<property name="Minimum" value="-0.5"/>
+			<property name="Maximum" value="0.5"/>
+		</widget>
+
+		<widget field="Right" type="Number" class ="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+			<location x="880" y="560"/>
+			<width>128</width>
+			<height>32</height>
+			<property name="Minimum" value="-0.5"/>
+			<property name="Maximum" value="0.5"/>
+		</widget>
+
+		<widget field="Grabber" type="Number" class ="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+			<location x="800" y="640"/>
+			<width>128</width>
+			<height>32</height>
+			<property name="Minimum" value="-0.5"/>
+			<property name="Maximum" value="0.5"/>
+		</widget>
+
+		<widget field="Winch" type="Number" class ="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+			<location x="800" y="688"/>
+			<width>128</width>
+			<height>32</height>
+			<property name="Minimum" value="-0.5"/>
+			<property name="Maximum" value="0.5"/>
+		</widget>
+		
+		<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+			<location x="608" y="112"/>
+			<width>512</width>
+			<height>304</height>
+		</static-widget>
+
+		<widget field="Gyro" type="Gyro" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="32" y="304"/>
+			<width>288</width>
+			<height>192</height>
+		</widget>
+
+	</dashboard>
+
+	<live-window></live-window>
+
+</xml>
