@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4509.robot.subsystems.*;
+import org.usfirst.frc.team4509.robot.commands.*;
 
 
 /**
@@ -54,9 +55,8 @@ public class Robot extends IterativeRobot {
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
 		
-		// chooser.addDefault("Default Auto", new TurnRight(90));
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		// SmartDashboard.putData("Auto mode", chooser);
+		chooser.addDefault("Pass the line (Default)", new DriveForFeetCommand(15));
+		SmartDashboard.putData("Auto Mode", chooser);
 		
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 		
