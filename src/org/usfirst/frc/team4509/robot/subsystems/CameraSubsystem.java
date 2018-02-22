@@ -101,8 +101,9 @@ public class CameraSubsystem extends Subsystem {
 	 * @return an array of cubes
 	 */
 	public static Cube[] formData(String line) {
-		String[] meta = line.substring(0, line.indexOf("!")).split(":");
+		String[] meta = line.substring(0, line.indexOf("!")).split(":", -1);
 		int n = Integer.parseInt(meta[0]);
+		if(n == 0 && meta[1].equals("")) return new Cube[]{  };
 		Cube[] cubes = new Cube[n];
 		String[] blocks = meta[1].split(";");
 		for(int i = 0; i < n; i++) {
