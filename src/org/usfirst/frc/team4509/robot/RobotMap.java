@@ -32,10 +32,10 @@ public class RobotMap {
 	
 
 	public static final int LEFT_DRIVE_TALON_PORT       = 1;
-	public static final int SLIDE_DRIVE_TALON_PORT      = 3;
-	public static final int RIGHT_DRIVE_TALON_PORT      = 5;
-	public static final int WINCH_TALON_PORT            = 7;
-	public static final int GRABBER_TALON_PORT          = 8;
+	public static final int SLIDE_DRIVE_TALON_PORT      = 5;
+	public static final int RIGHT_DRIVE_TALON_PORT      = 2;
+	public static final int WINCH_TALON_PORT            = 3;
+	public static final int GRABBER_TALON_PORT          = 4;
 	public static final int LEFT_DRIVE_ENCODER_PORT_1   = 2;
 	public static final int LEFT_DRIVE_ENCODER_PORT_2   = 3;
 	public static final int RIGHT_DRIVE_ENCODER_PORT_1  = 0;
