@@ -21,12 +21,12 @@ public class OI {
 	public static final int XBOX_CONTROLLER_PORT = 0;
 	
 	public BaseController controller;
-	DriveTrigger driveTrigger;
+	DriveTrigger     driveTrigger;
 	FixedTurnTrigger fixedTurnTrigger;
-	AlignTrigger alignTrigger;
-	WinchTrigger winchTrigger;
-	GrabberTrigger grabberTrigger;
-	DisableTrigger disableTrigger;
+	AlignTrigger     alignTrigger;
+	WinchTrigger     winchTrigger;
+	GrabberTrigger   grabberTrigger;
+	DisableTrigger   disableTrigger;
 	
 	public OI() {
 		this.controller = new XboxController(OI.XBOX_CONTROLLER_PORT);

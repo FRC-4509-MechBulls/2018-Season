@@ -71,8 +71,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Left",    RobotMap.leftDriveTalon.get()  *  2);
 		SmartDashboard.putNumber("Middle",  RobotMap.slideDriveTalon.get() * -2);
 		SmartDashboard.putNumber("Right",   RobotMap.rightDriveTalon.get() *  2);
-		SmartDashboard.putNumber("Winch",   RobotMap.winchTalon.get()   * 2);
-		SmartDashboard.putNumber("Grabber", RobotMap.grabberTalon.get() * 2);
+		SmartDashboard.putNumber("Winch",   RobotMap.winchTalon.get()      *  2);
+		SmartDashboard.putNumber("Grabber", RobotMap.grabberTalon.get()    *  2);
 	}
 
 	/**
