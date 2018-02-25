@@ -3,6 +3,8 @@ package org.usfirst.frc.team4509.robot.subsystems;
 
 import org.usfirst.frc.team4509.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -46,6 +48,17 @@ public class DrivingSubsystem extends Subsystem {
 		RobotMap.leftDriveTalon.set(0);
 		RobotMap.slideDriveTalon.set(0);
 		RobotMap.rightDriveTalon.set(0);
+	}
+	
+	/**
+	 * Changes the drive talons' neutral modes to the given mode.
+	 * See {@link com.ctre.phoenix.motorcontrol.NeutralMode}
+	 * @param mode the neutral mode to set to
+	 */
+	public void setNeutralMode(NeutralMode mode) {
+		RobotMap.leftDriveTalon.setNeutralMode(mode);
+		RobotMap.slideDriveTalon.setNeutralMode(mode);
+		RobotMap.rightDriveTalon.setNeutralMode(mode);
 	}
 	
 	public int getEncoderTicks() {
