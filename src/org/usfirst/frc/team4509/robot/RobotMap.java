@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4509.robot;
 
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -60,8 +61,11 @@ public class RobotMap {
 	public static void initDrive() {
 		// initialize the talons
 		RobotMap.leftDriveTalon   = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_TALON_PORT);
+		RobotMap.leftDriveTalon.setNeutralMode(NeutralMode.Coast);
 		RobotMap.slideDriveTalon  = new WPI_TalonSRX(RobotMap.SLIDE_DRIVE_TALON_PORT);
+		RobotMap.leftDriveTalon.setNeutralMode(NeutralMode.Coast);
 		RobotMap.rightDriveTalon  = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_TALON_PORT);
+		RobotMap.leftDriveTalon.setNeutralMode(NeutralMode.Coast);
 		
 		RobotMap.drive = new DifferentialDrive(RobotMap.leftDriveTalon, RobotMap.rightDriveTalon);
 		
