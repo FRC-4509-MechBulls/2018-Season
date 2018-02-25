@@ -8,13 +8,12 @@ package org.usfirst.frc.team4509.robot.controls;
  */
 public interface BaseController {
 
-	double  getDrive();
-	double  getSlide();
-	double  getTurn();
-	int     getFixedTurn();
-	boolean getAlign();
-	double  getWinch();
-	double  getGrabber();
-	boolean getDisabled();
-
+	double  getDrive();     // [-1, 1], inactive @ 0
+	double  getSlide();     // [-1, 1], inactive @ 0
+	double  getTurn();      // [-1, 1], inactive @ 0
+	int     getFixedTurn(); // [0, 360], inactive @ -1
+	boolean getAlign();     // inactive @ false
+	double  getWinch();     // [-1, 1], inactive @ 0
+	double  getGrabber();   // [-1, 1], inactive @ 0
+	boolean getDisabled();  // inactive @ false
 }
