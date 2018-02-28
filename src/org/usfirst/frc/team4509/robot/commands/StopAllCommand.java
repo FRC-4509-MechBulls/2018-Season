@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class StopAllCommand extends Command {
 	
 	public StopAllCommand() {
+		this.setInterruptible(false);
 		requires(Robot.drivingSubsystem);
 		requires(Robot.winchSubsystem);
 		requires(Robot.grabberSubsystem);
