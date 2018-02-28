@@ -22,7 +22,6 @@ public class AlignCommand extends Command {
 	
 	public AlignCommand() {
 		requires(Robot.drivingSubsystem);
-		this.setInterruptible(false);
 	}
 
 	protected void initialize() {  }
