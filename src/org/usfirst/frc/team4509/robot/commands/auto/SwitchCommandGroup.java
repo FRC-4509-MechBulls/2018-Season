@@ -13,14 +13,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SwitchCommandGroup extends CommandGroup {
 
 	public SwitchCommandGroup() {
-		addSequential(new DriveForFeetCommand(19.061));
-		addSequential(new TurnCommand(180 * Robot.startPosition));
-		addSequential(new SlideForSecondsCommand(-1, 2));
-		
-		
-		addSequential(new DriveForFeetCommand(1));
-		
-		addSequential(new DriveForFeetCommand(1));
-		
+		if(Robot.getStartingPosition() == Robot.gameData[1]) {
+			addSequential(new DriveForFeetCommand(19.061));
+			addSequential(new TurnCommand(180 * Robot.startPosition));
+			addSequential(new SlideForSecondsCommand(-1, 2));
+			
+			
+			addSequential(new DriveForFeetCommand(1));
+			
+			addSequential(new DriveForFeetCommand(1));
+			
+		}
 	}
+	
 }

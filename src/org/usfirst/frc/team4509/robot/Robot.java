@@ -142,4 +142,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {  }
 	
+	public static char getStartingPosition() {
+		if(Robot.startPosition == -1)
+			return 'L';
+		else if(Robot.startPosition == 1)
+			return 'R';
+		return 'C';
+	}
+	
 }

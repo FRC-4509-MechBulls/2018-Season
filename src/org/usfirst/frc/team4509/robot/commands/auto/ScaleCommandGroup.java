@@ -14,16 +14,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ScaleCommandGroup extends CommandGroup {
 
 	public ScaleCommandGroup() {
-		addSequential(new DriveForFeetCommand(19.061));
-		addSequential(new TurnCommand(180 * Robot.startPosition));
-		addSequential(new SlideForSecondsCommand(-1, 2));
-
-		addSequential(new SlideForSecondsCommand(1, 2));
-		addSequential(new TurnCommand(180 * Robot.startPosition));
-		
-		addSequential(new DriveForFeetCommand(5.910));
-		
-		addSequential(new DriveForFeetCommand(-5.910));
-		
+		if(Robot.getStartingPosition() == Robot.gameData[0]) {
+			addSequential(new DriveForFeetCommand(19.061));
+			addSequential(new TurnCommand(180 * Robot.startPosition));
+			addSequential(new SlideForSecondsCommand(-1, 2));
+	
+			addSequential(new SlideForSecondsCommand(1, 2));
+			addSequential(new TurnCommand(180 * Robot.startPosition));
+			
+			addSequential(new DriveForFeetCommand(5.910));
+			
+			addSequential(new DriveForFeetCommand(-5.910));
+			
+		}
 	}
 }
