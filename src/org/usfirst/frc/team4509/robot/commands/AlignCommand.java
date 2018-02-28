@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4509.robot.commands;
 
 
-import org.usfirst.frc.team4509.robot.Cube;
+import org.usfirst.frc.team4509.robot.VisualCube;
 import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
 import org.usfirst.frc.team4509.robot.subsystems.CameraSubsystem;
@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AlignCommand extends Command {
 	
-	Cube cube;
+	VisualCube cube;
 	int tries = 0;
 	
 	public AlignCommand() {
@@ -28,7 +28,7 @@ public class AlignCommand extends Command {
 
 	protected void execute() {
 		try {
-			Cube newCube = CameraSubsystem.findBestX();
+			VisualCube newCube = CameraSubsystem.findBestX();
 			if(newCube != null) this.cube = newCube;
 			if(this.cube == null) return;
 			double diff = this.getDiff();

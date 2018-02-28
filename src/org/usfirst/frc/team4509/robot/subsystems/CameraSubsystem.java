@@ -4,7 +4,7 @@ package org.usfirst.frc.team4509.robot.subsystems;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.usfirst.frc.team4509.robot.Cube;
+import org.usfirst.frc.team4509.robot.VisualCube;
 import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
 
@@ -63,7 +63,7 @@ public class CameraSubsystem extends Subsystem {
 		}
 	}
 	
-	public void setCubes(Cube[] cubes) {
+	public void setCubes(VisualCube[] cubes) {
 		Robot.cubes = cubes;
 	}
 
@@ -100,15 +100,15 @@ public class CameraSubsystem extends Subsystem {
 	 * @param line the line of data to interpret
 	 * @return an array of cubes
 	 */
-	public static Cube[] formData(String line) {
+	public static VisualCube[] formData(String line) {
 		String[] meta = line.substring(0, line.indexOf("!")).split(":", -1);
 		int n = Integer.parseInt(meta[0]);
-		if(n == 0 && meta[1].equals("")) return new Cube[]{  };
-		Cube[] cubes = new Cube[n];
+		if(n == 0 && meta[1].equals("")) return new VisualCube[]{  };
+		VisualCube[] cubes = new VisualCube[n];
 		String[] blocks = meta[1].split(";");
 		for(int i = 0; i < n; i++) {
 			int[] data = stringArrayToIntArray(blocks[i].split(","));
-			cubes[i] = new Cube(data[0], data[1], data[2], data[3]);
+			cubes[i] = new VisualCube(data[0], data[1], data[2], data[3]);
 		}
 		return cubes;
 	}
@@ -120,7 +120,7 @@ public class CameraSubsystem extends Subsystem {
 	public void reset() {
 		this.flushInput();
 		this.buffer.clear();
-		this.setCubes(new Cube[]{});
+		this.setCubes(new VisualCube[]{});
 	}
 	
 	public static int[] stringArrayToIntArray(String[] sA) {
@@ -130,11 +130,11 @@ public class CameraSubsystem extends Subsystem {
 		return iA;
 	}
 	
-	public static Cube findBestX() {
+	public static VisualCube findBestX() {
 		int offset = 0;
 		int centerX = RobotMap.PIXY_MAX_X / 2, centerY = RobotMap.PIXY_MAX_Y / 2;
 		while(offset < (RobotMap.PIXY_MAX_X / 2)) {
-			for(Cube c : Robot.cubes)
+			for(VisualCube c : Robot.cubes)
 				if(c.containsY(centerY) && (c.containsX(centerX - offset) || c.containsX(centerX + offset)))
 					return c;
 			offset += 1;

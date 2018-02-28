@@ -6,12 +6,12 @@ package org.usfirst.frc.team4509.robot;
  * 
  * @author FRC Team 4509
  */
-public class Cube {
+public class VisualCube {
 	
 	private int x, y, width, height;
 	public static double y(int w, int h) { return (w / h); }
 	
-	public Cube(int x, int y, int width, int height) {
+	public VisualCube(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -29,10 +29,10 @@ public class Cube {
 	
 	@Override
 	public String toString() {
-		return "Cube : ( " + this.getX() + ", " + this.getY() + ", " + this.getWidth() + ", " + this.getHeight() + " )";
+		return "VisualCube : ( " + this.getX() + ", " + this.getY() + ", " + this.getWidth() + ", " + this.getHeight() + " )";
 	}
 	
-	public boolean equals(Cube cube) {
+	public boolean equals(VisualCube cube) {
 		return this.getX()      == cube.getX() &&
 				   this.getY()      == cube.getY() &&
 				   this.getWidth()  == cube.getWidth() &&

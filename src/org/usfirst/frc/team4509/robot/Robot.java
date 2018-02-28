@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	
-	public static Cube[] cubes;
+	public static VisualCube[] cubes;
 
 	public static char[] gameData;
 	public static int startPosition;
