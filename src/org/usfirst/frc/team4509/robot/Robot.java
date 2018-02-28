@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4509.robot;
 
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4509.robot.subsystems.*;
-import org.usfirst.frc.team4509.robot.commands.*;
+import org.usfirst.frc.team4509.robot.commands.auto.*;
 
 
 /**
@@ -33,6 +32,7 @@ public class Robot extends IterativeRobot {
 	public static Cube[] cubes;
 
 	public static char[] gameData;
+	public static int startPosition;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -55,7 +55,12 @@ public class Robot extends IterativeRobot {
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
 		
-		chooser.addDefault("Pass the line (Default)", new DriveForFeetCommand(15));
+		Robot.startPosition = (int)SmartDashboard.getNumber("Starting Position", 0);
+		
+		chooser.addDefault("Basic (Left) (Default)", new BasicCommandGroup(-1));
+		chooser.addObject("Basic (Right)",  new BasicCommandGroup(1));
+		chooser.addObject("Scale",  new ScaleCommandGroup());
+		chooser.addObject("Switch", new SwitchCommandGroup());
 		SmartDashboard.putData("Auto Mode", chooser);
 		
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
@@ -104,6 +109,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
+		SmartDashboard.putString("Game Data", String.valueOf(Robot.gameData));
 		autonomousCommand = chooser.getSelected();
 
 		// schedule the autonomous command
