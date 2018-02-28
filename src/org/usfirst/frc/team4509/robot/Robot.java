@@ -57,9 +57,9 @@ public class Robot extends IterativeRobot {
 		
 		Robot.startPosition = (int)SmartDashboard.getNumber("Starting Position", 0);
 		
-		chooser.addDefault("Basic (Left) (Default)", new BasicCommandGroup(-1));
+		chooser.addDefault("Basic (Left)", new BasicCommandGroup(-1));
 		chooser.addObject("Basic (Right)",  new BasicCommandGroup(1));
-		chooser.addObject("Scale",  new ScaleCommandGroup());
+		chooser.addObject("Scale (Default)",  new ScaleCommandGroup());
 		chooser.addObject("Switch", new SwitchCommandGroup());
 		SmartDashboard.putData("Auto Mode", chooser);
 		
