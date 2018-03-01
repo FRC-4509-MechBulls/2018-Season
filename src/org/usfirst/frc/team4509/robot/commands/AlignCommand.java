@@ -43,8 +43,10 @@ public class AlignCommand extends Command {
 	}
 
 	protected boolean isFinished() {
-		if(this.getDiff() < 1) System.out.println("close enough");
-		return this.getDiff() < 1; // if it's close enough
+		try {
+			if(this.getDiff() < 1) System.out.println("close enough");
+			return this.getDiff() < 1; // if it's close enough
+		} catch(NullPointerException e) { return false; }
 	}
 
 	protected void end() {
