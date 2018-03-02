@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4509.robot.controls;
 
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Preferences;
 
