@@ -30,7 +30,7 @@ public class DrivingSubsystem extends Subsystem {
 	public void drive(double ySpeed, double rotation, double xSpeed) {
 		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.5);
 		RobotMap.drive.arcadeDrive(baseSpeed * ySpeed, baseSpeed * rotation);
-		RobotMap.slideDriveTalon.set(baseSpeed * xSpeed);
+		//RobotMap.slideDriveTalon.set(baseSpeed * xSpeed);
 	}
 		
 	public void drive(double speed) {
@@ -46,7 +46,7 @@ public class DrivingSubsystem extends Subsystem {
 	
 	public void stop() {
 		RobotMap.leftDriveTalon.set(0);
-		RobotMap.slideDriveTalon.set(0);
+		//RobotMap.slideDriveTalon.set(0);
 		RobotMap.rightDriveTalon.set(0);
 	}
 	
@@ -57,7 +57,7 @@ public class DrivingSubsystem extends Subsystem {
 	 */
 	public void setNeutralMode(NeutralMode mode) {
 		RobotMap.leftDriveTalon.setNeutralMode(mode);
-		RobotMap.slideDriveTalon.setNeutralMode(mode);
+		//RobotMap.slideDriveTalon.setNeutralMode(mode);
 		RobotMap.rightDriveTalon.setNeutralMode(mode);
 	}
 	

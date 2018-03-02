@@ -45,7 +45,7 @@ public class RobotMap {
 	
 	
 	public static WPI_TalonSRX leftDriveTalon;
-	public static WPI_TalonSRX slideDriveTalon;
+	//public static WPI_TalonSRX slideDriveTalon;
 	public static WPI_TalonSRX rightDriveTalon;
 	public static WPI_TalonSRX winchTalon;
 	public static WPI_TalonSRX grabberTalon;
@@ -61,10 +61,10 @@ public class RobotMap {
 		// initialize the talons
 		RobotMap.leftDriveTalon   = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_TALON_PORT);
 		RobotMap.leftDriveTalon.setNeutralMode(NeutralMode.Coast);
-		RobotMap.slideDriveTalon  = new WPI_TalonSRX(RobotMap.SLIDE_DRIVE_TALON_PORT);
-		RobotMap.leftDriveTalon.setNeutralMode(NeutralMode.Coast);
+		//RobotMap.slideDriveTalon  = new WPI_TalonSRX(RobotMap.SLIDE_DRIVE_TALON_PORT);
+		//RobotMap.slideDriveTalon.setNeutralMode(NeutralMode.Coast);
 		RobotMap.rightDriveTalon  = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_TALON_PORT);
-		RobotMap.leftDriveTalon.setNeutralMode(NeutralMode.Coast);
+		RobotMap.rightDriveTalon.setNeutralMode(NeutralMode.Coast);
 		
 		RobotMap.drive = new DifferentialDrive(RobotMap.leftDriveTalon, RobotMap.rightDriveTalon);
 		
