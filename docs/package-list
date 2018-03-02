@@ -1,4 +1,6 @@
 org.usfirst.frc.team4509.robot
 org.usfirst.frc.team4509.robot.commands
+org.usfirst.frc.team4509.robot.commands.auto
 org.usfirst.frc.team4509.robot.controls
 org.usfirst.frc.team4509.robot.subsystems
+org.usfirst.frc.team4509.robot.tests
