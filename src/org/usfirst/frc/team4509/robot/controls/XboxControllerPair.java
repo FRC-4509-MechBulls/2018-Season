@@ -57,8 +57,8 @@ public class XboxControllerPair implements BaseController {
 	@Override
 	public double getGrabber() {
 		double n = 0;
-		if(this.controller1.getBumper(GenericHID.Hand.kLeft)) n--;
-		if(this.controller1.getBumper(GenericHID.Hand.kRight)) n++;
+		if(this.controller2.getBumper(GenericHID.Hand.kLeft))  n--;
+		if(this.controller2.getBumper(GenericHID.Hand.kRight)) n++;
 		return n;
 	}
 	
