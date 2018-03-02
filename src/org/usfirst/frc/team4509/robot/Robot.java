@@ -142,6 +142,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {  }
 	
+	/**
+	 * Returns a character corresponding to the robot's start position
+	 * 
+	 * @return 'L', 'C', or 'R'
+	 */
 	public static char getStartingPosition() {
 		if(Robot.startPosition == -1)
 			return 'L';
