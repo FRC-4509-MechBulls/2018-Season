@@ -15,12 +15,12 @@ import edu.wpi.first.wpilibj.command.Command;
  * 
  * @author FRC Team 4509
  */
-public class AlignCommand extends Command {
+public class SlideToAlignCommand extends Command {
 	
 	VisualCube cube;
 	int tries = 0;
 	
-	public AlignCommand() {
+	public SlideToAlignCommand() {
 		requires(Robot.drivingSubsystem);
 	}
 

@@ -40,7 +40,7 @@ public class DrivingSubsystem extends Subsystem {
 	/**
 	 * @param direction the direction to turn. -1 is left, 1 is right
 	 */
-	public void turn(int direction) {
+	public void turn(double direction) {
 		this.drive(0, direction, 0);
 	}
 	
