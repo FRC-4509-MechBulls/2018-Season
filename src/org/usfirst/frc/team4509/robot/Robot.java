@@ -47,8 +47,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.initSensors();
 		RobotMap.initWinch();
 		RobotMap.initGrabber();
-		RobotMap.initArduino();
-		//RobotMap.initCamera();
+		//RobotMap.initArduino();
+		RobotMap.initCamera();
 		
 		//Robot.cameraSubsystem.setPort(RobotMap.arduino);
 		
