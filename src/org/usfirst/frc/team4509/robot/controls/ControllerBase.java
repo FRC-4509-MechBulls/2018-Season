@@ -6,7 +6,7 @@ package org.usfirst.frc.team4509.robot.controls;
  * 
  * @author FRC Team 4509
  */
-public interface BaseController {
+public interface ControllerBase {
 
 	double  getDrive();     // [-1, 1], inactive @ 0
 	double  getSlide();     // [-1, 1], inactive @ 0

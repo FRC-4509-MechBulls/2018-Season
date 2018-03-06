@@ -19,7 +19,7 @@ public class OI {
 	public static final int XBOX_CONTROLLER_1_PORT = 0;
 	public static final int XBOX_CONTROLLER_2_PORT = 1;
 	
-	public BaseController controller;
+	public ControllerBase controller;
 	DriveTrigger     driveTrigger;
 	FixedTurnTrigger fixedTurnTrigger;
 	AlignTrigger     alignTrigger;

@@ -5,11 +5,11 @@ import edu.wpi.first.wpilibj.Preferences;
 
 
 /**
- * Implements {@link BaseController} with a Xbox controller
+ * Implements {@link ControllerBase} with a Xbox controller
  * 
  * @author FRC Team 4509
  */
-public class XboxController implements BaseController {
+public class XboxController implements ControllerBase {
 
 	edu.wpi.first.wpilibj.XboxController controller;
 	

@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.Preferences;
 
 
 /**
- * Implements {@link BaseController} with two joysticks
+ * Implements {@link ControllerBase} with two joysticks
  * 
  * @author FRC Team 4509
  */
-public class JoystickPair implements BaseController {
+public class JoystickPair implements ControllerBase {
 
 	Joystick jLeft, jRight;
 	
