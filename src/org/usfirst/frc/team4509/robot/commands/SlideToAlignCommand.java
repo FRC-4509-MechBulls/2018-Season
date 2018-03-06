@@ -1,12 +1,10 @@
 package org.usfirst.frc.team4509.robot.commands;
 
-
 import org.usfirst.frc.team4509.robot.VisualCube;
 import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.RobotMap;
 import org.usfirst.frc.team4509.robot.subsystems.CameraSubsystem;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 
@@ -42,7 +40,6 @@ public class SlideToAlignCommand extends Command {
 
 	protected boolean isFinished() {
 		try {
-			if(this.getDiff() < 1) System.out.println("close enough");
 			return this.getDiff() < 1; // if it's close enough
 		} catch(NullPointerException e) { return false; }
 	}
