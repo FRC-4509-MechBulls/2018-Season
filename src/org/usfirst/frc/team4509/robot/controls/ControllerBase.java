@@ -16,4 +16,5 @@ public interface ControllerBase {
 	double  getWinch();     // [-1, 1], inactive @ 0
 	double  getGrabber();   // [-1, 1], inactive @ 0
 	boolean getDisabled();  // inactive @ false
+
 }
