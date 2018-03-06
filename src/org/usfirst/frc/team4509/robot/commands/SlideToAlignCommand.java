@@ -34,10 +34,8 @@ public class SlideToAlignCommand extends Command {
 			double diff = this.getDiff();
 			if(this.cube.getX() + (this.cube.getWidth() / 2) < RobotMap.PIXY_MAX_X / 2) {
 				Robot.drivingSubsystem.drive(0, 0, diff < 4 ? -0.5 : -1);
-				Timer.delay(0.1);
 			} else {
 				Robot.drivingSubsystem.drive(0, 0, diff < 4 ? 0.5 : 1);
-				Timer.delay(0.1);
 			}
 		} catch(NullPointerException e) {} // shh it's okay everything's going to be fine... - K
 	}
