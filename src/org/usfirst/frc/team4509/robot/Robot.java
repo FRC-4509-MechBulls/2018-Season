@@ -18,7 +18,7 @@ import org.usfirst.frc.team4509.robot.commands.auto.*;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  * 
- * @author FRC Team 4509
+ * @author FRC Team 4509	
  */
 public class Robot extends IterativeRobot {
 
@@ -56,13 +56,13 @@ public class Robot extends IterativeRobot {
 		Robot.oi.setTriggers();
 		
 		Robot.startPosition = (int)SmartDashboard.getNumber("Starting Position", 0);
-		
-		chooser.addDefault("Basic (Left)",   new BasicCommandGroup(-1));
-		chooser.addObject("Basic (Right)",   new BasicCommandGroup(1));
-		chooser.addObject("Scale (Default)", new ScaleCommandGroup());
-		chooser.addObject("Switch",          new SwitchCommandGroup());
+
+		chooser.addObject("Basic",            new BasicCenterCommandGroup());
+		chooser.addObject("Basic (Center)",   new BasicOffcenterCommandGroup());
+		chooser.addDefault("Scale (Default)", new ScaleCommandGroup());
+		chooser.addObject("Switch",           new SwitchCommandGroup());
 		SmartDashboard.putData("Auto Mode", chooser);
-		
+
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 		
 		//SmartDashboard.putData("Camera Subsystem",  Robot.cameraSubsystem);

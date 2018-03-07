@@ -80,10 +80,12 @@ public class RobotMap {
 	
 	public static void initWinch() {
 		RobotMap.winchTalon = new WPI_TalonSRX(RobotMap.WINCH_TALON_PORT);
+		RobotMap.winchTalon.setInverted(true);
 	}
 	
 	public static void initGrabber() {
 		RobotMap.grabberTalon = new WPI_TalonSRX(RobotMap.GRABBER_TALON_PORT);
+		RobotMap.grabberTalon.setInverted(true);
 	}
 	
 	public static void initSensors() {
