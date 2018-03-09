@@ -22,7 +22,7 @@ import org.usfirst.frc.team4509.robot.commands.auto.*;
  */
 public class Robot extends IterativeRobot {
 
-	//public static final CameraSubsystem  cameraSubsystem  = new CameraSubsystem();
+	public static final CameraSubsystem  cameraSubsystem  = new CameraSubsystem();
 	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
 	public static final GrabberSubsystem grabberSubsystem = new GrabberSubsystem();
 	public static final WinchSubsystem   winchSubsystem   = new WinchSubsystem();
@@ -48,10 +48,10 @@ public class Robot extends IterativeRobot {
 		RobotMap.initSensors();
 		RobotMap.initWinch();
 		RobotMap.initGrabber();
-		//RobotMap.initArduino();
+		RobotMap.initArduino();
 		RobotMap.initCamera();
 		
-		//Robot.cameraSubsystem.setPort(RobotMap.arduino);
+		Robot.cameraSubsystem.setPort(RobotMap.arduino);
 		
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
@@ -71,7 +71,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 		
-		//SmartDashboard.putData("Camera Subsystem",  Robot.cameraSubsystem);
+		SmartDashboard.putData("Camera Subsystem",  Robot.cameraSubsystem);
 		SmartDashboard.putData("Driving Subsystem", Robot.drivingSubsystem);
 		SmartDashboard.putData("Winch Subsystem",   Robot.winchSubsystem);
 		SmartDashboard.putData("Grabber Subsystem", Robot.grabberSubsystem);
