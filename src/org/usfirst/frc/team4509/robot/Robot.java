@@ -55,8 +55,6 @@ public class Robot extends IterativeRobot {
 		
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
-		
-		Robot.startPosition = (int)SmartDashboard.getNumber("Starting Position", 0);
 
 		chooser.addObject("Basic (Left)",                 new BasicCommandGroup(-1));
 		chooser.addObject("Basic (Right)",                new BasicCommandGroup(1));

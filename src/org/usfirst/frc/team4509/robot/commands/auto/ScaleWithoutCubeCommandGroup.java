@@ -22,6 +22,8 @@ public class ScaleWithoutCubeCommandGroup extends CommandGroup {
 	}
 	
 	protected void initialize() {
+		addSequential(new DriveForFeetCommand(0.5));
+		addSequential(new DriveForFeetCommand(-0.5));
 		if(Robot.getStartingPosition() != 'C') {
 			addSequential(new DriveForFeetCommand(19.061));
 			addSequential(new TurnCommand(90 * -Robot.startPosition));
