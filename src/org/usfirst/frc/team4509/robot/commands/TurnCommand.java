@@ -15,12 +15,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class TurnCommand extends Command {
 
-	double turnDegrees, targetDegrees;
+	double targetDegrees;
 
 	public TurnCommand(double turnDegrees) {
 		requires(Robot.drivingSubsystem);
-		this.turnDegrees = turnDegrees > 180 ? turnDegrees - 360 : turnDegrees;
-		this.targetDegrees = this.turnDegrees + RobotMap.gyro.getAngle();
+		this.targetDegrees = turnDegrees + RobotMap.gyro.getAngle();
 	}
 
 	protected void initialize() {
