@@ -19,7 +19,6 @@ public class TurnCommand extends Command {
 
 	public TurnCommand(double turnDegrees) {
 		requires(Robot.drivingSubsystem);
-		this.setInterruptible(false);
 		this.turnDegrees = turnDegrees > 180 ? turnDegrees - 360 : turnDegrees;
 		this.targetDegrees = this.turnDegrees + RobotMap.gyro.getAngle();
 	}
