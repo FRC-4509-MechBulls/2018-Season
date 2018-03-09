@@ -2,7 +2,6 @@ package org.usfirst.frc.team4509.robot.commands.auto;
 
 import org.usfirst.frc.team4509.robot.Robot;
 import org.usfirst.frc.team4509.robot.commands.DriveForFeetCommand;
-import org.usfirst.frc.team4509.robot.commands.GrabCommand;
 import org.usfirst.frc.team4509.robot.commands.GrabberForSecondsCommand;
 import org.usfirst.frc.team4509.robot.commands.TurnCommand;
 import org.usfirst.frc.team4509.robot.commands.WinchForSecondsCommand;
