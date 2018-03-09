@@ -26,7 +26,7 @@ public class GrabCommand extends Command {
 	}
 	
 	protected boolean isFinished() {
-		return false; // true if grabber has cube
+		return Math.abs(this.initTicks - Robot.drivingSubsystem.getEncoderTicks()) > 720;
 	}
 	
 	protected void end() {
