@@ -50,8 +50,7 @@ public class XboxControllerPair implements ControllerBase {
 	
 	@Override
 	public double getWinch() {
-		double n = this.controller2.getTriggerAxis(GenericHID.Hand.kRight) - this.controller2.getTriggerAxis(GenericHID.Hand.kLeft);
-		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
+		return this.controller2.getTriggerAxis(GenericHID.Hand.kRight) - this.controller2.getTriggerAxis(GenericHID.Hand.kLeft);
 	}
 	
 	@Override

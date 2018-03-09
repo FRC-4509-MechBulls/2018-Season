@@ -18,7 +18,7 @@ public class WinchSubsystem extends Subsystem {
 	protected void initDefaultCommand() {  }
 	
 	public void set(double speed) {
-		RobotMap.winchTalon.set(Preferences.getInstance().getDouble("BASE_WINCH_SPEED", 0.5) * speed);
+		RobotMap.winchTalon.set(Preferences.getInstance().getDouble("BASE_WINCH_SPEED", 0.75) * speed);
 	}
 	
 	public void stop() {

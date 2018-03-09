@@ -23,12 +23,12 @@ public class DrivingSubsystem extends Subsystem {
 	 * @param rightYAxis used to drive the right side of the robot
 	 */
 	public void tankDriving(double leftYAxis, double rightYAxis) {
-		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.5);
+		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.75);
 		RobotMap.drive.tankDrive(baseSpeed * leftYAxis, baseSpeed * rightYAxis);
 	}
 	
 	public void drive(double ySpeed, double rotation, double xSpeed) {
-		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.5);
+		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.75);
 		RobotMap.drive.arcadeDrive(baseSpeed * ySpeed, baseSpeed * rotation);
 		//RobotMap.slideDriveTalon.set(baseSpeed * xSpeed);
 	}
