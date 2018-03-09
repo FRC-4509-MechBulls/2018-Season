@@ -19,7 +19,6 @@ public class DriveForTicksCommand extends Command {
 	
 	public DriveForTicksCommand(int distance) {
 		requires(Robot.drivingSubsystem);
-		this.setInterruptible(false);
 		this.distance = distance;
 	}
 

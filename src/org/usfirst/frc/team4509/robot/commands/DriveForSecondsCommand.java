@@ -18,7 +18,6 @@ public class DriveForSecondsCommand extends Command {
 	public DriveForSecondsCommand(double seconds, double xSpeed, double ySpeed) {
 		requires(Robot.drivingSubsystem);
 		this.setTimeout(seconds);
-		this.setInterruptible(false);
 		this.xSpeed = xSpeed;
 		this.ySpeed = ySpeed;
 	}
