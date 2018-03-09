@@ -14,6 +14,7 @@ public class GrabCommand extends Command {
 	public GrabCommand() {
 		requires(Robot.drivingSubsystem);
 		requires(Robot.grabberSubsystem);
+		this.setTimeout(5);
 	}
 	
 	protected void initialize() {
