@@ -57,10 +57,12 @@ public class Robot extends IterativeRobot {
 		
 		Robot.startPosition = (int)SmartDashboard.getNumber("Starting Position", 0);
 
-		chooser.addObject("Basic (Left)",               new BasicCommandGroup(-1));
-		chooser.addObject("Basic (Right)",              new BasicCommandGroup(1));
-		chooser.addDefault("Scale (No Cube) (Default)", new ScaleWithoutCubeCommandGroup());
-		chooser.addObject("Switch (No Cube)",           new SwitchWithoutCubeCommandGroup());
+		chooser.addObject("Basic (Left)",                 new BasicCommandGroup(-1));
+		chooser.addObject("Basic (Right)",                new BasicCommandGroup(1));
+		chooser.addObject("Scale (No Cube)",              new ScaleWithoutCubeCommandGroup());
+		chooser.addObject("Switch (No Cube)",             new SwitchWithoutCubeCommandGroup());
+		chooser.addDefault("Scale (With Cube) (Default)", new ScaleWithCubeCommandGroup());
+		chooser.addObject("Switch (With Cube)",           new SwitchWithCubeCommandGroup());
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
