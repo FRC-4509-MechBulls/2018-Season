@@ -20,6 +20,7 @@ public class TurnToAlignCommand extends Command {
 	
 	public TurnToAlignCommand() {
 		requires(Robot.drivingSubsystem);
+		this.setTimeout(5);
 	}
 
 	protected void initialize() {  }
