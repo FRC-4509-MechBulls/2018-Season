@@ -36,6 +36,7 @@ public class Robot extends IterativeRobot {
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<Integer> sideChooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -64,6 +65,11 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Scale (With Cube) (Default)", new ScaleWithCubeCommandGroup());
 		chooser.addObject("Switch (With Cube)",           new SwitchWithCubeCommandGroup());
 		SmartDashboard.putData("Auto Mode", chooser);
+		
+		sideChooser.addObject("Left", -1);
+		sideChooser.addObject("Center", 0);
+		sideChooser.addObject("Right", 1);
+		SmartDashboard.putData("Starting Side", sideChooser);
 
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 		
@@ -112,6 +118,10 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
 		SmartDashboard.putString("Game Data", String.valueOf(Robot.gameData));
+		if(sideChooser.getSelected() != null)
+			Robot.startPosition = sideChooser.getSelected();
+		else
+			Robot.startPosition = 0;
 		autonomousCommand = chooser.getSelected();
 
 		// schedule the autonomous command
