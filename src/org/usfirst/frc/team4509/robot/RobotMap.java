@@ -31,24 +31,28 @@ public class RobotMap {
 	public static final int PIXY_MAX_Y = 199;
 	
 
-	public static final int LEFT_DRIVE_TALON_PORT       = 1;
-	public static final int SLIDE_DRIVE_TALON_PORT      = 5;
-	public static final int RIGHT_DRIVE_TALON_PORT      = 2;
-	public static final int WINCH_TALON_PORT            = 3;
-	public static final int GRABBER_TALON_PORT          = 4;
-	public static final int LEFT_DRIVE_ENCODER_PORT_1   = 2;
-	public static final int LEFT_DRIVE_ENCODER_PORT_2   = 3;
-	public static final int RIGHT_DRIVE_ENCODER_PORT_1  = 0;
-	public static final int RIGHT_DRIVE_ENCODER_PORT_2  = 1;
+	public static final int LEFT_FRONT_DRIVE_TALON_PORT  = 2;
+	public static final int LEFT_BACK_DRIVE_TALON_PORT   = 1;
+	public static final int RIGHT_FRONT_DRIVE_TALON_PORT = 3;
+	public static final int RIGHT_BACK_DRIVE_TALON_PORT  = 4;
+	public static final int GRABBER_LEFT_TALON_PORT      = 5;
+	public static final int GRABBER_RIGHT_TALON_PORT     = 6;
+	public static final int WINCH_TALON_PORT             = 7;
+	public static final int LEFT_DRIVE_ENCODER_PORT_1  = 2;
+	public static final int LEFT_DRIVE_ENCODER_PORT_2  = 3;
+	public static final int RIGHT_DRIVE_ENCODER_PORT_1 = 0;
+	public static final int RIGHT_DRIVE_ENCODER_PORT_2 = 1;
 	public static final SPI.Port GYRO_PORT = SPI.Port.kOnboardCS0;
 	public static final SerialPort.Port ARDUINO_PORT = SerialPort.Port.kUSB1;
 	
 	
-	public static WPI_TalonSRX leftDriveTalon;
-	//public static WPI_TalonSRX slideDriveTalon;
-	public static WPI_TalonSRX rightDriveTalon;
+	public static WPI_TalonSRX leftFrontDriveTalon;
+	public static WPI_TalonSRX leftBackDriveTalon;
+	public static WPI_TalonSRX rightFrontDriveTalon;
+	public static WPI_TalonSRX rightBackDriveTalon;
+	public static WPI_TalonSRX grabberLeftTalon;
+	public static WPI_TalonSRX grabberRightTalon;
 	public static WPI_TalonSRX winchTalon;
-	public static WPI_TalonSRX grabberTalon;
 	public static DifferentialDrive drive;
 	public static Encoder leftDriveEncoder;
 	public static Encoder rightDriveEncoder;
@@ -59,14 +63,19 @@ public class RobotMap {
   
 	public static void initDrive() {
 		// initialize the talons
-		RobotMap.leftDriveTalon   = new WPI_TalonSRX(RobotMap.LEFT_DRIVE_TALON_PORT);
-		RobotMap.leftDriveTalon.setNeutralMode(NeutralMode.Coast);
-		//RobotMap.slideDriveTalon  = new WPI_TalonSRX(RobotMap.SLIDE_DRIVE_TALON_PORT);
-		//RobotMap.slideDriveTalon.setNeutralMode(NeutralMode.Coast);
-		RobotMap.rightDriveTalon  = new WPI_TalonSRX(RobotMap.RIGHT_DRIVE_TALON_PORT);
-		RobotMap.rightDriveTalon.setNeutralMode(NeutralMode.Coast);
+		RobotMap.leftFrontDriveTalon   = new WPI_TalonSRX(RobotMap.LEFT_FRONT_DRIVE_TALON_PORT);
+		RobotMap.leftFrontDriveTalon.setNeutralMode(NeutralMode.Coast);
+		RobotMap.leftBackDriveTalon   = new WPI_TalonSRX(RobotMap.LEFT_BACK_DRIVE_TALON_PORT);
+		RobotMap.leftBackDriveTalon.setNeutralMode(NeutralMode.Coast);
+		RobotMap.rightFrontDriveTalon  = new WPI_TalonSRX(RobotMap.RIGHT_FRONT_DRIVE_TALON_PORT);
+		RobotMap.rightFrontDriveTalon.setNeutralMode(NeutralMode.Coast);
+		RobotMap.rightBackDriveTalon  = new WPI_TalonSRX(RobotMap.RIGHT_BACK_DRIVE_TALON_PORT);
+		RobotMap.rightBackDriveTalon.setNeutralMode(NeutralMode.Coast);
 		
-		RobotMap.drive = new DifferentialDrive(RobotMap.leftDriveTalon, RobotMap.rightDriveTalon);
+		RobotMap.leftBackDriveTalon.follow(RobotMap.leftFrontDriveTalon);
+		RobotMap.rightBackDriveTalon.follow(RobotMap.rightFrontDriveTalon);
+		
+		RobotMap.drive = new DifferentialDrive(RobotMap.leftFrontDriveTalon, RobotMap.rightFrontDriveTalon);
 		
 		// create the encoders
 		RobotMap.leftDriveEncoder  = new Encoder(new DigitalInput(RobotMap.LEFT_DRIVE_ENCODER_PORT_1), new DigitalInput(RobotMap.LEFT_DRIVE_ENCODER_PORT_2));
@@ -84,8 +93,9 @@ public class RobotMap {
 	}
 	
 	public static void initGrabber() {
-		RobotMap.grabberTalon = new WPI_TalonSRX(RobotMap.GRABBER_TALON_PORT);
-		RobotMap.grabberTalon.setInverted(true);
+		RobotMap.grabberLeftTalon = new WPI_TalonSRX(RobotMap.GRABBER_LEFT_TALON_PORT);
+		RobotMap.grabberRightTalon = new WPI_TalonSRX(RobotMap.GRABBER_RIGHT_TALON_PORT);
+		RobotMap.grabberRightTalon.follow(RobotMap.grabberLeftTalon);
 	}
 	
 	public static void initSensors() {

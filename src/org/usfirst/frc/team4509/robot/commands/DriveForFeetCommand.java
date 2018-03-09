@@ -16,13 +16,18 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveForFeetCommand extends Command {
 
 	double distance; // in feet
+	int direction;
 	
 	public DriveForFeetCommand(double distance) {
 		requires(Robot.drivingSubsystem);
-		this.distance = distance * (12 * Preferences.getInstance().getInt("TICKS_PER_INCH", RobotMap.TICKS_PER_INCH));
 	}
 
-	protected void initialize() {  }
+	protected void initialize() {
+		Robot.drivingSubsystem.resetEncoders();
+		this.distance = distance * (12 * Preferences.getInstance().getInt("TICKS_PER_INCH", RobotMap.TICKS_PER_INCH));
+		System.out.println(this.distance);
+		this.direction = (int)(this.distance / Math.abs(this.distance));
+	} 
 
 	protected void execute() {
 		if(Math.abs(Robot.drivingSubsystem.getEncoderTicks()) < Math.abs(this.distance))
@@ -30,7 +35,11 @@ public class DriveForFeetCommand extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Math.abs(Robot.drivingSubsystem.getEncoderTicks() - this.distance) < 0.5;
+		if(direction == 1)
+			return this.distance - Robot.drivingSubsystem.getEncoderTicks() < 0.5;
+		else if(direction == -1)
+			return Math.abs(this.distance) - Math.abs(Robot.drivingSubsystem.getEncoderTicks()) < 0.5;
+		return true;
 	}
 
 	protected void end() {

@@ -30,7 +30,6 @@ public class DrivingSubsystem extends Subsystem {
 	public void drive(double ySpeed, double rotation, double xSpeed) {
 		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.75);
 		RobotMap.drive.arcadeDrive(baseSpeed * ySpeed, baseSpeed * rotation);
-		//RobotMap.slideDriveTalon.set(baseSpeed * xSpeed);
 	}
 		
 	public void drive(double speed) {
@@ -45,9 +44,8 @@ public class DrivingSubsystem extends Subsystem {
 	}
 	
 	public void stop() {
-		RobotMap.leftDriveTalon.set(0);
-		//RobotMap.slideDriveTalon.set(0);
-		RobotMap.rightDriveTalon.set(0);
+		RobotMap.leftFrontDriveTalon.set(0);
+		RobotMap.rightFrontDriveTalon.set(0);
 	}
 	
 	/**
@@ -56,13 +54,19 @@ public class DrivingSubsystem extends Subsystem {
 	 * @param mode the neutral mode to set to
 	 */
 	public void setNeutralMode(NeutralMode mode) {
-		RobotMap.leftDriveTalon.setNeutralMode(mode);
-		//RobotMap.slideDriveTalon.setNeutralMode(mode);
-		RobotMap.rightDriveTalon.setNeutralMode(mode);
+		RobotMap.leftFrontDriveTalon.setNeutralMode(mode);
+		RobotMap.leftBackDriveTalon.setNeutralMode(mode);
+		RobotMap.rightFrontDriveTalon.setNeutralMode(mode);
+		RobotMap.rightBackDriveTalon.setNeutralMode(mode);
 	}
 	
 	public int getEncoderTicks() {
-		return (int)((RobotMap.rightDriveEncoder.get() + RobotMap.leftDriveEncoder.get()) / 2);
+		return RobotMap.rightDriveEncoder.get();
+	}
+	
+	public void resetEncoders() {
+		RobotMap.leftDriveEncoder.reset();
+		RobotMap.rightDriveEncoder.reset();
 	}
 	
 }

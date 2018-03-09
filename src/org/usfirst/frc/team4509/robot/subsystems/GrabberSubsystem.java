@@ -18,11 +18,11 @@ public class GrabberSubsystem extends Subsystem {
 	protected void initDefaultCommand() {  }
 	
 	public void set(double speed) {
-		RobotMap.grabberTalon.set(Preferences.getInstance().getDouble("BASE_GRABBER_SPEED", 0.5) * speed);
+		RobotMap.grabberLeftTalon.set(Preferences.getInstance().getDouble("BASE_GRABBER_SPEED", 0.5) * speed);
 	}
 	
 	public void stop() {
-		RobotMap.grabberTalon.set(0);
+		RobotMap.grabberLeftTalon.set(0);
 	}
 
 }

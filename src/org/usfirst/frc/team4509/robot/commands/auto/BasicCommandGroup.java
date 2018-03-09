@@ -21,9 +21,13 @@ public class BasicCommandGroup extends CommandGroup {
 	
 	protected void initialize() {
 		if(Robot.getStartingPosition() == 'C') {
-			addSequential(new TurnCommand(90 * this.goSide));
-			addSequential(new DriveForFeetCommand(5.5));
-			addSequential(new TurnCommand(-90 * this.goSide));
+				if(this.goSide == -1) {
+					addSequential(new TurnCommand(-90));
+					addSequential(new DriveForFeetCommand(9.75));
+				} else if(this.goSide == 1) {
+					addSequential(new TurnCommand(90));
+					addSequential(new DriveForFeetCommand(5.75));
+				}
 			addSequential(new DriveForFeetCommand(13.667));
 		} else {
 			addSequential(new DriveForFeetCommand(19.061));

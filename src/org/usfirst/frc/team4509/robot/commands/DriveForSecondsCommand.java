@@ -13,13 +13,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveForSecondsCommand extends Command {
 	
-	double xSpeed, ySpeed;
+	double speed;
 	
-	public DriveForSecondsCommand(double seconds, double xSpeed, double ySpeed) {
+	public DriveForSecondsCommand(double speed, double seconds) {
 		requires(Robot.drivingSubsystem);
 		this.setTimeout(seconds);
-		this.xSpeed = xSpeed;
-		this.ySpeed = ySpeed;
+		this.speed = speed;
 	}
 
 	@Override
@@ -27,7 +26,7 @@ public class DriveForSecondsCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.drivingSubsystem.drive(this.xSpeed, 0, this.ySpeed);
+		Robot.drivingSubsystem.drive(this.speed);
 	}
 
 	@Override

@@ -27,12 +27,14 @@ public class Robot extends IterativeRobot {
 	public static final GrabberSubsystem grabberSubsystem = new GrabberSubsystem();
 	public static final WinchSubsystem   winchSubsystem   = new WinchSubsystem();
 
+	public static boolean hasAutoRun = false;
+	
 	public static OI oi;
 	
 	public static VisualCube[] cubes;
 
 	public static char[] gameData;
-	public static int startPosition;
+	public static int startPosition = 0;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -56,6 +58,9 @@ public class Robot extends IterativeRobot {
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
 
+		chooser.addObject("None",                      null);
+		chooser.addObject("No Auto",                      new NoAutoCommandGroup());
+		chooser.addObject("Idiot",                        new IdiotAutoCommandGroup());
 		chooser.addObject("Basic (Left)",                 new BasicCommandGroup(-1));
 		chooser.addObject("Basic (Right)",                new BasicCommandGroup(1));
 		chooser.addObject("Scale (No Cube)",              new ScaleWithoutCubeCommandGroup());
@@ -79,11 +84,10 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void robotPeriodic() {
-		SmartDashboard.putNumber("Left",    RobotMap.leftDriveTalon.get()  *  2);
-		//SmartDashboard.putNumber("Middle",  RobotMap.slideDriveTalon.get() * -2);
-		SmartDashboard.putNumber("Right",   RobotMap.rightDriveTalon.get() *  2);
+		SmartDashboard.putNumber("Left",    RobotMap.leftFrontDriveTalon.get()  *  2);
+		SmartDashboard.putNumber("Right",   RobotMap.rightFrontDriveTalon.get() *  2);
 		SmartDashboard.putNumber("Winch",   RobotMap.winchTalon.get()      *  2);
-		SmartDashboard.putNumber("Grabber", RobotMap.grabberTalon.get()    *  2);
+		SmartDashboard.putNumber("Grabber", RobotMap.grabberLeftTalon.get()    *  2);
 	}
 
 	/**
@@ -137,7 +141,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		if (autonomousCommand != null)
+		if(autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
 	

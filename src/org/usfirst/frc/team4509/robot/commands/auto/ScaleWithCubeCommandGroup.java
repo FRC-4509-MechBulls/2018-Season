@@ -33,11 +33,11 @@ public class ScaleWithCubeCommandGroup extends CommandGroup {
 				addSequential(new DriveForFeetCommand(11.9375));
 				addSequential(new TurnCommand(90 * Robot.startPosition));
 			}
-			addSequential(new WinchForSecondsCommand(1, 3)); // TODO
+			addSequential(new WinchForSecondsCommand(1, 5.5));
 			addSequential(new DriveForFeetCommand(5.910));
 			addSequential(new GrabberForSecondsCommand(1, 1)); // TODO
 			addSequential(new DriveForFeetCommand(-5.910));
-			addSequential(new WinchForSecondsCommand(-1, 3)); // TODO
+			addSequential(new WinchForSecondsCommand(-1, 5.5));
 		}
 	}
 	

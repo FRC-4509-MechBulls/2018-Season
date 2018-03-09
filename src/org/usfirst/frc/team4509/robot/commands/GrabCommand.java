@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4509.robot.commands;
 
 import org.usfirst.frc.team4509.robot.Robot;
+import org.usfirst.frc.team4509.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -27,7 +28,7 @@ public class GrabCommand extends Command {
 	}
 	
 	protected boolean isFinished() {
-		return Math.abs(this.initTicks - Robot.drivingSubsystem.getEncoderTicks()) > 720;
+		return Math.abs(this.initTicks - Robot.drivingSubsystem.getEncoderTicks()) > RobotMap.TICKS_PER_INCH * 12;
 	}
 	
 	protected void end() {
