@@ -60,8 +60,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Basic (Left)",     new BasicCommandGroup(-1));
 		chooser.addObject("Basic (Right)",    new BasicCommandGroup(1));
 		chooser.addObject("Basic (Center)",   new BasicCommandGroup(0));
-		chooser.addDefault("Scale (Default)", new ScaleCommandGroup());
-		chooser.addObject("Switch",           new SwitchCommandGroup());
+		chooser.addDefault("Scale (Default)", new ScaleWithoutCubeCommandGroup());
+		chooser.addObject("Switch",           new SwitchWithoutCubeCommandGroup());
 		SmartDashboard.putData("Auto Mode", chooser);
 
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());

@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * Command Group to put a cube on the scale.
  */
-public class ScaleCommandGroup extends CommandGroup {
+public class ScaleWithoutCubeCommandGroup extends CommandGroup {
 
-	public ScaleCommandGroup() {
+	public ScaleWithoutCubeCommandGroup() {
 		requires(Robot.drivingSubsystem);
 		requires(Robot.winchSubsystem);
 		requires(Robot.grabberSubsystem);
@@ -30,7 +30,7 @@ public class ScaleCommandGroup extends CommandGroup {
 			addSequential(new GrabCommand());
 			if(Robot.getStartingPosition() == Robot.gameData[1]) {
 				addSequential(new TurnCommand(180 * -Robot.startPosition));
-			} else if(Robot.getStartingPosition() != Robot.gameData[1]) {
+			} else {
 				addSequential(new TurnCommand(90 * Robot.startPosition));
 				addSequential(new DriveForFeetCommand(11.9375));
 				addSequential(new TurnCommand(90 * Robot.startPosition));
