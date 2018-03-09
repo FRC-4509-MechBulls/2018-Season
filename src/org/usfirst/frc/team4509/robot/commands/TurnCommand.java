@@ -28,10 +28,11 @@ public class TurnCommand extends Command {
 	}
 
 	protected void execute() {
-		if(this.turnDegrees - RobotMap.gyro.getAngle() > 0)
-			Robot.drivingSubsystem.turn(1);
+		double multiplier = this.targetDegrees - RobotMap.gyro.getAngle() < 45 ? 0.6 : 1;
+		if(this.targetDegrees - RobotMap.gyro.getAngle() > 0)
+			Robot.drivingSubsystem.turn(1 * multiplier);
 		else
-			Robot.drivingSubsystem.turn(-1);
+			Robot.drivingSubsystem.turn(-1 * multiplier);
 	}
 
 	protected boolean isFinished() {
