@@ -28,7 +28,7 @@ public class TurnCommand extends Command {
 	}
 
 	protected void execute() {
-		double multiplier = this.targetDegrees - RobotMap.gyro.getAngle() < 45 ? 0.6 : 1;
+		double multiplier = Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) < 45 ? 0.6 : 1;
 		if(this.targetDegrees - RobotMap.gyro.getAngle() > 0)
 			Robot.drivingSubsystem.turn(1 * multiplier);
 		else
@@ -36,7 +36,7 @@ public class TurnCommand extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) < Preferences.getInstance().getDouble("GYRO_PRECISION", RobotMap.GYRO_PRECISION);
+		return Math.abs(this.targetDegrees - RobotMap.gyro.getAngle()) <= Preferences.getInstance().getDouble("GYRO_PRECISION", RobotMap.GYRO_PRECISION) || this.isTimedOut();
 	}
 
 	protected void end() {

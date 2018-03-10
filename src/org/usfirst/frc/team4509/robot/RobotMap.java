@@ -78,9 +78,10 @@ public class RobotMap {
 		RobotMap.drive = new DifferentialDrive(RobotMap.leftFrontDriveTalon, RobotMap.rightFrontDriveTalon);
 		
 		// create the encoders
-		RobotMap.leftDriveEncoder  = new Encoder(new DigitalInput(RobotMap.LEFT_DRIVE_ENCODER_PORT_1), new DigitalInput(RobotMap.LEFT_DRIVE_ENCODER_PORT_2));
-		RobotMap.leftDriveEncoder.setReverseDirection(true);
+		RobotMap.leftDriveEncoder  = new Encoder(new DigitalInput(RobotMap.LEFT_DRIVE_ENCODER_PORT_1), new DigitalInput(RobotMap.LEFT_DRIVE_ENCODER_PORT_2), true);
+		RobotMap.leftDriveEncoder.reset();
 		RobotMap.rightDriveEncoder = new Encoder(new DigitalInput(RobotMap.RIGHT_DRIVE_ENCODER_PORT_1), new DigitalInput(RobotMap.RIGHT_DRIVE_ENCODER_PORT_2));
+		RobotMap.rightDriveEncoder.reset();
 		
 		// add the encoders to the LiveWindow
 		SmartDashboard.putData("Left Drive Encoder",  RobotMap.leftDriveEncoder);
@@ -100,6 +101,7 @@ public class RobotMap {
 	
 	public static void initSensors() {
 		RobotMap.gyro = new ADXRS450_Gyro(RobotMap.GYRO_PORT);
+		RobotMap.gyro.calibrate();
 		SmartDashboard.putData("Gyro", RobotMap.gyro);
 	}
 	
