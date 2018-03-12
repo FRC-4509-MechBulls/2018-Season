@@ -60,8 +60,16 @@ public class DrivingSubsystem extends Subsystem {
 		RobotMap.rightBackDriveTalon.setNeutralMode(mode);
 	}
 	
-	public int getEncoderTicks() {
+	public int getRightEncoderTicks() {
 		return RobotMap.rightDriveEncoder.get();
+	}
+	
+	public int getLeftEncoderTicks() {
+		return RobotMap.leftDriveEncoder.get();
+	}
+	
+	public double getAverageEncoderTicks() {
+		return (RobotMap.leftDriveEncoder.get() + RobotMap.rightDriveEncoder.get()) / 2;
 	}
 	
 	public void resetEncoders() {

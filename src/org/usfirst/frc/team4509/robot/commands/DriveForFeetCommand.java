@@ -20,11 +20,11 @@ public class DriveForFeetCommand extends Command {
 	
 	public DriveForFeetCommand(double distance) {
 		requires(Robot.drivingSubsystem);
+		this.distance = distance * (12 * Preferences.getInstance().getInt("TICKS_PER_INCH", RobotMap.TICKS_PER_INCH));
 	}
 
 	protected void initialize() {
 		Robot.drivingSubsystem.resetEncoders();
-		this.distance = distance * (12 * Preferences.getInstance().getInt("TICKS_PER_INCH", RobotMap.TICKS_PER_INCH));
 		System.out.println(this.distance);
 		this.direction = (int)(this.distance / Math.abs(this.distance));
 	} 
