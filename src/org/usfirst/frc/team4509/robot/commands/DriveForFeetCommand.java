@@ -30,15 +30,15 @@ public class DriveForFeetCommand extends Command {
 	} 
 
 	protected void execute() {
-		if(Math.abs(Robot.drivingSubsystem.getEncoderTicks()) < Math.abs(this.distance))
+		if(Math.abs(Robot.drivingSubsystem.getAverageEncoderTicks()) < Math.abs(this.distance))
 			Robot.drivingSubsystem.drive(this.distance / Math.abs(this.distance));
 	}
 
 	protected boolean isFinished() {
 		if(direction == 1)
-			return this.distance - Robot.drivingSubsystem.getEncoderTicks() < 0.5;
+			return this.distance - Robot.drivingSubsystem.getAverageEncoderTicks() < 0.5;
 		else if(direction == -1)
-			return Math.abs(this.distance) - Math.abs(Robot.drivingSubsystem.getEncoderTicks()) < 0.5;
+			return Math.abs(this.distance) - Math.abs(Robot.drivingSubsystem.getAverageEncoderTicks()) < 0.5;
 		return true;
 	}
 
