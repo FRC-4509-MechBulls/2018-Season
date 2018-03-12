@@ -23,18 +23,18 @@ public class DriveForTicksCommand extends Command {
 	}
 
 	protected void initialize() {
-		this.initTicks = Robot.drivingSubsystem.getEncoderTicks();
+		this.initTicks = (int)Robot.drivingSubsystem.getAverageEncoderTicks();
 	}
 	
 	protected void execute() {
-		SmartDashboard.putNumber("Distance Left", (Robot.drivingSubsystem.getEncoderTicks() - this.initTicks) - this.distance);
-		if(Robot.drivingSubsystem.getEncoderTicks() - this.initTicks < this.distance) {
+		SmartDashboard.putNumber("Distance Left", (Robot.drivingSubsystem.getAverageEncoderTicks() - this.initTicks) - this.distance);
+		if(Robot.drivingSubsystem.getAverageEncoderTicks() - this.initTicks < this.distance) {
 			Robot.drivingSubsystem.drive(1);
 		}
 	}
 	
 	protected boolean isFinished() {
-		return (Robot.drivingSubsystem.getEncoderTicks() - this.initTicks) >= this.distance;
+		return (Robot.drivingSubsystem.getAverageEncoderTicks() - this.initTicks) >= this.distance;
 	}
 	
 	protected void end() {

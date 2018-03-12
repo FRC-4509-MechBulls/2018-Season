@@ -19,7 +19,7 @@ public class GrabCommand extends Command {
 	}
 	
 	protected void initialize() {
-		this.initTicks = Robot.drivingSubsystem.getEncoderTicks();
+		this.initTicks = Robot.drivingSubsystem.getAverageEncoderTicks();
 	}
 
 	protected void execute() {
@@ -28,11 +28,11 @@ public class GrabCommand extends Command {
 	}
 	
 	protected boolean isFinished() {
-		return Math.abs(this.initTicks - Robot.drivingSubsystem.getEncoderTicks()) > RobotMap.TICKS_PER_INCH * 12;
+		return Math.abs(this.initTicks - Robot.drivingSubsystem.getAverageEncoderTicks()) > RobotMap.TICKS_PER_INCH * 12;
 	}
 	
 	protected void end() {
-		while(Math.abs(this.initTicks - Robot.drivingSubsystem.getEncoderTicks()) <= 1)
+		while(Math.abs(this.initTicks - Robot.drivingSubsystem.getAverageEncoderTicks()) <= 1)
 			Robot.drivingSubsystem.drive(-1);
 		
 		Robot.drivingSubsystem.stop();
