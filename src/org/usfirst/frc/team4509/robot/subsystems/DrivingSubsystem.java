@@ -20,7 +20,18 @@ public class DrivingSubsystem extends Subsystem {
 	public void initDefaultCommand() {}
 
 	public void drive(double ySpeed, double rotation) {
-		RobotMap.drive.arcadeDrive(this.baseDriveSpeed * ySpeed, this.baseDriveSpeed * rotation);
+		
+		double speed = ySpeed;
+		if(Math.abs(speed) > 1)
+			speed = Math.abs(ySpeed) / ySpeed;
+		speed *= this.baseDriveSpeed;
+		
+		double rot = rotation;
+		if(Math.abs(rot) > 1)
+			rot = Math.abs(rot) / rot;
+		rot *= this.baseDriveSpeed;
+		
+		RobotMap.drive.arcadeDrive(speed, rot);
 	}
 		
 	public void drive(double speed) {
@@ -40,7 +51,7 @@ public class DrivingSubsystem extends Subsystem {
 	}
 	
 	public enum DriveSpeedMode {
-		Disabled(0), TeleOp(0.75), Auto(0.5), Full(1);
+		Disabled(0), TeleOp(0.75), Auto(0.5);
 		public double baseSpeed;
 		DriveSpeedMode(double baseSpeed) { this.baseSpeed = baseSpeed; }
 	}
