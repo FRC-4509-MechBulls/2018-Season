@@ -3,7 +3,6 @@ package org.usfirst.frc.team4509.robot;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -11,7 +10,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 
 /**
@@ -81,10 +80,6 @@ public class RobotMap {
 		RobotMap.leftDriveEncoder.reset();
 		RobotMap.rightDriveEncoder = new Encoder(new DigitalInput(RobotMap.RIGHT_DRIVE_ENCODER_PORT_1), new DigitalInput(RobotMap.RIGHT_DRIVE_ENCODER_PORT_2));
 		RobotMap.rightDriveEncoder.reset();
-		
-		// add the encoders to the LiveWindow
-		SmartDashboard.putData("Left Drive Encoder",  RobotMap.leftDriveEncoder);
-		SmartDashboard.putData("Right Drive Encoder", RobotMap.rightDriveEncoder);
 	}
 	
 	public static void initWinch() {
@@ -101,7 +96,6 @@ public class RobotMap {
 	public static void initSensors() {
 		RobotMap.gyro = new ADXRS450_Gyro(RobotMap.GYRO_PORT);
 		RobotMap.gyro.calibrate();
-		SmartDashboard.putData("Gyro", RobotMap.gyro);
 	}
 	
 	public static void initArduino() {
