@@ -50,7 +50,7 @@ public class OI {
 	}
 	
 	class DriveTrigger extends Trigger {
-		public boolean get() { return Robot.oi.controller.getDrive() != 0 || Robot.oi.controller.getSlide() != 0 || Robot.oi.controller.getTurn() != 0; }
+		public boolean get() { return Robot.oi.controller.getDrive() != 0 || Robot.oi.controller.getTurn() != 0; }
 	}
 	
 	class FixedTurnTrigger extends Trigger {

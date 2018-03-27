@@ -9,7 +9,6 @@ package org.usfirst.frc.team4509.robot.controls;
 public interface ControllerBase {
 
 	double  getDrive();     // [-1, 1], inactive @ 0
-	double  getSlide();     // [-1, 1], inactive @ 0
 	double  getTurn();      // [-1, 1], inactive @ 0
 	int     getFixedTurn(); // [0, 360], inactive @ -1
 	boolean getAlign();     // inactive @ false

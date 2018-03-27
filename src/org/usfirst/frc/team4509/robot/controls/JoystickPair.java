@@ -24,11 +24,6 @@ public class JoystickPair implements ControllerBase {
 		return Math.abs(this.jRight.getY()) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : this.jRight.getY();
 	}
 
-	@Override
-	public double getSlide() {
-		return Math.abs(this.jRight.getX()) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : this.jRight.getX();
-	}
-
 	/**
 	 * Not implemented
 	 * 

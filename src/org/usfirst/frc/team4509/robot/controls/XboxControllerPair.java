@@ -25,14 +25,6 @@ public class XboxControllerPair implements ControllerBase {
 	}
 	
 	@Override
-	public double getSlide() {
-		double n = 0;
-		if(this.controller1.getBumper(GenericHID.Hand.kLeft)) n--;
-		if(this.controller1.getBumper(GenericHID.Hand.kRight)) n++;
-		return (double)n;
-	}
-	
-	@Override
 	public double getTurn() {
 		double n = this.controller1.getX(GenericHID.Hand.kRight);
 		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
