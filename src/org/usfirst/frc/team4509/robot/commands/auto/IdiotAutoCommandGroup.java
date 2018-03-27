@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4509.robot.commands.auto;
 
-import org.usfirst.frc.team4509.robot.RobotMap;
 import org.usfirst.frc.team4509.robot.commands.TimedDriveCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -12,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class IdiotAutoCommandGroup extends CommandGroup {
 	
 	public IdiotAutoCommandGroup() {
-		addSequential(new TimedDriveCommand(16 * RobotMap.FEET_PER_SECOND, 1));
+		addSequential(new TimedDriveCommand(9.5, 1));
 	}
 	
 }

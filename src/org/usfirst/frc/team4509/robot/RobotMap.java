@@ -24,7 +24,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class RobotMap {
 	
 	public static final double GYRO_PRECISION = 1;
-	public static final int FEET_PER_SECOND = 2;
 	public static final int PIXY_MAX_X = 319;
 	public static final int PIXY_MAX_Y = 199;
 	
