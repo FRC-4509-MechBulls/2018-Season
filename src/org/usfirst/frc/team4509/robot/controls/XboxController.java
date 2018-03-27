@@ -40,13 +40,15 @@ public class XboxController implements ControllerBase {
 	
 	@Override
 	public double getWinch() {
-		double n = this.controller.getY(GenericHID.Hand.kLeft);
-		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
+		double n = 0;
+		if(this.controller.getBumperPressed(GenericHID.Hand.kRight)) n++;
+		if(this.controller.getBumperPressed(GenericHID.Hand.kLeft))  n--;
+		return n;
 	}
 	
 	@Override
 	public double getGrabber() {
-		double n = this.controller.getX(GenericHID.Hand.kLeft);
+		double n = this.controller.getY(GenericHID.Hand.kLeft);
 		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
 	}
 	
