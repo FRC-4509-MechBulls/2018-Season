@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4509.robot.commands.auto;
 
-import org.usfirst.frc.team4509.robot.commands.DriveForFeetCommand;
+import org.usfirst.frc.team4509.robot.commands.TimedDriveCommand;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class NoAutoCommandGroup extends CommandGroup {
 	
 	public NoAutoCommandGroup() {
-		addSequential(new DriveForFeetCommand(0.5));
-		addSequential(new DriveForFeetCommand(-0.5));
+		addSequential(new TimedDriveCommand(0.5, 1));
+		addSequential(new TimedDriveCommand(0.5, -1));
 	}
 	
 }

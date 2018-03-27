@@ -58,15 +58,9 @@ public class Robot extends IterativeRobot {
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
 
-		chooser.addObject("None",                      null);
+		chooser.addObject("None",                         null);
 		chooser.addObject("No Auto",                      new NoAutoCommandGroup());
-		chooser.addDefault("Idiot",                        new IdiotAutoCommandGroup());
-		chooser.addObject("Basic (Left)",                 new BasicCommandGroup(-1));
-		chooser.addObject("Basic (Right)",                new BasicCommandGroup(1));
-		chooser.addObject("Scale (No Cube)",              new ScaleWithoutCubeCommandGroup());
-		chooser.addObject("Switch (No Cube)",             new SwitchWithoutCubeCommandGroup());
-		chooser.addObject("Scale (With Cube) (Default)", new ScaleWithCubeCommandGroup());
-		chooser.addObject("Switch (With Cube)",           new SwitchWithCubeCommandGroup());
+		chooser.addDefault("Idiot",                       new IdiotAutoCommandGroup());
 		SmartDashboard.putData("Auto Mode", chooser);
 		
 		sideChooser.addObject("Left", -1);

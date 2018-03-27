@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4509.robot;
 
 import org.usfirst.frc.team4509.robot.commands.*;
-import org.usfirst.frc.team4509.robot.commands.test.DriveForFeetTestCommand;
 import org.usfirst.frc.team4509.robot.controls.*;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
@@ -43,8 +42,8 @@ public class OI {
 	
 	public void setTriggers() {
 		this.driveTrigger.whileActive(new DirectDriveCommand());
-		//this.fixedTurnTrigger.whenActive(new DirectAbsoluteTurnCommand());
-		this.alignTrigger.whenActive(new DriveForFeetTestCommand());
+		this.fixedTurnTrigger.whenActive(null);
+		this.alignTrigger.whenActive(null);
 		this.winchTrigger.whileActive(new DirectWinchCommand());
 		this.grabberTrigger.whileActive(new DirectGrabberCommand());
 		this.disableTrigger.whileActive(new StopAllCommand());

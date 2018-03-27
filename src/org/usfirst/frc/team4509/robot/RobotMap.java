@@ -25,8 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RobotMap {
 	
 	public static final double GYRO_PRECISION = 1;
-	public static final int TICKS_PER_METER = 2362;
-	public static final int TICKS_PER_INCH = 60;
+	public static final int FEET_PER_SECOND = 2;
 	public static final int PIXY_MAX_X = 319;
 	public static final int PIXY_MAX_Y = 199;
 	
@@ -112,7 +111,8 @@ public class RobotMap {
 	
 	public static void initCamera() {
 		RobotMap.camera = CameraServer.getInstance().startAutomaticCapture();
-		RobotMap.camera.setResolution(640, 480);
+		RobotMap.camera.setResolution(320, 240);
+		RobotMap.camera.setFPS(20);
 	}
 
 }
