@@ -13,19 +13,18 @@ import org.usfirst.frc.team4509.robot.Robot;
  */
 public class DriveUntilInterruptedCommand extends Command {
 	
-	private double speed, turn, slide;
+	private double speed, turn;
 	
-	public DriveUntilInterruptedCommand(double speed, double turn, double slide) {
+	public DriveUntilInterruptedCommand(double speed, double turn) {
 		this.speed = speed;
 		this.turn = turn;
-		this.slide = slide;
 		requires(Robot.drivingSubsystem);
 	}
 
 	protected void initialize() {  }
 
 	protected void execute() {
-		Robot.drivingSubsystem.drive(this.speed, this.turn, this.slide);
+		Robot.drivingSubsystem.drive(this.speed, this.turn);
 	}
 
 	protected boolean isFinished() {

@@ -22,7 +22,7 @@ public class DirectDriveCommand extends Command {
 	}
 
 	public void execute() {
-		Robot.drivingSubsystem.drive(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn(), Robot.oi.controller.getSlide());
+		Robot.drivingSubsystem.drive(Robot.oi.controller.getDrive(), Robot.oi.controller.getTurn());
 	}
 
 	protected boolean isFinished() {

@@ -5,7 +5,6 @@ import org.usfirst.frc.team4509.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -15,37 +14,39 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author FRC Team 4509
  */
 public class DrivingSubsystem extends Subsystem {
+	
+	public double baseDriveSpeed = DriveSpeedMode.Disabled.baseSpeed;
 
 	public void initDefaultCommand() {}
 
-	/**
-	 * @param leftYAxis used to drive the left side of the robot
-	 * @param rightYAxis used to drive the right side of the robot
-	 */
-	public void tankDriving(double leftYAxis, double rightYAxis) {
-		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.75);
-		RobotMap.drive.tankDrive(baseSpeed * leftYAxis, baseSpeed * rightYAxis);
-	}
-	
-	public void drive(double ySpeed, double rotation, double xSpeed) {
-		double baseSpeed = Preferences.getInstance().getDouble("BASE_DRIVE_SPEED", 0.75);
-		RobotMap.drive.arcadeDrive(baseSpeed * ySpeed, baseSpeed * rotation);
+	public void drive(double ySpeed, double rotation) {
+		RobotMap.drive.arcadeDrive(this.baseDriveSpeed * ySpeed, this.baseDriveSpeed * rotation);
 	}
 		
 	public void drive(double speed) {
-		this.drive(speed, 0, 0);
+		this.drive(speed, 0);
 	}
 	
 	/**
 	 * @param direction the direction to turn. -1 is left, 1 is right
 	 */
 	public void turn(double direction) {
-		this.drive(0, direction, 0);
+		this.drive(0, direction);
 	}
 	
 	public void stop() {
 		RobotMap.leftFrontDriveTalon.set(0);
 		RobotMap.rightFrontDriveTalon.set(0);
+	}
+	
+	public enum DriveSpeedMode {
+		Disabled(0), TeleOp(0.75), Auto(0.5), Full(1);
+		public double baseSpeed;
+		DriveSpeedMode(double baseSpeed) { this.baseSpeed = baseSpeed; }
+	}
+	
+	public void setDriveSpeedMode(DriveSpeedMode mode) {
+		this.baseDriveSpeed = mode.baseSpeed;
 	}
 	
 	/**

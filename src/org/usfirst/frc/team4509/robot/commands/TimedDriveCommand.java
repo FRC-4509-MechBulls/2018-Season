@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4509.robot.commands;
 
 import org.usfirst.frc.team4509.robot.Robot;
+import org.usfirst.frc.team4509.robot.subsystems.DrivingSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -23,6 +24,7 @@ public class TimedDriveCommand extends Command {
 	
 	protected void initialize() {
 		Robot.drivingSubsystem.stop();
+		Robot.drivingSubsystem.setDriveSpeedMode(DrivingSubsystem.DriveSpeedMode.Full);
 	}
 
 	protected void execute() {

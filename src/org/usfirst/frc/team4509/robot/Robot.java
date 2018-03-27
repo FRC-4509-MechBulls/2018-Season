@@ -94,6 +94,7 @@ public class Robot extends IterativeRobot {
 		Robot.drivingSubsystem.stop();
 		Robot.winchSubsystem.stop();
 		Robot.grabberSubsystem.stop();
+		Robot.drivingSubsystem.setDriveSpeedMode(DrivingSubsystem.DriveSpeedMode.Disabled);
 	}
 
 	@Override
@@ -112,6 +113,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		Robot.drivingSubsystem.setDriveSpeedMode(DrivingSubsystem.DriveSpeedMode.Auto);
 		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
 		SmartDashboard.putString("Game Data", String.valueOf(Robot.gameData));
 		if(sideChooser.getSelected() != null)
@@ -135,6 +137,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		Robot.drivingSubsystem.setDriveSpeedMode(DrivingSubsystem.DriveSpeedMode.TeleOp);
 		if(autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
