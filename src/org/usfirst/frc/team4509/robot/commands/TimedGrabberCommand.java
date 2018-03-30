@@ -6,26 +6,26 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
 
 
 /**
- * Run the winch at the given speed for a given number of seconds.
+ * Run the grabber at the given speed for a given number of seconds.
  * 
  * @author FRC Team 4509
  */
-public class WinchForSecondsCommand extends TimedCommand {
+public class TimedGrabberCommand extends TimedCommand {
 
 	double speed;
 	
-	public WinchForSecondsCommand(double speed, double timeout) {
+	public TimedGrabberCommand(double timeout, double speed) {
 		super(timeout);
-		requires(Robot.winchSubsystem);
+		requires(Robot.grabberSubsystem);
 		this.speed = speed;
 	}
 	
 	public void execute() {
-		Robot.winchSubsystem.set(this.speed);
+		Robot.grabberSubsystem.set(this.speed);
 	}
 	
 	public void end() {
-		Robot.winchSubsystem.stop();
+		Robot.grabberSubsystem.stop();
 	}
 
 }

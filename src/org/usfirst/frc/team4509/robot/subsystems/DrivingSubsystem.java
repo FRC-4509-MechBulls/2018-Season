@@ -15,7 +15,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DrivingSubsystem extends Subsystem {
 	
-	public double baseDriveSpeed = DriveSpeedMode.Disabled.baseSpeed;
+	public double baseDriveSpeed;
+	
+	public DrivingSubsystem() {
+		super();
+		this.setDriveSpeedMode(DriveSpeedMode.Disabled);
+	}
 
 	public void initDefaultCommand() {}
 
@@ -31,6 +36,8 @@ public class DrivingSubsystem extends Subsystem {
 			rot = Math.abs(rot) / rot;
 		rot *= this.baseDriveSpeed;
 		
+		System.out.println("Speed: " + speed);
+		System.out.println("Rotation: " + rot);
 		RobotMap.drive.arcadeDrive(speed, rot);
 	}
 		
@@ -51,7 +58,7 @@ public class DrivingSubsystem extends Subsystem {
 	}
 	
 	public enum DriveSpeedMode {
-		Disabled(0), TeleOp(0.75), Auto(0.5);
+		Disabled(0), TeleOp(0.75), Auto(0.65);
 		public double baseSpeed;
 		DriveSpeedMode(double baseSpeed) { this.baseSpeed = baseSpeed; }
 	}

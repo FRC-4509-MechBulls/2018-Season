@@ -42,10 +42,9 @@ public class OI {
 	
 	public void setTriggers() {
 		this.driveTrigger.whileActive(new DirectDriveCommand());
-		this.fixedTurnTrigger.whenActive(null);
-		this.alignTrigger.whenActive(null);
 		this.winchTrigger.whileActive(new DirectWinchCommand());
 		this.grabberTrigger.whileActive(new DirectGrabberCommand());
+		
 		this.disableTrigger.whileActive(new StopAllCommand());
 	}
 	

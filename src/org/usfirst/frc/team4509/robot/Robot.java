@@ -1,14 +1,14 @@
 package org.usfirst.frc.team4509.robot;
 
+import org.usfirst.frc.team4509.robot.commands.auto.*;
+import org.usfirst.frc.team4509.robot.subsystems.*;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team4509.robot.subsystems.*;
-import org.usfirst.frc.team4509.robot.commands.auto.*;
 
 
 /**
@@ -22,7 +22,7 @@ import org.usfirst.frc.team4509.robot.commands.auto.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static final CameraSubsystem  cameraSubsystem  = new CameraSubsystem();
+	//public static final CameraSubsystem  cameraSubsystem  = new CameraSubsystem();
 	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
 	public static final GrabberSubsystem grabberSubsystem = new GrabberSubsystem();
 	public static final WinchSubsystem   winchSubsystem   = new WinchSubsystem();
@@ -39,6 +39,8 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	SendableChooser<Integer> sideChooser = new SendableChooser<>();
+	
+	Command a = new IdiotAutoCommandGroup();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -50,39 +52,27 @@ public class Robot extends IterativeRobot {
 		RobotMap.initSensors();
 		RobotMap.initWinch();
 		RobotMap.initGrabber();
-		RobotMap.initArduino();
+		//RobotMap.initArduino();
 		RobotMap.initCamera();
 		
-		Robot.cameraSubsystem.setPort(RobotMap.arduino);
+		//Robot.cameraSubsystem.setPort(RobotMap.arduino);
 		
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
 
-		chooser.addObject("None",                         null);
-		chooser.addObject("No Auto",                      new NoAutoCommandGroup());
-		chooser.addDefault("Idiot",                       new IdiotAutoCommandGroup());
+		chooser.addObject( "None",   null);
+		chooser.addObject( "Idiot",  new IdiotAutoCommandGroup());
+		chooser.addDefault("Switch (Center)", new LeftSwitchAuto());
 		SmartDashboard.putData("Auto Mode", chooser);
 		
-		sideChooser.addObject("Left", -1);
-		sideChooser.addObject("Center", 0);
-		sideChooser.addObject("Right", 1);
+		sideChooser.addObject( "Left",  -1);
+		sideChooser.addDefault("Center", 0);
+		sideChooser.addObject( "Right",  1);
 		SmartDashboard.putData("Starting Side", sideChooser);
-
-		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
-		
-		SmartDashboard.putData("Camera Subsystem",  Robot.cameraSubsystem);
-		SmartDashboard.putData("Driving Subsystem", Robot.drivingSubsystem);
-		SmartDashboard.putData("Winch Subsystem",   Robot.winchSubsystem);
-		SmartDashboard.putData("Grabber Subsystem", Robot.grabberSubsystem);
 	}
 	
 	@Override
-	public void robotPeriodic() {
-		SmartDashboard.putNumber("Left",    RobotMap.leftFrontDriveTalon.get()  *  2);
-		SmartDashboard.putNumber("Right",   RobotMap.rightFrontDriveTalon.get() *  2);
-		SmartDashboard.putNumber("Winch",   RobotMap.winchTalon.get()      *  2);
-		SmartDashboard.putNumber("Grabber", RobotMap.grabberLeftTalon.get()    *  2);
-	}
+	public void robotPeriodic() {}
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -114,17 +104,26 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.drivingSubsystem.setDriveSpeedMode(DrivingSubsystem.DriveSpeedMode.Auto);
-		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
+		
+		do {
+			Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
+		} while(Robot.gameData == null);
+		
 		SmartDashboard.putString("Game Data", String.valueOf(Robot.gameData));
+		
 		if(sideChooser.getSelected() != null)
 			Robot.startPosition = sideChooser.getSelected();
 		else
 			Robot.startPosition = 0;
-		autonomousCommand = chooser.getSelected();
-
-		// schedule the autonomous command
-		if(autonomousCommand != null)
-			autonomousCommand.start();
+		
+		//autonomousCommand = chooser.getSelected();
+		//if(autonomousCommand != null)
+			//autonomousCommand.start();
+		/*if(Robot.gameData[0] == 'L')
+			(new LeftSwitchAuto()).start();
+		else if(Robot.gameData[0] == 'R')
+			(new RightSwitchAuto()).start();*/
+		a.start();
 	}
 
 	/**
@@ -133,6 +132,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putBoolean("Auto", a.isRunning());
 	}
 
 	@Override
