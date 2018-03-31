@@ -1,7 +1,11 @@
 package org.usfirst.frc.team4509.robot;
 
-import org.usfirst.frc.team4509.robot.commands.auto.*;
-import org.usfirst.frc.team4509.robot.subsystems.*;
+import org.usfirst.frc.team4509.robot.commands.DriveForSecondsTimedCommand;
+import org.usfirst.frc.team4509.robot.commands.auto.IdiotAutoCommandGroup;
+import org.usfirst.frc.team4509.robot.commands.auto.LeftSwitchAuto;
+import org.usfirst.frc.team4509.robot.subsystems.DrivingSubsystem;
+import org.usfirst.frc.team4509.robot.subsystems.GrabberSubsystem;
+import org.usfirst.frc.team4509.robot.subsystems.WinchSubsystem;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -40,14 +44,13 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	SendableChooser<Integer> sideChooser = new SendableChooser<>();
 	
-	Command a = new IdiotAutoCommandGroup();
+	Command a = new DriveForSecondsTimedCommand(1, 15 * RobotMap.SECONDS_PER_FOOT);
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-	@Override
-	public void robotInit() {
+	@Override	public void robotInit() {
 		RobotMap.initDrive();
 		RobotMap.initSensors();
 		RobotMap.initWinch();
@@ -104,18 +107,18 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.drivingSubsystem.setDriveSpeedMode(DrivingSubsystem.DriveSpeedMode.Auto);
-		
+
 		do {
 			Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
 		} while(Robot.gameData == null);
-		
+
 		SmartDashboard.putString("Game Data", String.valueOf(Robot.gameData));
-		
+
 		if(sideChooser.getSelected() != null)
 			Robot.startPosition = sideChooser.getSelected();
 		else
 			Robot.startPosition = 0;
-		
+
 		//autonomousCommand = chooser.getSelected();
 		//if(autonomousCommand != null)
 			//autonomousCommand.start();
@@ -132,7 +135,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putBoolean("Auto", a.isRunning());
 	}
 
 	@Override

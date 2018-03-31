@@ -22,7 +22,7 @@ public class DirectGrabberCommand extends Command {
 	}
 
 	protected void execute() {
-		Robot.grabberSubsystem.set(Robot.oi.controller.getGrabber());
+		Robot.grabberSubsystem.set(-1 * Robot.oi.controller.getGrabber());
 	}
 
 	protected boolean isFinished() {

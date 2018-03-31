@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
 /**
  * Command to drive straight for the given number of seconds, disregarding angle corrections made along the way.
  */
-public class TimedDriveCommand extends TimedCommand {
+public class TimedDriveCommand extends Command {
 
 	private double speed;
 	//private double zeroAngle;
 	
 	public TimedDriveCommand(double timeout, double speed) {
-		super(timeout);
 		requires(Robot.drivingSubsystem);
+		this.setTimeout(timeout);
 		this.speed = speed;
 	}
 	
@@ -27,6 +27,7 @@ public class TimedDriveCommand extends TimedCommand {
 	}
 
 	protected void execute() {
+		System.out.println("Driving at speed " + this.speed + ".");
 		Robot.drivingSubsystem.drive(this.speed);
 	}
 
@@ -34,6 +35,11 @@ public class TimedDriveCommand extends TimedCommand {
 		Robot.drivingSubsystem.stop();
 		//this.correctDrift();
 		//Robot.drivingSubsystem.stop();
+	}
+	
+	protected boolean isFinished() {
+		System.out.println("Time since initialized: " + this.timeSinceInitialized());
+		return this.isTimedOut();
 	}
 	
 	/*private void correctDrift() {

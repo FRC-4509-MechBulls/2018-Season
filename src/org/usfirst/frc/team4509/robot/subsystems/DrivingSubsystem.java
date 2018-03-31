@@ -37,7 +37,7 @@ public class DrivingSubsystem extends Subsystem {
 		rot *= this.baseDriveSpeed;
 		
 		System.out.println("Speed: " + speed);
-		System.out.println("Rotation: " + rot);
+		//System.out.println("Rotation: " + rot);
 		RobotMap.drive.arcadeDrive(speed, rot);
 	}
 		
