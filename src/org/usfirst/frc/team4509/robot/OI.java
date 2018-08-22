@@ -6,16 +6,8 @@ import org.usfirst.frc.team4509.robot.controls.*;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- * 
- * @author FRC Team 4509
- */
 public class OI {
 	
-	public static final int LEFT_JOYSTICK_PORT  = 1;
-	public static final int RIGHT_JOYSTICK_PORT = 0;
 	public static final int XBOX_CONTROLLER_1_PORT = 0;
 	public static final int XBOX_CONTROLLER_2_PORT = 1;
 	
@@ -27,7 +19,6 @@ public class OI {
 	public OI() {
 		this.controller = new XboxControllerPair(OI.XBOX_CONTROLLER_1_PORT, OI.XBOX_CONTROLLER_2_PORT);
 		//this.controller = new XboxController(OI.XBOX_CONTROLLER_1_PORT);
-		//this.controller = new JoystickPair(OI.LEFT_JOYSTICK_PORT, OI.RIGHT_JOYSTICK_PORT);
 		
 		this.driveTrigger     = new DriveTrigger();
 		this.winchTrigger     = new WinchTrigger();
