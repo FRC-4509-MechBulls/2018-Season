@@ -36,8 +36,6 @@ public class DrivingSubsystem extends Subsystem {
 			rot = Math.abs(rot) / rot;
 		rot *= this.baseDriveSpeed;
 		
-		System.out.println("Speed: " + speed);
-		//System.out.println("Rotation: " + rot);
 		RobotMap.drive.arcadeDrive(speed, rot);
 	}
 		
@@ -77,23 +75,6 @@ public class DrivingSubsystem extends Subsystem {
 		RobotMap.leftBackDriveTalon.setNeutralMode(mode);
 		RobotMap.rightFrontDriveTalon.setNeutralMode(mode);
 		RobotMap.rightBackDriveTalon.setNeutralMode(mode);
-	}
-	
-	public int getRightEncoderTicks() {
-		return RobotMap.rightDriveEncoder.get();
-	}
-	
-	public int getLeftEncoderTicks() {
-		return RobotMap.leftDriveEncoder.get();
-	}
-	
-	public double getAverageEncoderTicks() {
-		return (RobotMap.leftDriveEncoder.get() + RobotMap.rightDriveEncoder.get()) / 2;
-	}
-	
-	public void resetEncoders() {
-		RobotMap.leftDriveEncoder.reset();
-		RobotMap.rightDriveEncoder.reset();
 	}
 	
 }

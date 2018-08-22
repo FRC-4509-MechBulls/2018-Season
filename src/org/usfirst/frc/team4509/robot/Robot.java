@@ -1,8 +1,5 @@
 package org.usfirst.frc.team4509.robot;
 
-import org.usfirst.frc.team4509.robot.commands.DriveForSecondsTimedCommand;
-import org.usfirst.frc.team4509.robot.commands.auto.IdiotAutoCommandGroup;
-import org.usfirst.frc.team4509.robot.commands.auto.LeftSwitchAuto;
 import org.usfirst.frc.team4509.robot.subsystems.DrivingSubsystem;
 import org.usfirst.frc.team4509.robot.subsystems.GrabberSubsystem;
 import org.usfirst.frc.team4509.robot.subsystems.WinchSubsystem;
@@ -34,8 +31,6 @@ public class Robot extends IterativeRobot {
 	public static boolean hasAutoRun = false;
 	
 	public static OI oi;
-	
-	public static VisualCube[] cubes;
 
 	public static char[] gameData;
 	public static int startPosition = 0;
@@ -43,8 +38,6 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	SendableChooser<Integer> sideChooser = new SendableChooser<>();
-	
-	Command a = new DriveForSecondsTimedCommand(1, 15 * RobotMap.SECONDS_PER_FOOT);
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -63,9 +56,7 @@ public class Robot extends IterativeRobot {
 		Robot.oi = new OI();
 		Robot.oi.setTriggers();
 
-		chooser.addObject( "None",   null);
-		chooser.addObject( "Idiot",  new IdiotAutoCommandGroup());
-		chooser.addDefault("Switch (Center)", new LeftSwitchAuto());
+		chooser.addObject( "None", null);
 		SmartDashboard.putData("Auto Mode", chooser);
 		
 		sideChooser.addObject( "Left",  -1);
@@ -113,20 +104,6 @@ public class Robot extends IterativeRobot {
 		} while(Robot.gameData == null);
 
 		SmartDashboard.putString("Game Data", String.valueOf(Robot.gameData));
-
-		if(sideChooser.getSelected() != null)
-			Robot.startPosition = sideChooser.getSelected();
-		else
-			Robot.startPosition = 0;
-
-		//autonomousCommand = chooser.getSelected();
-		//if(autonomousCommand != null)
-			//autonomousCommand.start();
-		/*if(Robot.gameData[0] == 'L')
-			(new LeftSwitchAuto()).start();
-		else if(Robot.gameData[0] == 'R')
-			(new RightSwitchAuto()).start();*/
-		a.start();
 	}
 
 	/**
@@ -154,18 +131,5 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {  }
-	
-	/**
-	 * Returns a character corresponding to the robot's start position
-	 * 
-	 * @return 'L', 'C', or 'R'
-	 */
-	public static char getStartingPosition() {
-		if(Robot.startPosition == -1)
-			return 'L';
-		else if(Robot.startPosition == 1)
-			return 'R';
-		return 'C';
-	}
 	
 }
