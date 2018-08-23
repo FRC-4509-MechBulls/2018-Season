@@ -1,16 +1,10 @@
 package org.usfirst.frc.team4509.robot.commands;
 
-
 import org.usfirst.frc.team4509.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 
-/**
- * Operate the grabber using input directly from the controller
- * 
- * @author FRC Team 4509
- */
 public class DirectGrabberCommand extends Command {
 
 	public DirectGrabberCommand() {

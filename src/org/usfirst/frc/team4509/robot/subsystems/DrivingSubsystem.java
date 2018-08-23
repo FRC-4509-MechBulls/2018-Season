@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4509.robot.subsystems;
 
-
 import org.usfirst.frc.team4509.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -8,11 +7,6 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
-/**
- * Controls the drive platform and slide drive talon
- * 
- * @author FRC Team 4509
- */
 public class DrivingSubsystem extends Subsystem {
 	
 	public double baseDriveSpeed;
@@ -36,8 +30,6 @@ public class DrivingSubsystem extends Subsystem {
 			rot = Math.abs(rot) / rot;
 		rot *= this.baseDriveSpeed;
 		
-		System.out.println("Speed: " + speed);
-		//System.out.println("Rotation: " + rot);
 		RobotMap.drive.arcadeDrive(speed, rot);
 	}
 		
@@ -45,9 +37,6 @@ public class DrivingSubsystem extends Subsystem {
 		this.drive(speed, 0);
 	}
 	
-	/**
-	 * @param direction the direction to turn. -1 is left, 1 is right
-	 */
 	public void turn(double direction) {
 		this.drive(0, direction);
 	}
@@ -67,33 +56,11 @@ public class DrivingSubsystem extends Subsystem {
 		this.baseDriveSpeed = mode.baseSpeed;
 	}
 	
-	/**
-	 * Changes the drive talons' neutral modes to the given mode.
-	 * See {@link com.ctre.phoenix.motorcontrol.NeutralMode}
-	 * @param mode the neutral mode to set to
-	 */
 	public void setNeutralMode(NeutralMode mode) {
 		RobotMap.leftFrontDriveTalon.setNeutralMode(mode);
 		RobotMap.leftBackDriveTalon.setNeutralMode(mode);
 		RobotMap.rightFrontDriveTalon.setNeutralMode(mode);
 		RobotMap.rightBackDriveTalon.setNeutralMode(mode);
-	}
-	
-	public int getRightEncoderTicks() {
-		return RobotMap.rightDriveEncoder.get();
-	}
-	
-	public int getLeftEncoderTicks() {
-		return RobotMap.leftDriveEncoder.get();
-	}
-	
-	public double getAverageEncoderTicks() {
-		return (RobotMap.leftDriveEncoder.get() + RobotMap.rightDriveEncoder.get()) / 2;
-	}
-	
-	public void resetEncoders() {
-		RobotMap.leftDriveEncoder.reset();
-		RobotMap.rightDriveEncoder.reset();
 	}
 	
 }

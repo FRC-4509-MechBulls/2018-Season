@@ -1,16 +1,10 @@
 package org.usfirst.frc.team4509.robot.commands;
 
-
 import org.usfirst.frc.team4509.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 
-/**
- * Drive using input directly from the controller
- * 
- * @author FRC Team 4509
- */
 public class DirectDriveCommand extends Command {
 	
 	public DirectDriveCommand() {
