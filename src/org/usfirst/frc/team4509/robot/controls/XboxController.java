@@ -13,6 +13,11 @@ public class XboxController implements ControllerBase {
 	}
 	
 	@Override
+	public boolean getCancelAll() {
+		return this.controller.getStartButtonPressed();
+	}
+	
+	@Override
 	public double getDrive() {
 		return this.controller.getTriggerAxis(GenericHID.Hand.kRight) - this.controller.getTriggerAxis(GenericHID.Hand.kLeft);
 	}
@@ -35,6 +40,26 @@ public class XboxController implements ControllerBase {
 	public double getGrabber() {
 		double n = this.controller.getY(GenericHID.Hand.kLeft);
 		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
+	}
+	
+	public boolean getAutoTest() {
+		return this.controller.getYButton();
+	}
+	
+	public boolean getSelectNextProfile() {
+		return this.controller.getPOV() > 85 && this.controller.getPOV() < 95;
+	}
+	
+	public boolean getSelectLastProfile() {
+		return this.controller.getPOV() > 265 && this.controller.getPOV() < 275;
+	}
+	
+	public boolean getRunProfile() {
+		return this.controller.getPOV() > 355 && this.controller.getPOV() < 5 && this.controller.getPOV() > -1;
+	}
+	
+	public boolean getRecordProfile() {
+		return this.controller.getPOV() > 175 && this.controller.getPOV() < 185;
 	}
 	
 }
