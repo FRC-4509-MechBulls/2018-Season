@@ -20,6 +20,7 @@ public class DrivingSubsystem extends Subsystem {
 	public void initDefaultCommand() {}
 
 	public void drive(double ySpeed, double rotation) {
+		
 		double speed = ySpeed; // use a temporary variable so we don't accidentally change the original.
 		if(Math.abs(speed) > 1)
 			speed = Math.abs(ySpeed) / ySpeed; // if the value given was too high, set it to the max

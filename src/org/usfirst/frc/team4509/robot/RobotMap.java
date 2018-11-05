@@ -59,6 +59,7 @@ public class RobotMap {
 		
 		// Create the software drivetrain, giving us access to higher-level driving functions.
 		RobotMap.drive = new DifferentialDrive(RobotMap.leftFrontDriveTalon, RobotMap.rightFrontDriveTalon);
+		RobotMap.drive.setDeadband(0);
 	}
 	
 	public static void initWinch() {
@@ -77,14 +78,13 @@ public class RobotMap {
 		RobotMap.camera = CameraServer.getInstance().startAutomaticCapture();
 		// limit the resolution and frames per second to reduce latency
 		RobotMap.camera.setResolution(640, 480);
-		RobotMap.camera.setFPS(24);
+		RobotMap.camera.setFPS(20);
 	}
 	
 	// Initialize any extra sensors
 	public static void initSensors() {
 		RobotMap.gyro = new ADXRS450_Gyro();
 		SmartDashboard.putData("Gyro", RobotMap.gyro);
-		SmartDashboard.setPersistent("Gyro");
 	}
 
 }

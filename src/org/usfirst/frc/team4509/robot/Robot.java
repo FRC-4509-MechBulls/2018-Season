@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4509.robot;
 
-import org.usfirst.frc.team4509.robot.MotionProfiling.*;
+import org.usfirst.frc.team4509.robot.motionprofiling.*;
 import org.usfirst.frc.team4509.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -42,6 +42,10 @@ public class Robot extends IterativeRobot {
 		Robot.oi.setTriggers();
 		
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
+		SmartDashboard.putData("Driving", Robot.drivingSubsystem);
+		SmartDashboard.putData("Grabber", Robot.grabberSubsystem);
+		SmartDashboard.putData("Winch", Robot.winchSubsystem);
+		SmartDashboard.putData("Motion Profiling", Robot.motionProfilingSubsystem);
 		
 		//autoCommand = new AutoTestCommandGroup();
 		

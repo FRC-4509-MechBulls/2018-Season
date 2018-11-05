@@ -1,12 +1,12 @@
 package org.usfirst.frc.team4509.robot;
 
-import org.usfirst.frc.team4509.robot.MotionProfiling.RecordProfileFromOICommand;
-import org.usfirst.frc.team4509.robot.MotionProfiling.RunProfileFromOICommand;
-import org.usfirst.frc.team4509.robot.MotionProfiling.SelectLastProfileCommand;
-import org.usfirst.frc.team4509.robot.MotionProfiling.SelectNextProfileCommand;
 import org.usfirst.frc.team4509.robot.auto.AutoTestCommandGroup;
 import org.usfirst.frc.team4509.robot.commands.*;
 import org.usfirst.frc.team4509.robot.controls.*;
+import org.usfirst.frc.team4509.robot.motionprofiling.RecordProfileFromOICommand;
+import org.usfirst.frc.team4509.robot.motionprofiling.RunProfileFromOICommand;
+import org.usfirst.frc.team4509.robot.motionprofiling.SelectLastProfileCommand;
+import org.usfirst.frc.team4509.robot.motionprofiling.SelectNextProfileCommand;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
 

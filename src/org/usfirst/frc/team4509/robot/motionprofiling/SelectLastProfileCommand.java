@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4509.robot.MotionProfiling;
+package org.usfirst.frc.team4509.robot.motionprofiling;
 
 import org.usfirst.frc.team4509.robot.Robot;
 
@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class RecordProfileFromOICommand extends InstantCommand {
+public class SelectLastProfileCommand extends InstantCommand {
 	
 	protected void execute() {
 		Robot.motionProfilingSubsystem.cancelProfileCommand();
-		Robot.motionProfilingSubsystem.recordToSelected();
+		Robot.motionProfilingSubsystem.selectLast();
 	}
 
 }

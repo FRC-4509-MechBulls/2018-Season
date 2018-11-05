@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4509.robot.MotionProfiling;
+package org.usfirst.frc.team4509.robot.motionprofiling;
 
 import java.util.ArrayList;
 import java.util.Collections;

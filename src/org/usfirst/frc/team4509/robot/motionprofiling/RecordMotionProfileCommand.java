@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4509.robot.MotionProfiling;
+package org.usfirst.frc.team4509.robot.motionprofiling;
 
 import org.usfirst.frc.team4509.robot.Robot;
 
