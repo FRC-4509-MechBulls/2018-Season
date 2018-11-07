@@ -15,6 +15,7 @@ public class MotionProfile {
 	Timer timer;
 	
 	public MotionProfile() {
+		this.name = "";
 		this.steps = new ArrayList<MotionProfileStep>();
 		this.timer = new Timer();
 	}
@@ -29,6 +30,7 @@ public class MotionProfile {
 	
 	public void addStep(MotionProfileStep step) {
 		this.steps.add(step);
+		Collections.sort(this.steps);
 	}
 	
 	public void record() {
@@ -42,8 +44,6 @@ public class MotionProfile {
 	
 	// get the first step before or at the given time
 	public MotionProfileStep getStep(double t) {
-		Collections.sort(this.steps);
-		
 		if(this.steps.size() == 0)
 			return null;
 		

@@ -64,27 +64,31 @@ public class MotionProfilingSubsystem extends Subsystem {
 	}
 	
 	public void selectNext() {
-		if(selectedProfile + 1 < this.profiles.size()) {
-			selectedProfile += 1;
+		if(this.selectedProfile + 1 < this.profiles.size()) {
+			this.selectedProfile += 1;
 		} else {
-			selectedProfile = 0;
+			this.selectedProfile = 0;
 		}
-		System.out.println("Selected profile " + (this.profiles.get(selectedProfile).name != null ? this.profiles.get(selectedProfile).name : " with no name"));
-		if(this.profiles.get(selectedProfile).steps != null) {
-			System.out.println("Steps:\n" + this.profiles.get(selectedProfile).steps);
+		System.out.println("Selected profile " + this.profiles.get(this.selectedProfile).name);
+		if(this.profiles.get(this.selectedProfile).steps != null) {
+			System.out.println("Steps: " + this.profiles.get(this.selectedProfile).steps);
 		}
 	}
 	
 	public void selectLast() {
-		if(selectedProfile - 1 > -1) {
-			selectedProfile -= 1;
+		if(this.selectedProfile - 1 > -1) {
+			this.selectedProfile -= 1;
 		} else {
-			selectedProfile = this.profiles.size() - 1;
+			this.selectedProfile = this.profiles.size() - 1;
 		}
-		System.out.println("Selected profile " + (this.profiles.get(selectedProfile).name != null ? this.profiles.get(selectedProfile).name : " with no name"));
-		if(this.profiles.get(selectedProfile).steps != null) {
-			System.out.println("Steps: " + this.profiles.get(selectedProfile).steps);
+		System.out.println("Selected profile " + this.profiles.get(this.selectedProfile).name);
+		if(this.profiles.get(this.selectedProfile).steps != null) {
+			System.out.println("Steps: " + this.profiles.get(this.selectedProfile).steps);
 		}
+	}
+	
+	public String getSelectedProfileName() {
+		return this.getSelected().name;
 	}
 	
 	// Set all the talons to the step's speeds
@@ -93,7 +97,6 @@ public class MotionProfilingSubsystem extends Subsystem {
 		RobotMap.rightFrontDriveTalon.set(step.rightFrontDriveTalonSpeed);
 		RobotMap.grabberLeftTalon.set(step.grabberLeftTalonSpeed);
 		RobotMap.winchTalon.set(step.winchTalonSpeed);
-		System.out.println("p" + step);
 	}
 
 }

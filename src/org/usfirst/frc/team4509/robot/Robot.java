@@ -3,15 +3,20 @@ package org.usfirst.frc.team4509.robot;
 import org.usfirst.frc.team4509.robot.motionprofiling.*;
 import org.usfirst.frc.team4509.robot.subsystems.*;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /*
  * The "main" class. Links RobotMap, OI, and subsystems.
  */
 public class Robot extends IterativeRobot {
+	
+	public enum AUTO_START_POSITION { LEFT, MIDDLE, RIGHT }
+	public enum AUTO_GOAL { LINE, SWITCH, SCALE }
 
 	// Subsystems
 	public static final DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
@@ -25,6 +30,8 @@ public class Robot extends IterativeRobot {
 	public static char[] gameData;
 	
 	Command autoCommand;
+	SendableChooser<AUTO_START_POSITION> autoStartPositionChooser;
+	SendableChooser<AUTO_GOAL> autoGoalChooser;
 	
 	MotionProfile profile;
 
@@ -47,19 +54,31 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Winch", Robot.winchSubsystem);
 		SmartDashboard.putData("Motion Profiling", Robot.motionProfilingSubsystem);
 		
-		//autoCommand = new AutoTestCommandGroup();
+		this.autoStartPositionChooser = new SendableChooser<AUTO_START_POSITION>();
+		this.autoStartPositionChooser.addObject("Left",   AUTO_START_POSITION.LEFT);
+		this.autoStartPositionChooser.addDefault("Middle", AUTO_START_POSITION.MIDDLE);
+		this.autoStartPositionChooser.addObject("Right",  AUTO_START_POSITION.RIGHT);
+		SmartDashboard.putData("Auto Start Position Chooser", this.autoStartPositionChooser);
+		
+		this.autoGoalChooser = new SendableChooser<AUTO_GOAL>();
+		this.autoGoalChooser.addDefault("Line",   AUTO_GOAL.LINE);
+		this.autoGoalChooser.addObject("Switch", AUTO_GOAL.SWITCH);
+		this.autoGoalChooser.addObject("Scale",  AUTO_GOAL.SCALE);
+		SmartDashboard.putData("Auto Goal Chooser", this.autoGoalChooser);
 		
 		Robot.motionProfilingSubsystem.addProfile(MotionProfileStorage.getStopProfile());
+		
+		SmartDashboard.putString("Selected Profile", Robot.motionProfilingSubsystem.getSelectedProfileName());
+		SmartDashboard.putData("Next Profile", new SelectNextProfileCommand());
+		SmartDashboard.putData("Last Profile", new SelectLastProfileCommand());
 	}
 	
 	@Override
-	// Runs in the main loop regardless of robot status
 	public void robotPeriodic() {}
 
 	@Override
 	public void disabledInit() {
 		Robot.drivingSubsystem.setDriveSpeedMode(DrivingSubsystem.DriveSpeedMode.Disabled);
-		// Tell all motors to stop
 		Robot.drivingSubsystem.stop();
 		Robot.winchSubsystem.stop();
 		Robot.grabberSubsystem.stop();
@@ -73,6 +92,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.drivingSubsystem.setDriveSpeedMode(DrivingSubsystem.DriveSpeedMode.Auto);
+		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage().toCharArray();
 		if(autoCommand != null) {
 			autoCommand.start();
 		}
@@ -89,9 +109,8 @@ public class Robot extends IterativeRobot {
 	}
 	
 	@Override
-	// This runs every main loop during teleop
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run(); // This runs the Scheduler, which executes methods in active commands.
+		Scheduler.getInstance().run();
 	}
 
 	@Override

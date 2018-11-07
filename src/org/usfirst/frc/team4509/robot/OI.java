@@ -22,13 +22,13 @@ public class OI {
 	
 	public ControllerBase controller;
 	CancelAllTrigger cancelAllTrigger;
-	DriveTrigger    driveTrigger;
-	WinchTrigger    winchTrigger;
-	GrabberTrigger  grabberTrigger;
-	AutoTestTrigger autoTestTrigger;
+	DriveTrigger     driveTrigger;
+	WinchTrigger     winchTrigger;
+	GrabberTrigger   grabberTrigger;
+	AutoTestTrigger  autoTestTrigger;
 	SelectNextProfileTrigger selectNextProfileTrigger;
 	SelectLastProfileTrigger selectLastProfileTrigger;
-	RunProfileTrigger runProfileTrigger;
+	RunProfileTrigger    runProfileTrigger;
 	RecordProfileTrigger recordProfileTrigger;
 	
 	public OI() {
@@ -42,6 +42,7 @@ public class OI {
 		this.winchTrigger     = new WinchTrigger();
 		this.grabberTrigger   = new GrabberTrigger();
 		this.autoTestTrigger  = new AutoTestTrigger();
+		
 		this.selectNextProfileTrigger = new SelectNextProfileTrigger();
 		this.selectLastProfileTrigger = new SelectLastProfileTrigger();
 		this.runProfileTrigger = new RunProfileTrigger();
@@ -51,7 +52,7 @@ public class OI {
 	// Maps triggers to commands.
 	public void setTriggers() {
 		this.cancelAllTrigger.whileActive(new CancelAllCommand());
-		this.driveTrigger.whileActive(new DirectDriveCommand()); // while DriveTrigger.get() returns true, run DirectDriveCommand. When DriveTrigger.get() returns false, interrupt the command.
+		this.driveTrigger.whileActive(new DirectDriveCommand());
 		this.winchTrigger.whileActive(new DirectWinchCommand());
 		this.grabberTrigger.whileActive(new DirectGrabberCommand());
 		this.autoTestTrigger.whenActive(new AutoTestCommandGroup());

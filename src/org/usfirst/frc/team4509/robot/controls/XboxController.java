@@ -24,7 +24,7 @@ public class XboxController implements ControllerBase {
 	
 	@Override
 	public double getTurn() {
-		double n = this.controller.getX(GenericHID.Hand.kLeft);
+		double n = this.controller.getX(GenericHID.Hand.kRight);
 		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
 	}
 	
@@ -38,7 +38,7 @@ public class XboxController implements ControllerBase {
 	
 	@Override
 	public double getGrabber() {
-		double n = this.controller.getY(GenericHID.Hand.kRight);
+		double n = this.controller.getY(GenericHID.Hand.kLeft);
 		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
 	}
 	

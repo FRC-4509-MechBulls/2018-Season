@@ -37,11 +37,11 @@ public class MotionProfileStep implements Comparable<MotionProfileStep> {
 	}
 	
 	public String toString() {
-		return "(" + this.time + ",'" + (this.text == null ? "" : this.text) + "'," +
-				this.leftFrontDriveTalonSpeed + "," +
-				this.rightFrontDriveTalonSpeed + "," +
-				this.grabberLeftTalonSpeed + "," +
-				this.winchTalonSpeed + ")";
+		return String.format("(%f,\"%s\",%f,%f,%f,%f)", this.time, (this.text == null ? "" : this.text),
+				this.leftFrontDriveTalonSpeed,
+				this.rightFrontDriveTalonSpeed,
+				this.grabberLeftTalonSpeed,
+				this.winchTalonSpeed);
 	}
 	
 }
