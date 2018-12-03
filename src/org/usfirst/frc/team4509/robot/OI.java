@@ -33,8 +33,8 @@ public class OI {
 	
 	public OI() {
 		// List of possible controllers
-		this.controller = new XboxControllerPair(OI.XBOX_CONTROLLER_1_PORT, OI.XBOX_CONTROLLER_2_PORT);
-		//this.controller = new XboxController(OI.XBOX_CONTROLLER_1_PORT);
+		//this.controller = new XboxControllerPair(OI.XBOX_CONTROLLER_1_PORT, OI.XBOX_CONTROLLER_2_PORT);
+		this.controller = new XboxController(OI.XBOX_CONTROLLER_1_PORT);
 		
 		// Init triggers
 		this.cancelAllTrigger = new CancelAllTrigger();

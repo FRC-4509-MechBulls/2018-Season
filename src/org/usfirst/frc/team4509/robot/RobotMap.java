@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4509.robot;
 
+import org.usfirst.frc.team4509.robot.logging.LogEntry;
+
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -23,6 +25,7 @@ public class RobotMap {
 	public static final int GRABBER_LEFT_TALON_PORT      = 5;
 	public static final int GRABBER_RIGHT_TALON_PORT     = 6;
 	public static final int WINCH_TALON_PORT             = 7;
+	public static final String ROOT_DIRECTORY = "/u/";
 	
 	// Devices
 	public static WPI_TalonSRX leftFrontDriveTalon;
@@ -40,51 +43,75 @@ public class RobotMap {
 	
 	// Initialize anything related to driving (motor controllers, encoders, etc.)
 	public static void initDrive() {
-		// Init talons and set the neutral mode (what it does when told to stop)
-		RobotMap.leftFrontDriveTalon = new WPI_TalonSRX(RobotMap.LEFT_FRONT_DRIVE_TALON_PORT);
-		RobotMap.leftFrontDriveTalon.setNeutralMode(NeutralMode.Coast);
-		RobotMap.leftBackDriveTalon = new WPI_TalonSRX(RobotMap.LEFT_BACK_DRIVE_TALON_PORT);
-		RobotMap.leftBackDriveTalon.setNeutralMode(NeutralMode.Coast);
-		RobotMap.rightFrontDriveTalon = new WPI_TalonSRX(RobotMap.RIGHT_FRONT_DRIVE_TALON_PORT);
-		RobotMap.rightFrontDriveTalon.setNeutralMode(NeutralMode.Coast);
-		RobotMap.rightBackDriveTalon = new WPI_TalonSRX(RobotMap.RIGHT_BACK_DRIVE_TALON_PORT);
-		RobotMap.rightBackDriveTalon.setNeutralMode(NeutralMode.Coast);
+		try {
+			RobotMap.leftFrontDriveTalon = new WPI_TalonSRX(RobotMap.LEFT_FRONT_DRIVE_TALON_PORT);
+			RobotMap.leftBackDriveTalon = new WPI_TalonSRX(RobotMap.LEFT_BACK_DRIVE_TALON_PORT);
+			RobotMap.rightFrontDriveTalon = new WPI_TalonSRX(RobotMap.RIGHT_FRONT_DRIVE_TALON_PORT);
+			RobotMap.rightBackDriveTalon = new WPI_TalonSRX(RobotMap.RIGHT_BACK_DRIVE_TALON_PORT);
+			
+			RobotMap.leftBackDriveTalon.follow(RobotMap.leftFrontDriveTalon);
+			RobotMap.rightBackDriveTalon.follow(RobotMap.rightFrontDriveTalon);
+			
+			RobotMap.drive = new DifferentialDrive(RobotMap.leftFrontDriveTalon, RobotMap.rightFrontDriveTalon);
+		} catch(Exception e) {
+			(new LogEntry(0, "RobotMap", "initDrive", "Exception was thrown! Message: " + e.getMessage())).addTag("Driving Subsystem").put();
+		}
 		
-		RobotMap.leftEncoder = new Encoder(0, 1);
-		RobotMap.leftEncoder = new Encoder(2, 3);
-		
-		// Tell the back talons to do whatever the front ones do.
-		RobotMap.leftBackDriveTalon.follow(RobotMap.leftFrontDriveTalon);
-		RobotMap.rightBackDriveTalon.follow(RobotMap.rightFrontDriveTalon);
-		
-		// Create the software drivetrain, giving us access to higher-level driving functions.
-		RobotMap.drive = new DifferentialDrive(RobotMap.leftFrontDriveTalon, RobotMap.rightFrontDriveTalon);
-		RobotMap.drive.setDeadband(0);
+		try {
+			RobotMap.leftFrontDriveTalon.setNeutralMode(NeutralMode.Coast);
+			RobotMap.leftBackDriveTalon.setNeutralMode(NeutralMode.Coast);
+			RobotMap.rightFrontDriveTalon.setNeutralMode(NeutralMode.Coast);
+			RobotMap.rightBackDriveTalon.setNeutralMode(NeutralMode.Coast);
+			
+			RobotMap.drive.setDeadband(0);
+		} catch(Exception e) {
+			(new LogEntry(1, "RobotMap", "initDrive", "Exception was thrown! Message: " + e.getMessage())).addTag("Driving Subsystem").put();
+		}
 	}
 	
 	public static void initWinch() {
-		RobotMap.winchTalon = new WPI_TalonSRX(RobotMap.WINCH_TALON_PORT);
-		RobotMap.winchTalon.setInverted(true);
+		try {
+			RobotMap.winchTalon = new WPI_TalonSRX(RobotMap.WINCH_TALON_PORT);
+			RobotMap.winchTalon.setInverted(true);
+		} catch(Exception e) {
+			(new LogEntry(0, "RobotMap", "initWinch", "Exception was thrown! Message: " + e.getMessage())).addTag("Winch Subsystem").put();
+		}
 	}
 	
 	public static void initGrabber() {
-		RobotMap.grabberLeftTalon  = new WPI_TalonSRX(RobotMap.GRABBER_LEFT_TALON_PORT);
-		RobotMap.grabberRightTalon = new WPI_TalonSRX(RobotMap.GRABBER_RIGHT_TALON_PORT);
-		RobotMap.grabberRightTalon.follow(RobotMap.grabberLeftTalon);
+		try {
+			RobotMap.grabberLeftTalon  = new WPI_TalonSRX(RobotMap.GRABBER_LEFT_TALON_PORT);
+			RobotMap.grabberRightTalon = new WPI_TalonSRX(RobotMap.GRABBER_RIGHT_TALON_PORT);
+			RobotMap.grabberRightTalon.follow(RobotMap.grabberLeftTalon);
+		} catch(Exception e) {
+			(new LogEntry(0, "RobotMap", "initGrabber", "Exception was thrown! Message: " + e.getMessage())).addTag("Grabber Subsystem").put();
+		}
 	}
 	
-	// Initialize the human vision camera and configure it
 	public static void initCamera() {
-		RobotMap.camera = CameraServer.getInstance().startAutomaticCapture();
-		// limit the resolution and frames per second to reduce latency
-		RobotMap.camera.setResolution(640, 480);
-		RobotMap.camera.setFPS(20);
+		try {
+			RobotMap.camera = CameraServer.getInstance().startAutomaticCapture();
+			RobotMap.camera.setResolution(320, 240);
+			RobotMap.camera.setFPS(20);
+		} catch(Exception e) {
+			(new LogEntry(1, "RobotMap", "initCamera", "Exception was thrown! Message: " + e.getMessage())).put();
+		}
 	}
 	
-	// Initialize any extra sensors
 	public static void initSensors() {
-		RobotMap.gyro = new ADXRS450_Gyro();
-		SmartDashboard.putData("Gyro", RobotMap.gyro);
+		try {
+			RobotMap.gyro = new ADXRS450_Gyro();
+			SmartDashboard.putData("Gyro", RobotMap.gyro);
+		} catch (Exception e) {
+			(new LogEntry(1, "RobotMap", "initSensors", "Exception was thrown when initializng gyro! Message: " + e.getMessage())).put();
+		}
+		
+		try {
+			RobotMap.leftEncoder = new Encoder(0, 1);
+			RobotMap.leftEncoder = new Encoder(2, 3);
+		} catch (Exception e) {
+			(new LogEntry(1, "RobotMap", "initSensors", "Exception was thrown when initializng encoders! Message: " + e.getMessage())).put();
+		}
 	}
 
 }

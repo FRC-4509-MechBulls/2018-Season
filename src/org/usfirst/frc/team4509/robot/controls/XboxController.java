@@ -30,16 +30,16 @@ public class XboxController implements ControllerBase {
 	
 	@Override
 	public double getWinch() {
-		double n = 0;
-		if(this.controller.getBumperPressed(GenericHID.Hand.kRight)) n++;
-		if(this.controller.getBumperPressed(GenericHID.Hand.kLeft))  n--;
-		return n;
+		double n = -1 * this.controller.getY(GenericHID.Hand.kLeft);
+		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
 	}
 	
 	@Override
 	public double getGrabber() {
-		double n = this.controller.getY(GenericHID.Hand.kLeft);
-		return Math.abs(n) < Preferences.getInstance().getDouble("DEADZONE", 0.1) ? 0 : n;
+		double n = 0;
+		if(this.controller.getBumper(GenericHID.Hand.kRight)) n--;
+		if(this.controller.getBumper(GenericHID.Hand.kLeft))  n++;
+		return n;
 	}
 	
 	public boolean getAutoTest() {
@@ -47,19 +47,19 @@ public class XboxController implements ControllerBase {
 	}
 	
 	public boolean getSelectNextProfile() {
-		return this.controller.getPOV() > 85 && this.controller.getPOV() < 95;
+		return this.controller.getPOV() == 90;
 	}
 	
 	public boolean getSelectLastProfile() {
-		return this.controller.getPOV() > 265 && this.controller.getPOV() < 275;
+		return this.controller.getPOV() == 270;
 	}
 	
 	public boolean getRunProfile() {
-		return this.controller.getPOV() > 355 && this.controller.getPOV() < 5 && this.controller.getPOV() > -1;
+		return this.controller.getPOV() == 0;
 	}
 	
 	public boolean getRecordProfile() {
-		return this.controller.getPOV() > 175 && this.controller.getPOV() < 185;
+		return this.controller.getPOV() == 180;
 	}
 	
 }

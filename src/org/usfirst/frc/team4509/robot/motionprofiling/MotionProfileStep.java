@@ -1,29 +1,63 @@
 package org.usfirst.frc.team4509.robot.motionprofiling;
 
-
 public class MotionProfileStep implements Comparable<MotionProfileStep> {
 	
-	public static final MotionProfileStep STOP = new MotionProfileStep(0, 0, 0, 0, 0);
-	
 	public double time;
-	public String text; // just in case you want to add a description
-	public double leftFrontDriveTalonSpeed, rightFrontDriveTalonSpeed;
-	public double grabberLeftTalonSpeed;
-	public double winchTalonSpeed;
+	public String text;
+	public double leftDriveSpeed, rightDriveSpeed;
+	public double grabberSpeed;
+	public double winchSpeed;
 	
-	public MotionProfileStep() {}
+	private MotionProfileStep() {}
 	
-	public MotionProfileStep(double t, double lF, double rF, double gL, double w) {
-		this.time = t;
-		this.leftFrontDriveTalonSpeed = lF;
-		this.rightFrontDriveTalonSpeed = rF;
-		this.grabberLeftTalonSpeed = gL;
-		this.winchTalonSpeed = w;
-	}
-	
-	public MotionProfileStep(String txt, double t, double lF, double rF, double gL, double w) {
-		this(t, lF, rF, gL, w);
-		this.text = txt;
+	public static class Builder {
+		
+		public double time;
+		public String text;
+		public double leftDriveSpeed, rightDriveSpeed;
+		public double grabberSpeed;
+		public double winchSpeed;
+		
+		public Builder(double time) {
+			this.time = time;
+		}
+		
+		public Builder setText(String text) {
+			this.text = text;
+			return this;
+		}
+		
+		public Builder setLeftDriveSpeed(double speed) {
+			this.leftDriveSpeed = speed;
+			return this;
+		}
+		
+		public Builder setRightDriveSpeed(double speed) {
+			this.rightDriveSpeed = speed;
+			return this;
+		}
+		
+		public Builder setWinchSpeed(double speed) {
+			this.winchSpeed = speed;
+			return this;
+		}
+		
+		public Builder setGrabberSpeed(double speed) {
+			this.grabberSpeed = speed;
+			return this;
+		}
+		
+		public MotionProfileStep build() {
+			MotionProfileStep step = new MotionProfileStep();
+			step.time = this.time;
+			step.text = this.text;
+			step.leftDriveSpeed = this.leftDriveSpeed;
+			step.rightDriveSpeed = this.rightDriveSpeed;
+			step.winchSpeed = this.winchSpeed;
+			step.grabberSpeed = this.grabberSpeed;
+			return step;
+		}
+		
 	}
 	
 	// compares based on time.
@@ -37,11 +71,22 @@ public class MotionProfileStep implements Comparable<MotionProfileStep> {
 	}
 	
 	public String toString() {
-		return String.format("(%f,\"%s\",%f,%f,%f,%f)", this.time, (this.text == null ? "" : this.text),
-				this.leftFrontDriveTalonSpeed,
-				this.rightFrontDriveTalonSpeed,
-				this.grabberLeftTalonSpeed,
-				this.winchTalonSpeed);
+		return String.format("%f,%s,%f,%f,%f,%f", this.time, (this.text == null ? "_" : this.text),
+				this.leftDriveSpeed,
+				this.rightDriveSpeed,
+				this.winchSpeed,
+				this.grabberSpeed);
+	}
+	
+	public static MotionProfileStep fromString(String str) {
+		String[] strA = str.split(",");
+		return (new MotionProfileStep.Builder(Double.parseDouble(strA[0])))
+				.setText(strA[1])
+				.setLeftDriveSpeed(Double.parseDouble(strA[2]))
+				.setRightDriveSpeed(Double.parseDouble(strA[3]))
+				.setWinchSpeed(Double.parseDouble(strA[4]))
+				.setGrabberSpeed(Double.parseDouble(strA[5]))
+				.build();
 	}
 	
 }

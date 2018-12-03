@@ -3,9 +3,10 @@ package org.usfirst.frc.team4509.robot.motionprofiling;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.usfirst.frc.team4509.robot.RobotMap;
+import org.usfirst.frc.team4509.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MotionProfilingSubsystem extends Subsystem {
 	
@@ -27,35 +28,30 @@ public class MotionProfilingSubsystem extends Subsystem {
 		}
 	}
 	
-	public void recordToSelected() {
-		if(this.profiles.size() > 0) {
-			if(this.profiles.get(this.selectedProfile).steps.size() > 0) {
-				MotionProfile profile = new MotionProfile();
-				profile.name = "Profile " + this.profiles.size();
-				this.addProfile(profile);
-				this.selectedProfile = this.profiles.size() - 1;
-			}
-			(new RecordMotionProfileCommand(this.profiles.get(this.selectedProfile))).start();
-		}
+	public void record() {
+		(new RecordMotionProfileCommand(new MotionProfile.Builder("Profile " + this.profiles.size()))).start();
 	}
 	
 	public void runSelected() {
 		if(this.profiles.size() > 0)
-			if(MotionProfile.isValid(this.profiles.get(this.selectedProfile)))
-				(new RunMotionProfileCommand(this.profiles.get(this.selectedProfile))).start();
-			else
-				System.out.println("Warning: Selected profile will not be run because it is invalid.");
+			(new RunMotionProfileCommand(this.profiles.get(this.selectedProfile))).start();
 	}
 	
 	public MotionProfile getSelected() {
-		if(this.profiles.size() > 0)
+		if(this.profiles.size() > 0 && this.selectedProfile < this.profiles.size())
 			return this.profiles.get(this.selectedProfile);
-		else
+		else {
+			System.out.println("ERROR: Tried to access out-of-bounds profile!");
 			return null;
+		}
 	}
 	
 	public void addProfile(MotionProfile profile) {
-		this.profiles.add(profile);
+		if(profile != null) {
+			this.profiles.add(profile);
+		} else {
+			System.out.println("ERROR: Tried to add null profile to MotionProfilingSubsystem list!");
+		}
 	}
 	
 	public void stop() {
@@ -69,10 +65,8 @@ public class MotionProfilingSubsystem extends Subsystem {
 		} else {
 			this.selectedProfile = 0;
 		}
-		System.out.println("Selected profile " + this.profiles.get(this.selectedProfile).name);
-		if(this.profiles.get(this.selectedProfile).steps != null) {
-			System.out.println("Steps: " + this.profiles.get(this.selectedProfile).steps);
-		}
+		SmartDashboard.putString("Selected Profile", Robot.motionProfilingSubsystem.getSelectedProfileName());
+		System.out.println(this.profiles.get(this.selectedProfile));
 	}
 	
 	public void selectLast() {
@@ -81,22 +75,12 @@ public class MotionProfilingSubsystem extends Subsystem {
 		} else {
 			this.selectedProfile = this.profiles.size() - 1;
 		}
-		System.out.println("Selected profile " + this.profiles.get(this.selectedProfile).name);
-		if(this.profiles.get(this.selectedProfile).steps != null) {
-			System.out.println("Steps: " + this.profiles.get(this.selectedProfile).steps);
-		}
+		SmartDashboard.putString("Selected Profile", Robot.motionProfilingSubsystem.getSelectedProfileName());
+		System.out.println(this.profiles.get(this.selectedProfile));
 	}
 	
 	public String getSelectedProfileName() {
-		return this.getSelected().name;
-	}
-	
-	// Set all the talons to the step's speeds
-	public void apply(MotionProfileStep step) {
-		RobotMap.leftFrontDriveTalon.set(step.leftFrontDriveTalonSpeed);
-		RobotMap.rightFrontDriveTalon.set(step.rightFrontDriveTalonSpeed);
-		RobotMap.grabberLeftTalon.set(step.grabberLeftTalonSpeed);
-		RobotMap.winchTalon.set(step.winchTalonSpeed);
+		return this.getSelected().name != null ? this.getSelected().name : "None Selected";
 	}
 
 }

@@ -32,8 +32,6 @@ public class Robot extends IterativeRobot {
 	Command autoCommand;
 	SendableChooser<AUTO_START_POSITION> autoStartPositionChooser;
 	SendableChooser<AUTO_GOAL> autoGoalChooser;
-	
-	MotionProfile profile;
 
 	@Override
 	public void robotInit() {
@@ -51,26 +49,29 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 		SmartDashboard.putData("Driving", Robot.drivingSubsystem);
 		SmartDashboard.putData("Grabber", Robot.grabberSubsystem);
-		SmartDashboard.putData("Winch", Robot.winchSubsystem);
+		SmartDashboard.putData("Winch",   Robot.winchSubsystem);
 		SmartDashboard.putData("Motion Profiling", Robot.motionProfilingSubsystem);
 		
 		this.autoStartPositionChooser = new SendableChooser<AUTO_START_POSITION>();
-		this.autoStartPositionChooser.addObject("Left",   AUTO_START_POSITION.LEFT);
+		this.autoStartPositionChooser.addObject("Left",    AUTO_START_POSITION.LEFT);
 		this.autoStartPositionChooser.addDefault("Middle", AUTO_START_POSITION.MIDDLE);
-		this.autoStartPositionChooser.addObject("Right",  AUTO_START_POSITION.RIGHT);
-		SmartDashboard.putData("Auto Start Position Chooser", this.autoStartPositionChooser);
+		this.autoStartPositionChooser.addObject("Right",   AUTO_START_POSITION.RIGHT);
+		SmartDashboard.putData("Auto Start Chooser", this.autoStartPositionChooser);
 		
 		this.autoGoalChooser = new SendableChooser<AUTO_GOAL>();
-		this.autoGoalChooser.addDefault("Line",   AUTO_GOAL.LINE);
+		this.autoGoalChooser.addDefault("Line",  AUTO_GOAL.LINE);
 		this.autoGoalChooser.addObject("Switch", AUTO_GOAL.SWITCH);
 		this.autoGoalChooser.addObject("Scale",  AUTO_GOAL.SCALE);
 		SmartDashboard.putData("Auto Goal Chooser", this.autoGoalChooser);
 		
 		Robot.motionProfilingSubsystem.addProfile(MotionProfileStorage.getStopProfile());
+		Robot.motionProfilingSubsystem.addProfile(MotionProfileStorage.getProfile("turn_left_90"));
 		
-		SmartDashboard.putString("Selected Profile", Robot.motionProfilingSubsystem.getSelectedProfileName());
 		SmartDashboard.putData("Next Profile", new SelectNextProfileCommand());
 		SmartDashboard.putData("Last Profile", new SelectLastProfileCommand());
+		
+		SmartDashboard.putString("Profile to load", "");
+		SmartDashboard.putData("Load Profile", new LoadProfileCommand());
 	}
 	
 	@Override
@@ -102,7 +103,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
-
+	
 	@Override
 	public void teleopInit() {
 		Robot.drivingSubsystem.setDriveSpeedMode(DrivingSubsystem.DriveSpeedMode.TeleOp);
@@ -112,7 +113,10 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 	}
-
+	
+	@Override
+	public void testInit() {}
+	
 	@Override
 	public void testPeriodic() {}
 	

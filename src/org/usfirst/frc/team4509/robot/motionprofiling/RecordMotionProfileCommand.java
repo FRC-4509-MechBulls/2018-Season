@@ -1,39 +1,57 @@
 package org.usfirst.frc.team4509.robot.motionprofiling;
 
 import org.usfirst.frc.team4509.robot.Robot;
+import org.usfirst.frc.team4509.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 
 public class RecordMotionProfileCommand extends Command {
 
-	private MotionProfile profile;
+	private MotionProfile.Builder profileBuilder;
 	
-	public RecordMotionProfileCommand(MotionProfile profile) {
+	public RecordMotionProfileCommand(MotionProfile.Builder profileBuilder) {
 		requires(Robot.motionProfilingSubsystem);
-		this.profile = profile;
+		this.profileBuilder = profileBuilder;
 	}
 
 	@Override
 	protected void initialize() {
-		this.profile.startRecording();
-		this.profile.addStep(new MotionProfileStep("START", this.profile.timer.get(), 0, 0, 0, 0));
+		this.profileBuilder.add(new MotionProfileStep.Builder(0)
+		                        .setText("START")
+		                        .setLeftDriveSpeed(0)
+		                        .setRightDriveSpeed(0)
+		                        .setWinchSpeed(0)
+		                        .setGrabberSpeed(0)
+		                        .build());
 	}
 
 	@Override
 	protected void execute() {
-		this.profile.record();
+		this.profileBuilder.add(new MotionProfileStep.Builder(this.timeSinceInitialized())
+        .setText("_")
+        .setLeftDriveSpeed(RobotMap.leftFrontDriveTalon.get())
+        .setRightDriveSpeed(RobotMap.rightFrontDriveTalon.get())
+        .setWinchSpeed(RobotMap.winchTalon.get())
+        .setGrabberSpeed(RobotMap.grabberLeftTalon.get())
+        .build());
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		return this.timeSinceInitialized() > 15;
+		return false;
 	}
 
 	@Override
 	protected void end() {
-		this.profile.addStep(new MotionProfileStep("END", this.profile.timer.get(), 0, 0, 0, 0));
-		this.profile.stopRecording();
+		this.profileBuilder.add(new MotionProfileStep.Builder(this.timeSinceInitialized())
+        .setText("END")
+        .setLeftDriveSpeed(0.0)
+        .setRightDriveSpeed(0.0)
+        .setWinchSpeed(0.0)
+        .setGrabberSpeed(0.0)
+        .build());
+		Robot.motionProfilingSubsystem.addProfile(this.profileBuilder.build());
 	}
 
 }

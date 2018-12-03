@@ -4,77 +4,96 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.usfirst.frc.team4509.robot.RobotMap;
-
-import edu.wpi.first.wpilibj.Timer;
+import org.usfirst.frc.team4509.robot.logging.LogEntry;
 
 public class MotionProfile {
 	
 	public String name;
-	List<MotionProfileStep> steps;
-	Timer timer;
+	MotionProfileStep[] steps;
 	
-	public MotionProfile() {
-		this.name = "";
-		this.steps = new ArrayList<MotionProfileStep>();
-		this.timer = new Timer();
-	}
+	private MotionProfile() {}
 	
-	public void startRecording() {
-		this.timer.start();
-	}
-	
-	public void stopRecording() {
-		this.timer.stop();
-	}
-	
-	public void addStep(MotionProfileStep step) {
-		this.steps.add(step);
-		Collections.sort(this.steps);
-	}
-	
-	public void record() {
-		MotionProfileStep step = MotionProfile.recordStep();
-		if(this.timer.get() == 0)
-			this.startRecording();
-		step.time = this.timer.get();
-		System.out.println("r" + step);
-		this.addStep(step);
+	public static class Builder {
+		
+		String name;
+		List<MotionProfileStep> steps;
+		
+		public Builder(String name) {
+			this.name = name;
+			this.steps = new ArrayList<MotionProfileStep>();
+		}
+		
+		public void add(MotionProfileStep step) {
+			if(this.steps.size() == 0 || step.time > this.steps.get(this.steps.size() - 1).time) {
+				(new LogEntry(3, "MotionProfile", "add", "Added step " + step + " to profile " + this.name + "."))
+					.addTag("Motion Profiling Subsystem").put();
+				this.steps.add(step);
+			} else {
+				(new LogEntry(1, "MotionProfile", "add", "Tried to add step with an earlier time than the last step of profile " + this.name + "!"))
+					.addTag("Motion Profiling Subsystem").put();
+			}
+		}
+		
+		public MotionProfile build() {
+			MotionProfile profile = new MotionProfile();
+			
+			if(this.name == null) {
+				(new LogEntry(1, "MotionProfile", "build", "Tried to build profile without a name!"))
+					.addTag("Motion Profiling Subsystem").put();
+				return null;
+			}
+			profile.name = this.name;
+			
+			Collections.sort(this.steps);
+			if(this.steps.size() < 2) {
+				System.out.println();
+				(new LogEntry(1, "MotionProfile", "build", "Tried to build profile with less than two steps!"))
+					.addTag("Motion Profiling Subsystem").put();
+				return null;
+			}
+			if(!this.steps.get(0).text.equals("START")) {
+				(new LogEntry(1, "MotionProfile", "build", "Tried to build profile where the first step wasn't START!"))
+					.addTag("Motion Profiling Subsystem").put();
+				return null;
+			}
+			if(!this.steps.get(this.steps.size() - 1).text.equals("END")) {
+				(new LogEntry(1, "MotionProfile", "build", "Tried to build profile where the last step wasn't END!"))
+					.addTag("Motion Profiling Subsystem").put();
+				return null;
+			}
+			profile.steps = this.steps.toArray(new MotionProfileStep[0]);
+				
+			return profile;
+		}
+		
 	}
 	
 	// get the first step before or at the given time
 	public MotionProfileStep getStep(double t) {
-		if(this.steps.size() == 0)
-			return null;
+		if(this.steps[0].time > t)
+			return this.steps[0];
 		
-		if(this.steps.get(0).time > t)
-			return this.steps.get(0);
+		if(this.steps[this.steps.length - 1].time < t)
+			return this.steps[this.steps.length - 1];
 		
-		if(this.steps.get(this.steps.size() - 1).time < t)
-			return this.steps.get(this.steps.size() - 1);
-		
-		for(int i = 0; i < this.steps.size(); i++) {
+		for(int i = 0; i < this.steps.length; i++) {
 			// if this step is before or at the time and the next step is after
-			if(this.steps.get(i).time <= t && (i + 1 != this.steps.size() && this.steps.get(i + 1).time > t)) {
-				return this.steps.get(i);
+			if(this.steps[i].time <= t && (i + 1 != this.steps.length && this.steps[i + 1].time > t)) {
+				return this.steps[i];
 			}
 		}
+		(new LogEntry(2, "MotionProfile", "getStep", "Had to return null!")).addTag("Motion Profiling Subsystem").put();
 		return null;
 	}
 	
-	// Create a step with the current talon speeds
-	public static MotionProfileStep recordStep() {
-		MotionProfileStep step = new MotionProfileStep();
-		step.leftFrontDriveTalonSpeed = RobotMap.leftFrontDriveTalon.get();
-		step.rightFrontDriveTalonSpeed = RobotMap.rightFrontDriveTalon.get();
-		step.grabberLeftTalonSpeed = RobotMap.grabberLeftTalon.get();
-		step.winchTalonSpeed = RobotMap.winchTalon.get();
-		return step;
-	}
-	
-	// returns true if the profile has steps, the first step is START, and the last step is END
-	public static boolean isValid(MotionProfile profile) {
-		return profile.steps.size() >= 2 && profile.steps.get(0).text.equals("START") && profile.steps.get(profile.steps.size() - 1).text.equals("END");
+	public String toString() {
+		StringBuilder str = new StringBuilder(this.name + ":");
+		for(int i = 0; i < this.steps.length; i++) {
+			str.append(this.steps[i]);
+			if(i != this.steps.length - 1)
+				str.append(";");
+		}
+		return str.toString();
 	}
 	
 }

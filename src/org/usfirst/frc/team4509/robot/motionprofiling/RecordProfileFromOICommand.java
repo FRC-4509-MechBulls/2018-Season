@@ -11,7 +11,7 @@ public class RecordProfileFromOICommand extends InstantCommand {
 	
 	protected void execute() {
 		Robot.motionProfilingSubsystem.cancelProfileCommand();
-		Robot.motionProfilingSubsystem.recordToSelected();
+		Robot.motionProfilingSubsystem.record();
 	}
 
 }
